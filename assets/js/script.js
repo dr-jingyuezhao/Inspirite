@@ -130,6 +130,22 @@ $.ajax({
 });
 
 
+// Giphy API calls
+var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=" + giphyKey;
 
+var searchQueryURL = "https://api.giphy.com/v1/gifs/search?api_key=" + giphyKey + "&q=cat&limit=25&offset=0&rating=g&lang=en";
+$.ajax({
+    url: queryURL,
+    method: "GET"
+}).then(function (response) {
+    console.log(response);
+});
+
+$.ajax({
+    url: searchQueryURL,
+    method: "GET"
+}).then(function (response) {
+    console.log(response);
+});
 
 
