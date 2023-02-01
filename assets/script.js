@@ -92,3 +92,44 @@ if ("Notification" in window) {
     });
   }
 }
+
+
+
+//Quotes API
+
+var category = 'happiness'
+$.ajax({
+    method: 'GET',
+    url: 'https://api.api-ninjas.com/v1/quotes?category=',
+    headers: { 'X-Api-Key': ninjaKey},
+    contentType: 'application/json',
+    success: function(result) {
+        console.log(result);
+    },
+    error: function ajaxError(jqXHR) {
+        console.error('Error: ', jqXHR.responseText);
+    }
+})
+
+
+
+
+//Facts API
+
+$.ajax({
+    method: 'GET',
+    url: 'https://api.api-ninjas.com/v1/facts?limit=1'  ,
+    headers: { 'X-Api-Key': ninjaKey },
+    contentType: 'application/json',
+    success: function(result) {
+        console.log(result);
+    },
+    error: function ajaxError(jqXHR) {
+        console.error('Error: ', jqXHR.responseText);
+    }
+});
+
+
+
+
+
