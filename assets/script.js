@@ -112,8 +112,6 @@ $.ajax({
 })
 
 
-
-
 //Facts API
 
 $.ajax({
