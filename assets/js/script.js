@@ -93,13 +93,13 @@ else {
 // }
 
 
-//Quotes API
-
+//QUOTES BUTTON
+//Buttons on click event
 $("#quote").on("click", function (event) {
 
   event.preventDefault()
 
-
+//Launches Ajax call for quotes
 $.ajax({
   method: 'GET',
   url: 'https://api.api-ninjas.com/v1/quotes?category=',
@@ -107,10 +107,14 @@ $.ajax({
   contentType: 'application/json',
   success: function (result) {
     console.log("Quote added");
+    //"Dissapears" the start page jumbotron
     $("#start-screen").css("display" , "none")
+    //Creates a H2 for the quote with the id of quote
     var quoteElement = $("<h2>")
     quoteElement.attr("id" , "quote")
+    //Adds quote text from the API call to the new H2 element
 quoteElement.text(result[0].quote)   
+//Appends quote to prompt container section in HTML
 $("#prompt-container").append(quoteElement)
   },
   error: function ajaxError(jqXHR) {
@@ -121,8 +125,13 @@ $("#prompt-container").append(quoteElement)
 
 
 
-//Facts API
+//FACTS BUTTON
+//Buttons on click event
+$("#fact").on("click", function (event) {
 
+  event.preventDefault()
+
+//Launches Ajax call for fun facts
 $.ajax({
   method: 'GET',
   url: 'https://api.api-ninjas.com/v1/facts?limit=1',
@@ -130,11 +139,30 @@ $.ajax({
   contentType: 'application/json',
   success: function (result) {
     console.log(result);
+//     //"Disappears" the start page jumbotron
+    $("#start-screen").css("display" , "none")
+    // Creates a H2 for the quote with the id of quote
+    var factElement = $("<h2>")
+    factElement.attr("id" , "fact")
+    //Adds quote text from the API call to the new H2 element
+factElement.text(result[0].fact)   
+//Appends quote to prompt container section in HTML
+$("#prompt-container").append(factElement)
   },
   error: function ajaxError(jqXHR) {
     console.error('Error: ', jqXHR.responseText);
   }
-});
+})
+})
+
+
+
+
+
+
+
+
+
 
 
 // Giphy API calls
