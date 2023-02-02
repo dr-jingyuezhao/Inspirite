@@ -8,18 +8,17 @@
 
 // Add save and publish buttons once the user starts writing
 
-    // The save button saves text to local storage
+// The save button saves text to local storage
 
-    // The publish buttons appends it to publication page and saves that page to local storage.
+// The publish buttons appends it to publication page and saves that page to local storage.
 
 // Create a page with grid of previously written stories. 
-    
-    //Each cell is a link to previously written story. 
+
+//Each cell is a link to previously written story. 
 
 // Add streak counter - counts new day when publish button pressed, once a day.
 
 // Add notifications
-
 
 
 //^ STREAK TRACKER
@@ -69,60 +68,72 @@ else {
   $("#counter-section").append(counter);
 }
 
-//^NOTIFICATIONS
+// //^NOTIFICATIONS
 
-if ("Notification" in window) {
-  if (Notification.permission === "granted") {
-    setInterval(function () {
-      let notification = new Notification("Time to INSPIRITE", {
-        body: "Get inspired and write something great today!",
-        icon: "icon.png" //to be added
-      });
-    }, 1000 * 60 * 60 * 24);
-  } else if (Notification.permission !== "denied") {
-    Notification.requestPermission().then(function (permission) {
-      if (permission === "granted") {
-        setInterval(function () {
-          let notification = new Notification("Time to INSPIRITE", {
-            body: "Get inspired and write something great today!",
-            icon: "icon.png" //to be added
-          });
-        }, 1000 * 60 * 60 * 24);
-      }
-    });
-  }
-}
+// if ("Notification" in window) {
+//   if (Notification.permission === "granted") {
+//     setInterval(function () {
+//       let notification = new Notification("Time to INSPIRITE", {
+//         body: "Get inspired and write something great today!",
+//         icon: "icon.png" //to be added
+//       });
+//     }, 1000 * 60 * 60 * 24);
+//   } else if (Notification.permission !== "denied") {
+//     Notification.requestPermission().then(function (permission) {
+//       if (permission === "granted") {
+//         setInterval(function () {
+//           let notification = new Notification("Time to INSPIRITE", {
+//             body: "Get inspired and write something great today!",
+//             icon: "icon.png" //to be added
+//           });
+//         }, 1000 * 60 * 60 * 24);
+//       }
+//     });
+//   }
+// }
 
 
 //Quotes API
 
-var category = 'happiness'
+$("#quote").on("click", function (event) {
+
+  event.preventDefault()
+
+
 $.ajax({
-    method: 'GET',
-    url: 'https://api.api-ninjas.com/v1/quotes?category=',
-    headers: { 'X-Api-Key': ninjaKey},
-    contentType: 'application/json',
-    success: function(result) {
-        console.log(result);
-    },
-    error: function ajaxError(jqXHR) {
-        console.error('Error: ', jqXHR.responseText);
-    }
+  method: 'GET',
+  url: 'https://api.api-ninjas.com/v1/quotes?category=',
+  headers: { 'X-Api-Key': ninjaKey },
+  contentType: 'application/json',
+  success: function (result) {
+    console.log("Quote added");
+    $("#start-screen").css("display" , "none")
+    var quoteElement = $("<h2>")
+    quoteElement.attr("id" , "quote")
+quoteElement.text(result[0].quote)   
+$("#prompt-container").append(quoteElement)
+  },
+  error: function ajaxError(jqXHR) {
+    console.error('Error: ', jqXHR.responseText);
+  }
 })
+})
+
+
 
 //Facts API
 
 $.ajax({
-    method: 'GET',
-    url: 'https://api.api-ninjas.com/v1/facts?limit=1'  ,
-    headers: { 'X-Api-Key': ninjaKey },
-    contentType: 'application/json',
-    success: function(result) {
-        console.log(result);
-    },
-    error: function ajaxError(jqXHR) {
-        console.error('Error: ', jqXHR.responseText);
-    }
+  method: 'GET',
+  url: 'https://api.api-ninjas.com/v1/facts?limit=1',
+  headers: { 'X-Api-Key': ninjaKey },
+  contentType: 'application/json',
+  success: function (result) {
+    console.log(result);
+  },
+  error: function ajaxError(jqXHR) {
+    console.error('Error: ', jqXHR.responseText);
+  }
 });
 
 
@@ -131,32 +142,32 @@ var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=" + giphyKey;
 
 var searchQueryURL = "https://api.giphy.com/v1/gifs/search?api_key=" + giphyKey + "&q=cat&limit=25&offset=0&rating=g&lang=en";
 $.ajax({
-    url: queryURL,
-    method: "GET"
+  url: queryURL,
+  method: "GET"
 }).then(function (response) {
-  
-    console.log(response);
+
+  console.log(response);
 });
 
 
 // Random image API call. Check https://api-ninjas.com/api/randomimage for more info.
 $.ajax({
-    method: 'GET',
-    url: 'https://api.api-ninjas.com/v1/randomimage?', 
-    headers: { 'X-Api-Key': ninjaKey }, //Had to remove Accept: from here -don't know why, but it works :)
-    success: function(result) {
+  method: 'GET',
+  url: 'https://api.api-ninjas.com/v1/randomimage?',
+  headers: { 'X-Api-Key': ninjaKey }, //Had to remove Accept: from here -don't know why, but it works :)
+  success: function (result) {
 
-// Creates element for the image and sets its attribute of SRC to URL including API call result.
-var testImage = $("<img>")
-testImage.attr("src", ("data:image/jpg;base64," + result));
+    // Creates element for the image and sets its attribute of SRC to URL including API call result.
+    var testImage = $("<img>")
+    testImage.attr("src", ("data:image/jpg;base64," + result));
 
-// Appends image to HTML section 
+    // Appends image to HTML section 
 
-$("#image-section").append(testImage)
-   
-    },
-    error: function ajaxError(jqXHR) {
-        console.error('Error: ', jqXHR.responseText);
-    }
+    $("#image-section").append(testImage)
+
+  },
+  error: function ajaxError(jqXHR) {
+    console.error('Error: ', jqXHR.responseText);
+  }
 })
 
