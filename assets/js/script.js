@@ -106,14 +106,22 @@ $.ajax({
   headers: { 'X-Api-Key': ninjaKey },
   contentType: 'application/json',
   success: function (result) {
-    console.log("Quote added");
-    //"Dissapears" the start page jumbotron
+    //"Disappears" the start page jumbotron
     $("#start-screen").css("display" , "none")
     //Creates a H2 for the quote with the id of quote
     var quoteElement = $("<h2>")
     quoteElement.attr("id" , "quote")
+    quoteElement.addClass("prompt-element");
     //Adds quote text from the API call to the new H2 element
-quoteElement.text(result[0].quote)   
+quoteElement.text(result[0].quote)  
+//Adds quote author element and its attributes
+var authorElement = $("<h4>")
+authorElement.attr("id" , "author")
+authorElement.addClass("prompt-element");
+//Sets author element text
+authorElement.text("- " + result[0].author)  
+//Appends author to quote
+quoteElement.append(authorElement)
 //Appends quote to prompt container section in HTML
 $("#prompt-container").append(quoteElement)
   },
@@ -124,29 +132,20 @@ $("#prompt-container").append(quoteElement)
 })
 
 
-
 //FACTS BUTTON
-//Buttons on click event
 $("#fact").on("click", function (event) {
-
   event.preventDefault()
-
-//Launches Ajax call for fun facts
 $.ajax({
   method: 'GET',
   url: 'https://api.api-ninjas.com/v1/facts?limit=1',
   headers: { 'X-Api-Key': ninjaKey },
   contentType: 'application/json',
   success: function (result) {
-    console.log(result);
-//     //"Disappears" the start page jumbotron
     $("#start-screen").css("display" , "none")
-    // Creates a H2 for the quote with the id of quote
     var factElement = $("<h2>")
     factElement.attr("id" , "fact")
-    //Adds quote text from the API call to the new H2 element
+    factElement.addClass("prompt-element");
 factElement.text(result[0].fact)   
-//Appends quote to prompt container section in HTML
 $("#prompt-container").append(factElement)
   },
   error: function ajaxError(jqXHR) {
@@ -156,9 +155,30 @@ $("#prompt-container").append(factElement)
 })
 
 
+//RANDOM IMAGE BUTTON
+$("#random-img").on("click", function (event) {
+  event.preventDefault() 
 
+// Random image API call. Check https://api-ninjas.com/api/randomimage for more info.
+$.ajax({
+  method: 'GET',
+  url: 'https://api.api-ninjas.com/v1/randomimage?',
+  headers: { 'X-Api-Key': ninjaKey },
+  success: function (result) {
+    $("#start-screen").css("display" , "none")
+    // Creates element for the image and sets its attribute of SRC to URL including API call result.
+    var imageElement = $("<img>")
+    imageElement.attr("src", ("data:image/jpg;base64," + result));
+    imageElement.attr("id" , "fact")
+    imageElement.addClass("prompt-element");
+    $("#prompt-container").append(imageElement)
+  },
+  error: function ajaxError(jqXHR) {
+    console.error('Error: ', jqXHR.responseText);
+  }
+})
 
-
+})
 
 
 
@@ -176,26 +196,4 @@ $.ajax({
 
   console.log(response);
 });
-
-
-// Random image API call. Check https://api-ninjas.com/api/randomimage for more info.
-$.ajax({
-  method: 'GET',
-  url: 'https://api.api-ninjas.com/v1/randomimage?',
-  headers: { 'X-Api-Key': ninjaKey }, //Had to remove Accept: from here -don't know why, but it works :)
-  success: function (result) {
-
-    // Creates element for the image and sets its attribute of SRC to URL including API call result.
-    var testImage = $("<img>")
-    testImage.attr("src", ("data:image/jpg;base64," + result));
-
-    // Appends image to HTML section 
-
-    $("#image-section").append(testImage)
-
-  },
-  error: function ajaxError(jqXHR) {
-    console.error('Error: ', jqXHR.responseText);
-  }
-})
 
