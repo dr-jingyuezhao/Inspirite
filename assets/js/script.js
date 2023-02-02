@@ -111,9 +111,6 @@ $.ajax({
     }
 })
 
-
-
-
 //Facts API
 
 $.ajax({
@@ -138,14 +135,28 @@ $.ajax({
     url: queryURL,
     method: "GET"
 }).then(function (response) {
+  
     console.log(response);
 });
 
+
+// Random image API call. Check https://api-ninjas.com/api/randomimage for more info.
 $.ajax({
-    url: searchQueryURL,
-    method: "GET"
-}).then(function (response) {
-    console.log(response);
-});
+    method: 'GET',
+    url: 'https://api.api-ninjas.com/v1/randomimage?', 
+    headers: { 'X-Api-Key': ninjaKey }, //Had to remove Accept: from here -don't know why, but it works :)
+    success: function(result) {
 
+// Creates element for the image and sets its attribute of SRC to URL including API call result.
+var testImage = $("<img>")
+testImage.attr("src", ("data:image/jpg;base64," + result));
 
+// Appends image to HTML section 
+
+$("#image-section").append(testImage)
+   
+    },
+    error: function ajaxError(jqXHR) {
+        console.error('Error: ', jqXHR.responseText);
+    }
+})
