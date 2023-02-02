@@ -94,7 +94,6 @@ if ("Notification" in window) {
 }
 
 
-
 //Quotes API
 
 var category = 'happiness'
@@ -160,3 +159,4 @@ $("#image-section").append(testImage)
         console.error('Error: ', jqXHR.responseText);
     }
 })
+
