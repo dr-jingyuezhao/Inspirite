@@ -71,24 +71,24 @@ else {
 
 //^NOTIFICATIONS
 
-if ("Notification" in window) {
-  if (Notification.permission === "granted") {
-    setInterval(function () {
-      let notification = new Notification("Time to INSPIRITE", {
-        body: "Get inspired and write something great today!",
-        icon: "icon.png" //to be added
-      });
-    }, 1000 * 60 * 60 * 24);
-  } else if (Notification.permission !== "denied") {
-    Notification.requestPermission().then(function (permission) {
-      if (permission === "granted") {
-        setInterval(function () {
-          let notification = new Notification("Time to INSPIRITE", {
-            body: "Get inspired and write something great today!",
-            icon: "icon.png" //to be added
-          });
-        }, 1000 * 60 * 60 * 24);
-      }
-    });
-  }
-}
+// if ("Notification" in window) {
+//   if (Notification.permission === "granted") {
+//     setInterval(function () {
+//       let notification = new Notification("Time to INSPIRITE", {
+//         body: "Get inspired and write something great today!",
+//         icon: "icon.png" //to be added
+//       });
+//     }, 1000 * 60 * 60 * 24);
+//   } else if (Notification.permission !== "denied") {
+//     Notification.requestPermission().then(function (permission) {
+//       if (permission === "granted") {
+//         setInterval(function () {
+//           let notification = new Notification("Time to INSPIRITE", {
+//             body: "Get inspired and write something great today!",
+//             icon: "icon.png" //to be added
+//           });
+//         }, 1000 * 60 * 60 * 24);
+//       }
+//     });
+//   }
+// }
