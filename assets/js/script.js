@@ -75,7 +75,7 @@ $("#quote").on("click", function (event) {
       quoteElement.attr("id", "quote-element");
       quoteElement.addClass("prompt-element");
       //Adds quote text from the API call to the new H2 element
-      quoteElement.text(result[0].quote)
+      quoteElement.text('"' + result[0].quote + '."')
       //Adds quote author element and its attributes
       var authorElement = $("<h4>");
       authorElement.attr("id", "author");
@@ -126,7 +126,7 @@ $("#fact").on("click", function (event) {
       var factElement = $("<h2>");
       factElement.attr("id", "fact-element");
       factElement.addClass("prompt-element");
-      factElement.text(result[0].fact)
+      factElement.text(result[0].fact + ".")
       $("#prompt-container").append(factElement)
       var textArea = $('<textarea rows="8" class="col"></textarea>');
       $("#text-area").append(textArea);
