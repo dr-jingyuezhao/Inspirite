@@ -48,6 +48,10 @@
 /* Fact button  */
 
 #fact {
+    transition: all 0.5s ease-in-out; /* duration, timing function, delay */
+  }
+
+#fact {
     width: 100px;
     font-size: large;
     text-align: center;
@@ -66,6 +70,11 @@
 }
 
 /* Quote button  */
+
+#quote {
+    transition: all 0.5s ease-in-out; /* duration, timing function, delay */
+  }
+
 #quote {
     width: 100px;
     font-size: large;
@@ -87,6 +96,10 @@
 /* image button  */
 
 #random-img {
+    transition: all 0.5s ease-in-out; /* duration, timing function, delay */
+  }
+
+#random-img {
     width: 100px;
     font-size: large;
     text-align: center;
@@ -106,6 +119,10 @@
 }
 
 /* GIF button  */
+
+#gif {
+    transition: all 0.5s ease-in-out; /* duration, timing function, delay */
+  }
 
 #gif {
     width: 100px;
