@@ -260,3 +260,13 @@ $("#gif").on("click", function (event) {
       textButtonsContainer.append(publishButton)
     });
 });
+
+// function to play sound on text area click
+
+const audio = new Audio ('assets/sounds/writing_7s.mp3');
+
+  document.getElementById("text-area").addEventListener("keydown", function() {
+    audio.play();
+  });
+
+  
