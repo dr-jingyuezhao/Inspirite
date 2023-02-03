@@ -1,7 +1,5 @@
 //TODO 
 
-// Dynamically add buttons connected to APIs to source writing prompts
-
 // Dynamically create a div for displaying the selected prompt from API
 
 // Dynamically create / unveil a text writing field. 
@@ -158,15 +156,12 @@ $("#prompt-container").append(factElement)
 //RANDOM IMAGE BUTTON
 $("#random-img").on("click", function (event) {
   event.preventDefault() 
-
-// Random image API call. Check https://api-ninjas.com/api/randomimage for more info.
 $.ajax({
   method: 'GET',
   url: 'https://api.api-ninjas.com/v1/randomimage?',
   headers: { 'X-Api-Key': ninjaKey },
   success: function (result) {
     $("#start-screen").css("display" , "none")
-    // Creates element for the image and sets its attribute of SRC to URL including API call result.
     var imageElement = $("<img>")
     imageElement.attr("src", ("data:image/jpg;base64," + result));
     imageElement.attr("id" , "fact")
@@ -181,19 +176,23 @@ $.ajax({
 })
 
 
-
-
-
-
-// Giphy API calls
-var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=" + giphyKey;
-
-var searchQueryURL = "https://api.giphy.com/v1/gifs/search?api_key=" + giphyKey + "&q=cat&limit=25&offset=0&rating=g&lang=en";
-$.ajax({
-  url: queryURL,
-  method: "GET"
-}).then(function (response) {
-
-  console.log(response);
+//GIF BUTTON
+$("#gif").on("click", function(event) {
+  event.preventDefault() 
+  var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=" + giphyKey; + "&rating=pg";
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  })
+    .then(function(response) {
+console.log("Gif displayed");
+console.log(response);
+      $("#start-screen").css("display" , "none")
+      var gifUrl = response.data.images.original.url
+      var gifElement = $("<img>");
+      gifElement.attr("src", gifUrl);
+      gifElement.attr("id" , "gif");
+      gifElement.addClass("prompt-element");
+      $("#prompt-container").append(gifElement);
+    });
 });
-
