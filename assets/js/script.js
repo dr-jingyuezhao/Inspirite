@@ -266,16 +266,14 @@ document.getElementById("text-area").addEventListener("keydown", function () {
 });
 
 // add click event to save button  
-$("#save-button").on("click", function (event) {
-  const link = document.createElement("a");
-  const content = document.querySelector("textarea").value;
-  var blob = new Blob(["This is a sample file content."], {
-    type: "text/plain;charset=utf-8",
-  });
-  saveAs(content, fileName);
-console.log("this is working");
+$("#save-button").on("click", function () {
+  console.log("testing");
+  var newBlog = $("<textarea>").val();
+  localStorage.setItem("blog", newBlog);
+  console.log("this is working");
 });
 
+  // add code to display the message: Appointment is added to localStorage
 
 // // Create blob object with file content
 // var blob = new Blob(["This is a sample file content."], {
