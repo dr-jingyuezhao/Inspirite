@@ -105,10 +105,10 @@ $.ajax({
   contentType: 'application/json',
   success: function (result) {
     //"Disappears" the start page jumbotron
-    $("#start-screen").css("display" , "none")
+    $("#start-screen").css("display","none")
     //Creates a H2 for the quote with the id of quote
     var quoteElement = $("<h2>")
-    quoteElement.attr("id" , "quote")
+    quoteElement.attr("id" , "quote-element")
     quoteElement.addClass("prompt-element");
     //Adds quote text from the API call to the new H2 element
 quoteElement.text(result[0].quote)  
@@ -139,9 +139,9 @@ $.ajax({
   headers: { 'X-Api-Key': ninjaKey },
   contentType: 'application/json',
   success: function (result) {
-    $("#start-screen").css("display" , "none")
+    $("#start-screen").css("display","none")
     var factElement = $("<h2>")
-    factElement.attr("id" , "fact")
+    factElement.attr("id" , "fact-element")
     factElement.addClass("prompt-element");
 factElement.text(result[0].fact)   
 $("#prompt-container").append(factElement)
@@ -161,10 +161,10 @@ $.ajax({
   url: 'https://api.api-ninjas.com/v1/randomimage?',
   headers: { 'X-Api-Key': ninjaKey },
   success: function (result) {
-    $("#start-screen").css("display" , "none")
+    $("#start-screen").css("display","none")
     var imageElement = $("<img>")
     imageElement.attr("src", ("data:image/jpg;base64," + result));
-    imageElement.attr("id" , "fact")
+    imageElement.attr("id" , "image-element")
     imageElement.addClass("prompt-element");
     $("#prompt-container").append(imageElement)
   },
@@ -185,13 +185,11 @@ $("#gif").on("click", function(event) {
     method: "GET"
   })
     .then(function(response) {
-console.log("Gif displayed");
-console.log(response);
-      $("#start-screen").css("display" , "none")
+      $("#start-screen").css("display","none")
       var gifUrl = response.data.images.original.url
       var gifElement = $("<img>");
       gifElement.attr("src", gifUrl);
-      gifElement.attr("id" , "gif");
+      gifElement.attr("id" , "gif-element");
       gifElement.addClass("prompt-element");
       $("#prompt-container").append(gifElement);
     });

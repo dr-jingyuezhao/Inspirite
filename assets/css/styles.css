@@ -1,0 +1,50 @@
+
+
+/* JUMBOTRON */
+
+.start-screen {}
+
+
+
+
+/* BUTTONS */
+
+/* Fact button  */
+#fact {}
+
+/* Quote button  */
+#quote {}
+
+/* image button  */
+#random-img {}
+
+/* GIF button  */
+#gif {}
+
+
+
+
+/* PROMPT ELEMENTS */
+
+/* Main container for the writing prompts */
+
+#prompt-container {}
+
+/* A class for all of them */
+.prompt-element {}
+
+/* Quote element */
+#quote-element {}
+
+/*  Fact element */
+#fact-element {}
+
+/* Image element */
+#image-element {}
+
+/* GIF element */
+#gif-element {}
+
+
+
+
