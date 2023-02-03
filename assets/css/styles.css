@@ -35,11 +35,16 @@
     min-height: fit-content;
     text-align: center;
     height: 400px;
-  }
+}
 
 .display-4 {
-    font-size: 35pt;
+    font-size: 30pt;
     margin: 30px;
+}
+
+p.task {
+    font-family: "IBM Plex Mono";
+    margin: 0px 50px 60px 50px;
 }
 
 
@@ -48,8 +53,9 @@
 /* Fact button  */
 
 #fact {
-    transition: all 0.5s ease-in-out; /* duration, timing function, delay */
-  }
+    transition: all 0.5s ease-in-out;
+    /* duration, timing function, delay */
+}
 
 #fact {
     width: 100px;
@@ -58,22 +64,23 @@
     font-family: "IBM Plex Mono", bold;
     margin: 10px;
     background-color: var(--signal-colour);
-    border-color:  var(--signal-colour);
+    border-color: var(--signal-colour);
     border-radius: 30px;
     box-shadow: 0 2px 10px rgb(100, 92, 92);
 }
 
 /* HOVER EFFECT */
 
-#fact:hover{
+#fact:hover {
     box-shadow: 0 5px 15px var(--signal-colour-hover);
 }
 
 /* Quote button  */
 
 #quote {
-    transition: all 0.5s ease-in-out; /* duration, timing function, delay */
-  }
+    transition: all 0.5s ease-in-out;
+    /* duration, timing function, delay */
+}
 
 #quote {
     width: 100px;
@@ -89,15 +96,16 @@
 
 /* HOVER EFFECT */
 
-#quote:hover{
+#quote:hover {
     box-shadow: 0 5px 15px var(--signal-colour-hover);
 }
 
 /* image button  */
 
 #random-img {
-    transition: all 0.5s ease-in-out; /* duration, timing function, delay */
-  }
+    transition: all 0.5s ease-in-out;
+    /* duration, timing function, delay */
+}
 
 #random-img {
     width: 100px;
@@ -114,15 +122,16 @@
 
 /* HOVER EFFECT */
 
-#random-img:hover{
+#random-img:hover {
     box-shadow: 0 5px 15px var(--signal-colour-hover);
 }
 
 /* GIF button  */
 
 #gif {
-    transition: all 0.5s ease-in-out; /* duration, timing function, delay */
-  }
+    transition: all 0.5s ease-in-out;
+    /* duration, timing function, delay */
+}
 
 #gif {
     width: 100px;
@@ -138,7 +147,7 @@
 
 /* HOVER EFFECT */
 
-#gif:hover{
+#gif:hover {
     box-shadow: 0 5px 15px var(--signal-colour-hover);
 }
 
@@ -147,7 +156,7 @@
 /* Main container for the writing prompts */
 
 #prompt-container {
-   
+
     display: flex;
     justify-content: center;
 
@@ -184,7 +193,7 @@
     border-color: var(--signal-colour);
     border-style: groove;
     border-radius: 10px;
-    
+
 }
 
 /* GIF element */
@@ -195,23 +204,23 @@
     border-color: var(--signal-colour);
     border-style: groove;
     border-radius: 10px;
-   
-    
+
+
 }
 
 
 
 /* TEXT AREA */
 
-#text-area{
-  
+#text-area {
+
     align-items: center;
     border-color: gray;
     display: flex;
     flex-direction: column;
     margin: 20px;
 
- }
+}
 
 #text-area-element {
 
@@ -232,7 +241,7 @@
 
 #text-buttons-container {
     font-family: 'IBM Plex Mono';
-    
+
 }
 
 /* Save button */
@@ -246,7 +255,7 @@
     background-color: var(--secondary-colour);
     border-color: var(--secondary-colour);
     border-radius: 10px;
-    
+
 }
 
 /* Publish button */
@@ -261,3 +270,20 @@
     border-color: var(--signal-colour);
     border-radius: 10px;
 }
+
+footer {
+    font-family: "IBM Plex Mono";
+    color: var(--secondary-colour);
+    
+}
+
+.link {
+    color: var(--secondary-colour);
+}
+
+.link:hover {
+    color: var(--signal-colour);
+    text-decoration: none;
+    text-decoration: none !important;
+}
+
