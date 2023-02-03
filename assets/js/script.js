@@ -19,52 +19,18 @@
 // Add notifications
 
 
-//^ STREAK TRACKER
-//For now just counts as long as app open once a day. Has to be improved to count when Publish button pressed. 
 
-//Sets today's date
-let today = new Date();
-
-// Gets the last time the user used the app from local storage
-let lastUse = localStorage.getItem("lastUse");
-
-// If the user has never used the app before, set lastUse to today
-// and set the consecutive days to 1
-if (!lastUse) {
-  localStorage.setItem("lastUse", today);
-  localStorage.setItem("writingStreak", 1);
-} else {
-  // Converts the stored date to a Date object
-  lastUse = new Date(lastUse);
-
-  // Checks if the user used the app yesterday by subtracting today date from last use date
-  if (today.getDate() - lastUse.getDate() === 1) {
-    // If the user used the app yesterday, increment the writing streak
-    let writingStreak = localStorage.getItem("writingStreak");
-    writingStreak++;
-    localStorage.setItem("writingStreak", writingStreak);
-  } else {
-    // If the user didn't use the app yesterday, reset the writingStreaks to 1
-    localStorage.setItem("writingStreak", 1);
-  }
-
-  // Update the lastUse date
-  localStorage.setItem("lastUse", today);
-}
-
-//Displaying the counter. 
-
-let writingStreak = localStorage.getItem("writingStreak")
-if (writingStreak == 1) {
-  var counter = $("<div>")
-  counter.text("Your current streak: " + writingStreak + " day")
-  $("#counter-section").append(counter);
-}
-else {
-  var counter = $("<div>")
-  counter.text("Your current streak: " + writingStreak + " days")
-  $("#counter-section").append(counter);
-}
+// let writingStreak = localStorage.getItem("writingStreak")
+// if (writingStreak == 1) {
+//   var counter = $("<div>")
+//   counter.text("Your current streak: " + writingStreak + " day")
+//   $("#counter-section").append(counter);
+// }
+// else {
+//   var counter = $("<div>")
+//   counter.text("Your current streak: " + writingStreak + " days")
+//   $("#counter-section").append(counter);
+// }
 
 // //^NOTIFICATIONS
 
@@ -94,9 +60,7 @@ else {
 //QUOTES BUTTON
 //Buttons on click event
 $("#quote").on("click", function (event) {
-
   event.preventDefault()
-
   //Launches Ajax call for quotes
   $.ajax({
     method: 'GET',
@@ -123,7 +87,11 @@ $("#quote").on("click", function (event) {
       //Appends quote to prompt container section in HTML
       $("#prompt-container").append(quoteElement);
       //Creates a text area under writing prompt for user input
+<<<<<<< HEAD
       var textArea = $('<textarea rows="15" class="col"></textarea>');
+=======
+      var textArea = $('<textarea rows="8" class="col"></textarea>');
+>>>>>>> 9a0d4b8a899a44067e09fff064534a0c50afffbf
       $("#text-area").append(textArea);
       //Creates a container for buttons and the save and publish buttons
       var textButtonsContainer = $("<div>")
@@ -139,6 +107,7 @@ $("#quote").on("click", function (event) {
       publishButton.attr("id", "publish-button")
       publishButton.addClass('btn btn-success btn-lg');
       textButtonsContainer.append(publishButton)
+      daysCounter()
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -162,7 +131,11 @@ $("#fact").on("click", function (event) {
       factElement.addClass("prompt-element");
       factElement.text(result[0].fact)
       $("#prompt-container").append(factElement)
+<<<<<<< HEAD
       var textArea = $('<textarea rows="15" class="col"></textarea>');
+=======
+      var textArea = $('<textarea rows="8" class="col"></textarea>');
+>>>>>>> 9a0d4b8a899a44067e09fff064534a0c50afffbf
       $("#text-area").append(textArea);
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
@@ -177,6 +150,7 @@ $("#fact").on("click", function (event) {
       publishButton.attr("id", "publish-button")
       publishButton.addClass('btn btn-success btn-lg');
       textButtonsContainer.append(publishButton)
+      daysCounter()
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -199,7 +173,11 @@ $("#random-img").on("click", function (event) {
       imageElement.attr("id", "image-element");
       imageElement.addClass("prompt-element");
       $("#prompt-container").append(imageElement)
+<<<<<<< HEAD
       var textArea = $('<textarea rows="15" class="col"></textarea>');
+=======
+      var textArea = $('<textarea rows="8" class="col"></textarea>');
+>>>>>>> 9a0d4b8a899a44067e09fff064534a0c50afffbf
       $("#text-area").append(textArea);
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
@@ -214,16 +192,19 @@ $("#random-img").on("click", function (event) {
       publishButton.attr("id", "publish-button")
       publishButton.addClass('btn btn-success btn-lg');
       textButtonsContainer.append(publishButton)
+      daysCounter()
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
     }
   })
-
 })
 
 
 //GIF BUTTON
+var count = 0;
+var lastClicked = new Date();
+
 $("#gif").on("click", function (event) {
   event.preventDefault()
   var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=" + giphyKey; + "&rating=pg";
@@ -239,7 +220,11 @@ $("#gif").on("click", function (event) {
       gifElement.attr("id", "gif-element");
       gifElement.addClass("prompt-element");
       $("#prompt-container").prepend(gifElement);
+<<<<<<< HEAD
       var textArea = $('<textarea rows="15" class="col"></textarea>');
+=======
+      var textArea = $('<textarea rows="8" class="col"></textarea>');
+>>>>>>> 9a0d4b8a899a44067e09fff064534a0c50afffbf
       $("#text-area").append(textArea);
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
@@ -254,10 +239,33 @@ $("#gif").on("click", function (event) {
       publishButton.attr("id", "publish-button")
       publishButton.addClass('btn btn-success btn-lg');
       textButtonsContainer.append(publishButton)
+      daysCounter()
+     
     });
 });
 
+//STREAK COUNTER
+// Function adding 1 to the streak counter when the publish is clicked. Works only once a day. 
+function daysCounter() {
+ // add the click event for the publish button
+ $("#publish-button").click(function() {
+  console.log("Publish clicked");
+  // check if the difference between the lastClicked and the current time is greater than 24 hours
+  if (new Date() - lastClicked > 24 * 60 * 60 * 1000) {
+    count++;
+    lastClicked = new Date();
+    if (count == 1) {
+    $("#days-number").text(count + " day");}
+    else 
+    $("#days-number").text(count + " days")
+  }
+});
+}
+
+
+//SOUND FUNCTION
 // function to play sound on text area click
+<<<<<<< HEAD
 
 const audio = new Audio('assets/sounds/writing_7s.mp3');
 
@@ -282,3 +290,9 @@ $("#save-button").on("click", function () {
 
 // // Create and save the file using the FileWriter library
 // saveAs(Content, fileName);
+=======
+const audio = new Audio ('assets/sounds/writing_7s.mp3');
+  document.getElementById("text-area").addEventListener("keydown", function() {
+    audio.play();
+  });
+>>>>>>> 9a0d4b8a899a44067e09fff064534a0c50afffbf
