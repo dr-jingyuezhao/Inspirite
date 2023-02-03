@@ -265,4 +265,22 @@ document.getElementById("text-area").addEventListener("keydown", function () {
   audio.play();
 });
 
+// add click event to save button  
+$("#save-button").on("click", function (event) {
+  const link = document.createElement("a");
+  const content = document.querySelector("textarea").value;
+  var blob = new Blob(["This is a sample file content."], {
+    type: "text/plain;charset=utf-8",
+  });
+  saveAs(content, fileName);
+console.log("this is working");
+});
 
+
+// // Create blob object with file content
+// var blob = new Blob(["This is a sample file content."], {
+//   type: "text/plain;charset=utf-8",
+// });
+
+// // Create and save the file using the FileWriter library
+// saveAs(Content, fileName);
