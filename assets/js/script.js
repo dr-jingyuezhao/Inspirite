@@ -231,9 +231,11 @@ $("#gif").on("click", function (event) {
       publishButton.addClass('btn btn-success btn-lg');
       textButtonsContainer.append(publishButton)
       daysCounter()
-     
+      save()
     });
 });
+
+
 
 //STREAK COUNTER
 // Function adding 1 to the streak counter when the publish is clicked. Works only once a day. 
@@ -252,6 +254,15 @@ function daysCounter() {
   }
 });
 }
+
+// Saves current entry to local storage ---------- NEEDS WORK!
+function save() {
+  // add the click event for the publish button
+  $("#save-button").click(function() {
+   console.log("save-clicked");
+   localStorage.setItem('textareaValue', $("#text-area-element").val())
+ });
+ }
 
 
 //SOUND FUNCTION
