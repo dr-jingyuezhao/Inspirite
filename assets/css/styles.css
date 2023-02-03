@@ -150,7 +150,6 @@
    
     display: flex;
     justify-content: center;
-    
 
 }
 
@@ -204,7 +203,18 @@
 
 /* TEXT AREA */
 
-#text-area {
+#text-area{
+  
+    align-items: center;
+    border-color: gray;
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+
+ }
+
+#text-area-element {
+
     font-family: 'Caveat';
     font-size: 20pt;
     padding: 30px;
@@ -214,10 +224,7 @@
     flex-direction: column;
     height: 400px;
     margin: 20px;
-    
-    
 }
-
 
 /* SAVE and PUBLISH BUTTONS */
 
