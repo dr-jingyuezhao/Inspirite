@@ -75,7 +75,7 @@ $("#quote").on("click", function (event) {
       quoteElement.attr("id", "quote-element");
       quoteElement.addClass("prompt-element");
       //Adds quote text from the API call to the new H2 element
-      quoteElement.text(result[0].quote)
+      quoteElement.text('"' + result[0].quote + '"')
       //Adds quote author element and its attributes
       var authorElement = $("<h4>");
       authorElement.attr("id", "author");
@@ -91,7 +91,11 @@ $("#quote").on("click", function (event) {
       var textArea = $('<textarea rows="15" class="col"></textarea>');
 =======
       var textArea = $('<textarea rows="8" class="col"></textarea>');
+<<<<<<< HEAD
 >>>>>>> 9a0d4b8a899a44067e09fff064534a0c50afffbf
+=======
+      textArea.attr ("id", "text-area-element")
+>>>>>>> 456c8b77ef58c7da9b6b49717f88d1785d7b3741
       $("#text-area").append(textArea);
       //Creates a container for buttons and the save and publish buttons
       var textButtonsContainer = $("<div>")
@@ -129,13 +133,17 @@ $("#fact").on("click", function (event) {
       var factElement = $("<h2>");
       factElement.attr("id", "fact-element");
       factElement.addClass("prompt-element");
-      factElement.text(result[0].fact)
+      factElement.text(result[0].fact + ".")
       $("#prompt-container").append(factElement)
 <<<<<<< HEAD
       var textArea = $('<textarea rows="15" class="col"></textarea>');
 =======
       var textArea = $('<textarea rows="8" class="col"></textarea>');
+<<<<<<< HEAD
 >>>>>>> 9a0d4b8a899a44067e09fff064534a0c50afffbf
+=======
+      textArea.attr ("id", "text-area-element")
+>>>>>>> 456c8b77ef58c7da9b6b49717f88d1785d7b3741
       $("#text-area").append(textArea);
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
@@ -177,7 +185,11 @@ $("#random-img").on("click", function (event) {
       var textArea = $('<textarea rows="15" class="col"></textarea>');
 =======
       var textArea = $('<textarea rows="8" class="col"></textarea>');
+<<<<<<< HEAD
 >>>>>>> 9a0d4b8a899a44067e09fff064534a0c50afffbf
+=======
+      textArea.attr ("id", "text-area-element")
+>>>>>>> 456c8b77ef58c7da9b6b49717f88d1785d7b3741
       $("#text-area").append(textArea);
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
@@ -224,7 +236,11 @@ $("#gif").on("click", function (event) {
       var textArea = $('<textarea rows="15" class="col"></textarea>');
 =======
       var textArea = $('<textarea rows="8" class="col"></textarea>');
+<<<<<<< HEAD
 >>>>>>> 9a0d4b8a899a44067e09fff064534a0c50afffbf
+=======
+      textArea.attr ("id", "text-area-element")
+>>>>>>> 456c8b77ef58c7da9b6b49717f88d1785d7b3741
       $("#text-area").append(textArea);
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")

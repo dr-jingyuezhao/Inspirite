@@ -147,11 +147,9 @@
 /* Main container for the writing prompts */
 
 #prompt-container {
-    align-items: center;
-    align-content: center;
-    
-    align-items: center;
-    
+   
+    display: flex;
+    justify-content: center;
 
 }
 
@@ -167,13 +165,12 @@
     padding: 40px;
     font-family: 'DB Serif Display', serif;
     color: antiquewhite;
-    display: flex;
+    display: block;
     background-color: var(--secondary-colour);
 }
 
 /*  Fact element */
 #fact-element {
-    
     font-family: 'IBM Plex Mono', bold;
     padding: 40px;
     background-color: var(--signal-colour-hover);
@@ -182,33 +179,52 @@
 /* Image element */
 #image-element {
     padding: 20px;
-    max-height: 200px;
-    margin-left: 33%;
-    margin-right: 33%;
+    max-width: 500px;
+    margin-top: 20px;
+    border-color: var(--signal-colour);
+    border-style: groove;
+    border-radius: 10px;
     
 }
 
 /* GIF element */
 #gif-element {
     padding: 20px;
-    max-height: 200px;
-    margin-left: 33%;
-    margin-right: 33%;
+    max-width: 500px;
+    margin-top: 20px;
+    border-color: var(--signal-colour);
+    border-style: groove;
+    border-radius: 10px;
+   
+    
 }
 
 
 
 /* TEXT AREA */
 
-#text-area {
-    font-family: 'Caveat';
-    font-size: 20pt;
-    padding: 20px;
+#text-area{
+  
     align-items: center;
     border-color: gray;
-    
-}
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
 
+ }
+
+#text-area-element {
+
+    font-family: 'Caveat';
+    font-size: 20pt;
+    padding: 30px;
+    align-items: center;
+    border-color: gray;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    margin: 20px;
+}
 
 /* SAVE and PUBLISH BUTTONS */
 
@@ -216,6 +232,7 @@
 
 #text-buttons-container {
     font-family: 'IBM Plex Mono';
+    
 }
 
 /* Save button */
@@ -225,7 +242,7 @@
     width: 150px;
     font-size: large;
     text-align: center;
-    margin: 10px;
+    margin: 30px;
     background-color: var(--secondary-colour);
     border-color: var(--secondary-colour);
     border-radius: 10px;
