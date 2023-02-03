@@ -1,5 +1,3 @@
-
-
 /* JUMBOTRON */
 
 .start-screen {}
@@ -20,7 +18,6 @@
 
 /* GIF button  */
 #gif {}
-
 
 
 
@@ -47,4 +44,22 @@
 
 
 
+/* TEXT AREA */
 
+#text-area {}
+
+
+
+/* SAVE and PUBLISH BUTTONS */
+
+/* Container for both buttons */
+
+#text-buttons-container {}
+
+/* Save button */
+
+#save-button {}
+
+/* Publish button */
+
+#publish-buton {}

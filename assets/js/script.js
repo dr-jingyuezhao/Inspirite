@@ -122,8 +122,24 @@ $("#quote").on("click", function (event) {
       quoteElement.append(authorElement);
       //Appends quote to prompt container section in HTML
       $("#prompt-container").append(quoteElement);
+      //Creates a text area under writing prompt for user input
       var textArea = $('<textarea rows="15" cols="80"></textarea>');
       $("#text-area").append(textArea);
+      //Creates a container for buttons and the save and publish buttons
+      var textButtonsContainer = $("<div>")
+      textButtonsContainer.attr("id", "text-buttons-container")
+      var saveButton = $('<button>');
+      saveButton.text('SAVE');
+      saveButton.attr("id" , "save-button")
+      saveButton.addClass('btn btn-info btn-lg');
+      textButtonsContainer.append(saveButton)
+      $("#text-area").append(textButtonsContainer);
+      var publishButton = $('<button>');
+      publishButton.text('PUBLISH');
+      publishButton.attr("id" , "publish-button")
+      publishButton.addClass('btn btn-success btn-lg');
+           saveButton.attr("id" , "save-button")
+      textButtonsContainer.append(publishButton)
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -149,6 +165,20 @@ $("#fact").on("click", function (event) {
       $("#prompt-container").append(factElement)
       var textArea = $('<textarea rows="15" cols="80"></textarea>');
       $("#text-area").append(textArea);
+      var textButtonsContainer = $("<div>")
+      textButtonsContainer.attr("id", "text-buttons-container")
+      var saveButton = $('<button>');
+      saveButton.text('SAVE');
+      saveButton.attr("id" , "save-button")
+      saveButton.addClass('btn btn-info btn-lg');
+      textButtonsContainer.append(saveButton)
+      $("#text-area").append(textButtonsContainer);
+      var publishButton = $('<button>');
+      publishButton.text('PUBLISH');
+      publishButton.attr("id" , "publish-button")
+      publishButton.addClass('btn btn-success btn-lg');
+           saveButton.attr("id" , "save-button")
+      textButtonsContainer.append(publishButton)
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -173,6 +203,20 @@ $("#random-img").on("click", function (event) {
       $("#prompt-container").append(imageElement)
       var textArea = $('<textarea rows="15" cols="80"></textarea>');
       $("#text-area").append(textArea);
+      var textButtonsContainer = $("<div>")
+      textButtonsContainer.attr("id", "text-buttons-container")
+      var saveButton = $('<button>');
+      saveButton.text('SAVE');
+      saveButton.attr("id" , "save-button")
+      saveButton.addClass('btn btn-info btn-lg');
+      textButtonsContainer.append(saveButton)
+      $("#text-area").append(textButtonsContainer);
+      var publishButton = $('<button>');
+      publishButton.text('PUBLISH');
+      publishButton.attr("id" , "publish-button")
+      publishButton.addClass('btn btn-success btn-lg');
+           saveButton.attr("id" , "save-button")
+      textButtonsContainer.append(publishButton)
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -197,8 +241,22 @@ $("#gif").on("click", function (event) {
       gifElement.attr("src", gifUrl);
       gifElement.attr("id", "gif-element");
       gifElement.addClass("prompt-element");
-      $("#prompt-container").append(gifElement);
+      $("#prompt-container").prepend(gifElement);
       var textArea = $('<textarea rows="15" cols="80"></textarea>');
       $("#text-area").append(textArea);
+      var textButtonsContainer = $("<div>")
+      textButtonsContainer.attr("id", "text-buttons-container")
+      var saveButton = $('<button>');
+      saveButton.text('SAVE');
+      saveButton.attr("id" , "save-button")
+      saveButton.addClass('btn btn-info btn-lg');
+      textButtonsContainer.append(saveButton)
+      $("#text-area").append(textButtonsContainer);
+      var publishButton = $('<button>');
+      publishButton.text('PUBLISH');
+      publishButton.attr("id" , "publish-button")
+      publishButton.addClass('btn btn-success btn-lg');
+           saveButton.attr("id" , "save-button")
+      textButtonsContainer.append(publishButton)
     });
 });
