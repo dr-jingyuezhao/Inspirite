@@ -97,100 +97,108 @@ $("#quote").on("click", function (event) {
 
   event.preventDefault()
 
-//Launches Ajax call for quotes
-$.ajax({
-  method: 'GET',
-  url: 'https://api.api-ninjas.com/v1/quotes?category=',
-  headers: { 'X-Api-Key': ninjaKey },
-  contentType: 'application/json',
-  success: function (result) {
-    //"Disappears" the start page jumbotron
-    $("#start-screen").css("display","none")
-    //Creates a H2 for the quote with the id of quote
-    var quoteElement = $("<h2>")
-    quoteElement.attr("id" , "quote-element")
-    quoteElement.addClass("prompt-element");
-    //Adds quote text from the API call to the new H2 element
-quoteElement.text(result[0].quote)  
-//Adds quote author element and its attributes
-var authorElement = $("<h4>")
-authorElement.attr("id" , "author")
-authorElement.addClass("prompt-element");
-//Sets author element text
-authorElement.text("- " + result[0].author)  
-//Appends author to quote
-quoteElement.append(authorElement)
-//Appends quote to prompt container section in HTML
-$("#prompt-container").append(quoteElement)
-  },
-  error: function ajaxError(jqXHR) {
-    console.error('Error: ', jqXHR.responseText);
-  }
-})
+  //Launches Ajax call for quotes
+  $.ajax({
+    method: 'GET',
+    url: 'https://api.api-ninjas.com/v1/quotes?category=',
+    headers: { 'X-Api-Key': ninjaKey },
+    contentType: 'application/json',
+    success: function (result) {
+      //"Disappears" the start page jumbotron
+      $("#start-screen").css("display", "none");
+      //Creates a H2 for the quote with the id of quote
+      var quoteElement = $("<h2>");
+      quoteElement.attr("id", "quote-element");
+      quoteElement.addClass("prompt-element");
+      //Adds quote text from the API call to the new H2 element
+      quoteElement.text(result[0].quote)
+      //Adds quote author element and its attributes
+      var authorElement = $("<h4>");
+      authorElement.attr("id", "author");
+      authorElement.addClass("prompt-element");
+      //Sets author element text
+      authorElement.text("- " + result[0].author);
+      //Appends author to quote
+      quoteElement.append(authorElement);
+      //Appends quote to prompt container section in HTML
+      $("#prompt-container").append(quoteElement);
+      var textArea = $('<textarea rows="15" cols="80"></textarea>');
+      $("#text-area").append(textArea);
+    },
+    error: function ajaxError(jqXHR) {
+      console.error('Error: ', jqXHR.responseText);
+    }
+  })
 })
 
 
 //FACTS BUTTON
 $("#fact").on("click", function (event) {
   event.preventDefault()
-$.ajax({
-  method: 'GET',
-  url: 'https://api.api-ninjas.com/v1/facts?limit=1',
-  headers: { 'X-Api-Key': ninjaKey },
-  contentType: 'application/json',
-  success: function (result) {
-    $("#start-screen").css("display","none")
-    var factElement = $("<h2>")
-    factElement.attr("id" , "fact-element")
-    factElement.addClass("prompt-element");
-factElement.text(result[0].fact)   
-$("#prompt-container").append(factElement)
-  },
-  error: function ajaxError(jqXHR) {
-    console.error('Error: ', jqXHR.responseText);
-  }
-})
+  $.ajax({
+    method: 'GET',
+    url: 'https://api.api-ninjas.com/v1/facts?limit=1',
+    headers: { 'X-Api-Key': ninjaKey },
+    contentType: 'application/json',
+    success: function (result) {
+      $("#start-screen").css("display", "none");
+      var factElement = $("<h2>");
+      factElement.attr("id", "fact-element");
+      factElement.addClass("prompt-element");
+      factElement.text(result[0].fact)
+      $("#prompt-container").append(factElement)
+      var textArea = $('<textarea rows="15" cols="80"></textarea>');
+      $("#text-area").append(textArea);
+    },
+    error: function ajaxError(jqXHR) {
+      console.error('Error: ', jqXHR.responseText);
+    }
+  })
 })
 
 
 //RANDOM IMAGE BUTTON
 $("#random-img").on("click", function (event) {
-  event.preventDefault() 
-$.ajax({
-  method: 'GET',
-  url: 'https://api.api-ninjas.com/v1/randomimage?',
-  headers: { 'X-Api-Key': ninjaKey },
-  success: function (result) {
-    $("#start-screen").css("display","none")
-    var imageElement = $("<img>")
-    imageElement.attr("src", ("data:image/jpg;base64," + result));
-    imageElement.attr("id" , "image-element")
-    imageElement.addClass("prompt-element");
-    $("#prompt-container").append(imageElement)
-  },
-  error: function ajaxError(jqXHR) {
-    console.error('Error: ', jqXHR.responseText);
-  }
-})
+  event.preventDefault()
+  $.ajax({
+    method: 'GET',
+    url: 'https://api.api-ninjas.com/v1/randomimage?',
+    headers: { 'X-Api-Key': ninjaKey },
+    success: function (result) {
+      $("#start-screen").css("display", "none");
+      var imageElement = $("<img>");
+      imageElement.attr("src", ("data:image/jpg;base64," + result));
+      imageElement.attr("id", "image-element");
+      imageElement.addClass("prompt-element");
+      $("#prompt-container").append(imageElement)
+      var textArea = $('<textarea rows="15" cols="80"></textarea>');
+      $("#text-area").append(textArea);
+    },
+    error: function ajaxError(jqXHR) {
+      console.error('Error: ', jqXHR.responseText);
+    }
+  })
 
 })
 
 
 //GIF BUTTON
-$("#gif").on("click", function(event) {
-  event.preventDefault() 
+$("#gif").on("click", function (event) {
+  event.preventDefault()
   var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=" + giphyKey; + "&rating=pg";
   $.ajax({
     url: queryURL,
     method: "GET"
   })
-    .then(function(response) {
-      $("#start-screen").css("display","none")
+    .then(function (response) {
+      $("#start-screen").css("display", "none");
       var gifUrl = response.data.images.original.url
       var gifElement = $("<img>");
       gifElement.attr("src", gifUrl);
-      gifElement.attr("id" , "gif-element");
+      gifElement.attr("id", "gif-element");
       gifElement.addClass("prompt-element");
       $("#prompt-container").append(gifElement);
+      var textArea = $('<textarea rows="15" cols="80"></textarea>');
+      $("#text-area").append(textArea);
     });
 });
