@@ -308,3 +308,10 @@ footer {
     gap: 20px;
     margin: 50px 300px 50px 300px;
 }
+
+
+#publishedCard {
+    margin: 20px;
+    padding: 20px;
+    border: 20px;
+}
