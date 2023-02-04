@@ -244,6 +244,21 @@ p.task {
 
 }
 
+
+/* Discard button */
+
+#discard-button {
+    font-family: 'IBM Plex Mono';
+    width: 150px;
+    font-size: large;
+    text-align: center;
+    margin: 30px;
+    background-color: var(--secondary-colour);
+    border-color: var(--secondary-colour);
+    border-radius: 10px;
+
+}
+
 /* Save button */
 
 #save-button {
@@ -252,8 +267,6 @@ p.task {
     font-size: large;
     text-align: center;
     margin: 30px;
-    background-color: var(--secondary-colour);
-    border-color: var(--secondary-colour);
     border-radius: 10px;
 
 }

@@ -111,6 +111,11 @@ $("#quote").on("click", function (event) {
       //Creates a container for buttons and the save and publish buttons
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
+      var discardButton = $('<button>');
+      discardButton.text('DISCARD');
+      discardButton.attr("id" , "discard-button")
+      discardButton.addClass('btn btn-info btn-lg');
+      textButtonsContainer.append(discardButton)
       var saveButton = $('<button>');
       saveButton.text('SAVE');
       saveButton.attr("id" , "save-button")
@@ -152,6 +157,11 @@ $("#fact").on("click", function (event) {
       $("#text-area").append(textArea);
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
+      var discardButton = $('<button>');
+      discardButton.text('DISCARD');
+      discardButton.attr("id" , "discard-button")
+      discardButton.addClass('btn btn-info btn-lg');
+      textButtonsContainer.append(discardButton)
       var saveButton = $('<button>');
       saveButton.text('SAVE');
       saveButton.attr("id" , "save-button")
@@ -192,6 +202,11 @@ $("#random-img").on("click", function (event) {
       $("#text-area").append(textArea);
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
+      var discardButton = $('<button>');
+      discardButton.text('DISCARD');
+      discardButton.attr("id" , "discard-button")
+      discardButton.addClass('btn btn-info btn-lg');
+      textButtonsContainer.append(discardButton)
       var saveButton = $('<button>');
       saveButton.text('SAVE');
       saveButton.attr("id" , "save-button")
@@ -237,6 +252,11 @@ $("#gif").on("click", function (event) {
       $("#text-area").append(textArea);
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
+      var discardButton = $('<button>');
+      discardButton.text('DISCARD');
+      discardButton.attr("id" , "discard-button")
+      discardButton.addClass('btn btn-info btn-lg');
+      textButtonsContainer.append(discardButton)
       var saveButton = $('<button>');
       saveButton.text('SAVE');
       saveButton.attr("id" , "save-button")
@@ -247,9 +267,9 @@ $("#gif").on("click", function (event) {
       publishButton.text('PUBLISH');
       publishButton.attr("id" , "publish-button")
       publishButton.addClass('btn btn-success btn-lg');
+           saveButton.attr("id" , "save-button")
       textButtonsContainer.append(publishButton)
       publish()
-
     });
 });
 
