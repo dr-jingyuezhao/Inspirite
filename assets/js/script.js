@@ -256,9 +256,11 @@ $("#gif").on("click", function (event) {
       publishButton.addClass('btn btn-success btn-lg');
       textButtonsContainer.append(publishButton)
       daysCounter()
-     
+      save()
     });
 });
+
+
 
 //STREAK COUNTER
 // Function adding 1 to the streak counter when the publish is clicked. Works only once a day. 
@@ -277,6 +279,15 @@ function daysCounter() {
   }
 });
 }
+
+// Saves current entry to local storage ---------- NEEDS WORK!
+function save() {
+  // add the click event for the publish button
+  $("#save-button").click(function() {
+   console.log("save-clicked");
+   localStorage.setItem('textareaValue', $("#text-area-element").val())
+ });
+ }
 
 
 //SOUND FUNCTION
@@ -311,4 +322,7 @@ const audio = new Audio ('assets/sounds/writing_7s.mp3');
   document.getElementById("text-area").addEventListener("keydown", function() {
     audio.play();
   });
+<<<<<<< HEAD
 >>>>>>> 9a0d4b8a899a44067e09fff064534a0c50afffbf
+=======
+>>>>>>> 2314e4213526fadf8b1ac8b3f222d4d57a9fc991
