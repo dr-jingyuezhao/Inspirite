@@ -87,29 +87,23 @@ $("#quote").on("click", function (event) {
       //Appends quote to prompt container section in HTML
       $("#prompt-container").append(quoteElement);
       //Creates a text area under writing prompt for user input
-<<<<<<< HEAD
-      var textArea = $('<textarea rows="15" class="col"></textarea>');
-=======
       var textArea = $('<textarea rows="8" class="col"></textarea>');
-<<<<<<< HEAD
->>>>>>> 9a0d4b8a899a44067e09fff064534a0c50afffbf
-=======
       textArea.attr ("id", "text-area-element")
->>>>>>> 456c8b77ef58c7da9b6b49717f88d1785d7b3741
       $("#text-area").append(textArea);
       //Creates a container for buttons and the save and publish buttons
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
       var saveButton = $('<button>');
       saveButton.text('SAVE');
-      saveButton.attr("id", "save-button")
+      saveButton.attr("id" , "save-button")
       saveButton.addClass('btn btn-info btn-lg');
       textButtonsContainer.append(saveButton)
       $("#text-area").append(textButtonsContainer);
       var publishButton = $('<button>');
       publishButton.text('PUBLISH');
-      publishButton.attr("id", "publish-button")
+      publishButton.attr("id" , "publish-button")
       publishButton.addClass('btn btn-success btn-lg');
+           saveButton.attr("id" , "save-button")
       textButtonsContainer.append(publishButton)
       daysCounter()
     },
@@ -135,28 +129,22 @@ $("#fact").on("click", function (event) {
       factElement.addClass("prompt-element");
       factElement.text(result[0].fact + ".")
       $("#prompt-container").append(factElement)
-<<<<<<< HEAD
-      var textArea = $('<textarea rows="15" class="col"></textarea>');
-=======
       var textArea = $('<textarea rows="8" class="col"></textarea>');
-<<<<<<< HEAD
->>>>>>> 9a0d4b8a899a44067e09fff064534a0c50afffbf
-=======
       textArea.attr ("id", "text-area-element")
->>>>>>> 456c8b77ef58c7da9b6b49717f88d1785d7b3741
       $("#text-area").append(textArea);
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
       var saveButton = $('<button>');
       saveButton.text('SAVE');
-      saveButton.attr("id", "save-button")
+      saveButton.attr("id" , "save-button")
       saveButton.addClass('btn btn-info btn-lg');
       textButtonsContainer.append(saveButton)
       $("#text-area").append(textButtonsContainer);
       var publishButton = $('<button>');
       publishButton.text('PUBLISH');
-      publishButton.attr("id", "publish-button")
+      publishButton.attr("id" , "publish-button")
       publishButton.addClass('btn btn-success btn-lg');
+           saveButton.attr("id" , "save-button")
       textButtonsContainer.append(publishButton)
       daysCounter()
     },
@@ -181,28 +169,22 @@ $("#random-img").on("click", function (event) {
       imageElement.attr("id", "image-element");
       imageElement.addClass("prompt-element");
       $("#prompt-container").append(imageElement)
-<<<<<<< HEAD
-      var textArea = $('<textarea rows="15" class="col"></textarea>');
-=======
       var textArea = $('<textarea rows="8" class="col"></textarea>');
-<<<<<<< HEAD
->>>>>>> 9a0d4b8a899a44067e09fff064534a0c50afffbf
-=======
       textArea.attr ("id", "text-area-element")
->>>>>>> 456c8b77ef58c7da9b6b49717f88d1785d7b3741
       $("#text-area").append(textArea);
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
       var saveButton = $('<button>');
       saveButton.text('SAVE');
-      saveButton.attr("id", "save-button")
+      saveButton.attr("id" , "save-button")
       saveButton.addClass('btn btn-info btn-lg');
       textButtonsContainer.append(saveButton)
       $("#text-area").append(textButtonsContainer);
       var publishButton = $('<button>');
       publishButton.text('PUBLISH');
-      publishButton.attr("id", "publish-button")
+      publishButton.attr("id" , "publish-button")
       publishButton.addClass('btn btn-success btn-lg');
+           saveButton.attr("id" , "save-button")
       textButtonsContainer.append(publishButton)
       daysCounter()
     },
@@ -232,27 +214,20 @@ $("#gif").on("click", function (event) {
       gifElement.attr("id", "gif-element");
       gifElement.addClass("prompt-element");
       $("#prompt-container").prepend(gifElement);
-<<<<<<< HEAD
-      var textArea = $('<textarea rows="15" class="col"></textarea>');
-=======
       var textArea = $('<textarea rows="8" class="col"></textarea>');
-<<<<<<< HEAD
->>>>>>> 9a0d4b8a899a44067e09fff064534a0c50afffbf
-=======
       textArea.attr ("id", "text-area-element")
->>>>>>> 456c8b77ef58c7da9b6b49717f88d1785d7b3741
       $("#text-area").append(textArea);
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
       var saveButton = $('<button>');
       saveButton.text('SAVE');
-      saveButton.attr("id", "save-button")
+      saveButton.attr("id" , "save-button")
       saveButton.addClass('btn btn-info btn-lg');
       textButtonsContainer.append(saveButton)
       $("#text-area").append(textButtonsContainer);
       var publishButton = $('<button>');
       publishButton.text('PUBLISH');
-      publishButton.attr("id", "publish-button")
+      publishButton.attr("id" , "publish-button")
       publishButton.addClass('btn btn-success btn-lg');
       textButtonsContainer.append(publishButton)
       daysCounter()
@@ -292,37 +267,7 @@ function save() {
 
 //SOUND FUNCTION
 // function to play sound on text area click
-<<<<<<< HEAD
-
-const audio = new Audio('assets/sounds/writing_7s.mp3');
-
-document.getElementById("text-area").addEventListener("keydown", function () {
-  audio.play();
-});
-
-// add click event to save button  
-$("#save-button").on("click", function () {
-  console.log("testing");
-  var newBlog = $("<textarea>").val();
-  localStorage.setItem("blog", newBlog);
-  console.log("this is working");
-});
-
-  // add code to display the message: Appointment is added to localStorage
-
-// // Create blob object with file content
-// var blob = new Blob(["This is a sample file content."], {
-//   type: "text/plain;charset=utf-8",
-// });
-
-// // Create and save the file using the FileWriter library
-// saveAs(Content, fileName);
-=======
 const audio = new Audio ('assets/sounds/writing_7s.mp3');
   document.getElementById("text-area").addEventListener("keydown", function() {
     audio.play();
   });
-<<<<<<< HEAD
->>>>>>> 9a0d4b8a899a44067e09fff064534a0c50afffbf
-=======
->>>>>>> 2314e4213526fadf8b1ac8b3f222d4d57a9fc991
