@@ -57,6 +57,7 @@
 // }
 
 
+
 //QUOTES BUTTON
 //Buttons on click event
 $("#quote").on("click", function (event) {
@@ -86,32 +87,36 @@ $("#quote").on("click", function (event) {
       quoteElement.append(authorElement);
       //Appends quote to prompt container section in HTML
       $("#prompt-container").append(quoteElement);
+
+      $("#prompt-container").append($('<div id="text-area">'));
       //Creates a text area under writing prompt for user input
       var textArea = $('<textarea rows="8" class="col"></textarea>');
-      textArea.attr ("id", "text-area-element")
-      $("#text-area").append(textArea);
-      //Creates a container for buttons and the save and publish buttons
-      var textButtonsContainer = $("<div>")
-      textButtonsContainer.attr("id", "text-buttons-container")
-      var saveButton = $('<button>');
-      saveButton.text('SAVE');
-      saveButton.attr("id" , "save-button")
-      saveButton.addClass('btn btn-info btn-lg');
-      textButtonsContainer.append(saveButton)
-      $("#text-area").append(textButtonsContainer);
-      var publishButton = $('<button>');
-      publishButton.text('PUBLISH');
-      publishButton.attr("id" , "publish-button")
-      publishButton.addClass('btn btn-success btn-lg');
-           saveButton.attr("id" , "save-button")
-      textButtonsContainer.append(publishButton)
-      daysCounter()
+         $("#text-area").append(textArea);
+          //Creates a container for buttons and the save and publish buttons
+          var textButtonsContainer = $("<div>")
+          textButtonsContainer.attr("id", "text-buttons-container")
+          var saveButton = $('<button>');
+          saveButton.text('SAVE');
+          saveButton.attr("id", "save-button")
+          saveButton.addClass('btn btn-info btn-lg');
+          textButtonsContainer.append(saveButton)
+          $("#text-area").append(textButtonsContainer);
+          var publishButton = $('<button>');
+          publishButton.text('PUBLISH');
+          publishButton.attr("id", "publish-button")
+          publishButton.addClass('btn btn-success btn-lg');
+          saveButton.attr("id", "save-button")
+          textButtonsContainer.append(publishButton)
+          daysCounter()
+    
+
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
     }
   })
-})
+  });
+
 
 
 //FACTS BUTTON
@@ -127,25 +132,25 @@ $("#fact").on("click", function (event) {
       var factElement = $("<h2>");
       factElement.attr("id", "fact-element");
       factElement.addClass("prompt-element");
-      factElement.text(result[0].fact + ".")
-      $("#prompt-container").append(factElement)
+      factElement.text(result[0].fact + ".");
+      $("#prompt-container").append(factElement);
       var textArea = $('<textarea rows="8" class="col"></textarea>');
-      textArea.attr ("id", "text-area-element")
+      textArea.attr("id", "text-area-element");
       $("#text-area").append(textArea);
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
       var saveButton = $('<button>');
       saveButton.text('SAVE');
-      saveButton.attr("id" , "save-button")
+      saveButton.attr("id", "save-button");
       saveButton.addClass('btn btn-info btn-lg');
-      textButtonsContainer.append(saveButton)
+      textButtonsContainer.append(saveButton);
       $("#text-area").append(textButtonsContainer);
       var publishButton = $('<button>');
       publishButton.text('PUBLISH');
-      publishButton.attr("id" , "publish-button")
+      publishButton.attr("id", "publish-button");
       publishButton.addClass('btn btn-success btn-lg');
-           saveButton.attr("id" , "save-button")
-      textButtonsContainer.append(publishButton)
+      saveButton.attr("id", "save-button");
+      textButtonsContainer.append(publishButton);
       daysCounter()
     },
     error: function ajaxError(jqXHR) {
@@ -170,21 +175,21 @@ $("#random-img").on("click", function (event) {
       imageElement.addClass("prompt-element");
       $("#prompt-container").append(imageElement)
       var textArea = $('<textarea rows="8" class="col"></textarea>');
-      textArea.attr ("id", "text-area-element")
+      textArea.attr("id", "text-area-element")
       $("#text-area").append(textArea);
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
       var saveButton = $('<button>');
       saveButton.text('SAVE');
-      saveButton.attr("id" , "save-button")
+      saveButton.attr("id", "save-button")
       saveButton.addClass('btn btn-info btn-lg');
       textButtonsContainer.append(saveButton)
       $("#text-area").append(textButtonsContainer);
       var publishButton = $('<button>');
       publishButton.text('PUBLISH');
-      publishButton.attr("id" , "publish-button")
+      publishButton.attr("id", "publish-button")
       publishButton.addClass('btn btn-success btn-lg');
-           saveButton.attr("id" , "save-button")
+      saveButton.attr("id", "save-button")
       textButtonsContainer.append(publishButton)
       daysCounter()
     },
@@ -215,19 +220,19 @@ $("#gif").on("click", function (event) {
       gifElement.addClass("prompt-element");
       $("#prompt-container").prepend(gifElement);
       var textArea = $('<textarea rows="8" class="col"></textarea>');
-      textArea.attr ("id", "text-area-element")
+      textArea.attr("id", "text-area-element")
       $("#text-area").append(textArea);
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
       var saveButton = $('<button>');
       saveButton.text('SAVE');
-      saveButton.attr("id" , "save-button")
+      saveButton.attr("id", "save-button")
       saveButton.addClass('btn btn-info btn-lg');
       textButtonsContainer.append(saveButton)
       $("#text-area").append(textButtonsContainer);
       var publishButton = $('<button>');
       publishButton.text('PUBLISH');
-      publishButton.attr("id" , "publish-button")
+      publishButton.attr("id", "publish-button")
       publishButton.addClass('btn btn-success btn-lg');
       textButtonsContainer.append(publishButton)
       daysCounter()
@@ -240,34 +245,35 @@ $("#gif").on("click", function (event) {
 //STREAK COUNTER
 // Function adding 1 to the streak counter when the publish is clicked. Works only once a day. 
 function daysCounter() {
- // add the click event for the publish button
- $("#publish-button").click(function() {
-  console.log("Publish clicked");
-  // check if the difference between the lastClicked and the current time is greater than 24 hours
-  if (new Date() - lastClicked > 24 * 60 * 60 * 1000) {
-    count++;
-    lastClicked = new Date();
-    if (count == 1) {
-    $("#days-number").text(count + " day");}
-    else 
-    $("#days-number").text(count + " days")
-  }
-});
+  // add the click event for the publish button
+  $("#publish-button").click(function () {
+    console.log("Publish clicked");
+    // check if the difference between the lastClicked and the current time is greater than 24 hours
+    if (new Date() - lastClicked > 24 * 60 * 60 * 1000) {
+      count++;
+      lastClicked = new Date();
+      if (count == 1) {
+        $("#days-number").text(count + " day");
+      }
+      else
+        $("#days-number").text(count + " days")
+    }
+  });
 }
 
 // Saves current entry to local storage ---------- NEEDS WORK!
 function save() {
   // add the click event for the publish button
-  $("#save-button").click(function() {
-   console.log("save-clicked");
-   localStorage.setItem('textareaValue', $("#text-area-element").val())
- });
- }
+  $("#save-button").click(function () {
+    console.log("save-clicked");
+    localStorage.setItem('textareaValue', $("#text-area-element").val())
+  });
+}
 
 
 //SOUND FUNCTION
 // function to play sound on text area click
-const audio = new Audio ('assets/sounds/writing_7s.mp3');
-  document.getElementById("text-area").addEventListener("keydown", function() {
-    audio.play();
-  });
+const audio = new Audio('assets/sounds/writing_7s.mp3');
+document.getElementById("text-area").addEventListener("keydown", function () {
+  audio.play();
+});
