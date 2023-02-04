@@ -22,7 +22,7 @@
 
 var currentDate = moment().format("MMMM D, YYYY");
 
-$(document).ready(function(){
+$(document).ready(function () {
 
   let writingStreak = localStorage.getItem("writingStreak");
   let lastClicked = localStorage.getItem("lastClicked");
@@ -38,8 +38,8 @@ $(document).ready(function(){
   }
 
   if (writingStreak === 1) {
-    $("#counter").text("Your current writing streak is " + writingStreak + " day");  
-  } 
+    $("#counter").text("Your current writing streak is " + writingStreak + " day");
+  }
   else if (writingStreak > 1) {
     $("#counter").text("Your current writing streak is " + writingStreak + " days");
   }
@@ -106,27 +106,27 @@ $("#quote").on("click", function (event) {
       $("#prompt-container").append(quoteElement);
       //Creates a text area under writing prompt for user input
       var textArea = $('<textarea rows="8" class="col"></textarea>');
-      textArea.attr ("id", "text-area-element")
+      textArea.attr("id", "text-area-element")
       $("#text-area").append(textArea);
       //Creates a container for buttons and the save and publish buttons
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
       var discardButton = $('<button>');
       discardButton.text('DISCARD');
-      discardButton.attr("id" , "discard-button")
+      discardButton.attr("id", "discard-button")
       discardButton.addClass('btn btn-info btn-lg');
       textButtonsContainer.append(discardButton)
       var saveButton = $('<button>');
       saveButton.text('SAVE');
-      saveButton.attr("id" , "save-button")
+      saveButton.attr("id", "save-button")
       saveButton.addClass('btn btn-info btn-lg');
       textButtonsContainer.append(saveButton)
       $("#text-area").append(textButtonsContainer);
       var publishButton = $('<button>');
       publishButton.text('PUBLISH');
-      publishButton.attr("id" , "publish-button")
+      publishButton.attr("id", "publish-button")
       publishButton.addClass('btn btn-success btn-lg');
-           saveButton.attr("id" , "save-button")
+      saveButton.attr("id", "save-button")
       textButtonsContainer.append(publishButton)
       publish()
     },
@@ -153,26 +153,26 @@ $("#fact").on("click", function (event) {
       factElement.text(result[0].fact + ".")
       $("#prompt-container").append(factElement)
       var textArea = $('<textarea rows="8" class="col"></textarea>');
-      textArea.attr ("id", "text-area-element")
+      textArea.attr("id", "text-area-element")
       $("#text-area").append(textArea);
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
       var discardButton = $('<button>');
       discardButton.text('DISCARD');
-      discardButton.attr("id" , "discard-button")
+      discardButton.attr("id", "discard-button")
       discardButton.addClass('btn btn-info btn-lg');
       textButtonsContainer.append(discardButton)
       var saveButton = $('<button>');
       saveButton.text('SAVE');
-      saveButton.attr("id" , "save-button")
+      saveButton.attr("id", "save-button")
       saveButton.addClass('btn btn-info btn-lg');
       textButtonsContainer.append(saveButton)
       $("#text-area").append(textButtonsContainer);
       var publishButton = $('<button>');
       publishButton.text('PUBLISH');
-      publishButton.attr("id" , "publish-button")
+      publishButton.attr("id", "publish-button")
       publishButton.addClass('btn btn-success btn-lg');
-           saveButton.attr("id" , "save-button")
+      saveButton.attr("id", "save-button")
       textButtonsContainer.append(publishButton)
       publish()
     },
@@ -198,26 +198,26 @@ $("#random-img").on("click", function (event) {
       imageElement.addClass("prompt-element");
       $("#prompt-container").append(imageElement)
       var textArea = $('<textarea rows="8" class="col"></textarea>');
-      textArea.attr ("id", "text-area-element")
+      textArea.attr("id", "text-area-element")
       $("#text-area").append(textArea);
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
       var discardButton = $('<button>');
       discardButton.text('DISCARD');
-      discardButton.attr("id" , "discard-button")
+      discardButton.attr("id", "discard-button")
       discardButton.addClass('btn btn-info btn-lg');
       textButtonsContainer.append(discardButton)
       var saveButton = $('<button>');
       saveButton.text('SAVE');
-      saveButton.attr("id" , "save-button")
+      saveButton.attr("id", "save-button")
       saveButton.addClass('btn btn-info btn-lg');
       textButtonsContainer.append(saveButton)
       $("#text-area").append(textButtonsContainer);
       var publishButton = $('<button>');
       publishButton.text('PUBLISH');
-      publishButton.attr("id" , "publish-button")
+      publishButton.attr("id", "publish-button")
       publishButton.addClass('btn btn-success btn-lg');
-           saveButton.attr("id" , "save-button")
+      saveButton.attr("id", "save-button")
       textButtonsContainer.append(publishButton)
       publish()
     },
@@ -248,26 +248,26 @@ $("#gif").on("click", function (event) {
       gifElement.addClass("prompt-element");
       $("#prompt-container").prepend(gifElement);
       var textArea = $('<textarea rows="8" class="col"></textarea>');
-      textArea.attr ("id", "text-area-element")
+      textArea.attr("id", "text-area-element")
       $("#text-area").append(textArea);
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
       var discardButton = $('<button>');
       discardButton.text('DISCARD');
-      discardButton.attr("id" , "discard-button")
+      discardButton.attr("id", "discard-button")
       discardButton.addClass('btn btn-info btn-lg');
       textButtonsContainer.append(discardButton)
       var saveButton = $('<button>');
       saveButton.text('SAVE');
-      saveButton.attr("id" , "save-button")
+      saveButton.attr("id", "save-button")
       saveButton.addClass('btn btn-info btn-lg');
       textButtonsContainer.append(saveButton)
       $("#text-area").append(textButtonsContainer);
       var publishButton = $('<button>');
       publishButton.text('PUBLISH');
-      publishButton.attr("id" , "publish-button")
+      publishButton.attr("id", "publish-button")
       publishButton.addClass('btn btn-success btn-lg');
-           saveButton.attr("id" , "save-button")
+      saveButton.attr("id", "save-button")
       textButtonsContainer.append(publishButton)
       publish()
     });
@@ -276,7 +276,7 @@ $("#gif").on("click", function (event) {
 
 // PUBLISH BUTTON
 function publish() {
-  $("#publish-button").click(function() {
+  $("#publish-button").click(function () {
     console.log("publish-clicked");
     $("#text-area").css("display", "none");
     var textAreaValue = $("#text-area-element").val();
@@ -285,7 +285,7 @@ function publish() {
       return;
     }
     var newEntryHeadline = $("<h3>")
-    newEntryHeadline.text("Your entry from " + currentDate );
+    newEntryHeadline.text("Your entry from " + currentDate);
     var newEntry = $("<p>")
     newEntry.html(textAreaValue.replace(/\n/g, "<br>"));
     $("#new-entry-container").prepend(newEntryHeadline);
@@ -341,7 +341,7 @@ function streakCounter() {
   lastClicked = currentDate;
   if (writingStreak === 1) {
     $("#counter").text("Your current writing streak is " + writingStreak + " day");
-  } 
+  }
   else if (writingStreak === 0) {
     $("#counter").text("You've started your writing streak. Keep going tomorrow!");
   }
@@ -355,7 +355,7 @@ function streakCounter() {
 
 //SOUND FUNCTION
 // function to play sound on text area click
-const audio = new Audio ('assets/sounds/writing_7s.mp3');
-  document.getElementById("text-area").addEventListener("keydown", function() {
-    audio.play();
-  });
+const audio = new Audio('assets/sounds/writing_7s.mp3');
+document.getElementById("text-area").addEventListener("keydown", function () {
+  audio.play();
+});
