@@ -16,21 +16,35 @@
 
 // Add streak counter - counts new day when publish button pressed, once a day.
 
-// Add notifications
+//COUNTER ON PAGE REFRESH /  LOAD
 
+$(document).ready(function(){
 
+  let writingStreak = localStorage.getItem("writingStreak");
+  let lastClicked = localStorage.getItem("lastClicked");
+  if (writingStreak === null) {
+    $("#counter").text("Start your writing streak!");
+  } else {
+    writingStreak = parseInt(writingStreak);
+  }
+  if (lastClicked === null) {
+    lastClicked = new Date();
+  } else {
+    lastClicked = new Date(lastClicked);
+  }
 
-// let writingStreak = localStorage.getItem("writingStreak")
-// if (writingStreak == 1) {
-//   var counter = $("<div>")
-//   counter.text("Your current streak: " + writingStreak + " day")
-//   $("#counter-section").append(counter);
-// }
-// else {
-//   var counter = $("<div>")
-//   counter.text("Your current streak: " + writingStreak + " days")
-//   $("#counter-section").append(counter);
-// }
+  if (writingStreak === 1) {
+    $("#counter").text("Your current writing streak is " + writingStreak + " day");  
+  } 
+  else if (writingStreak > 1) {
+    $("#counter").text("Your current writing streak is " + writingStreak + " days");
+  }
+
+  else {
+    $("#counter").text("You've started your writing streak. Keep going tomorrow!");
+  }
+})
+
 
 // //^NOTIFICATIONS
 
@@ -230,39 +244,64 @@ $("#gif").on("click", function (event) {
       publishButton.attr("id" , "publish-button")
       publishButton.addClass('btn btn-success btn-lg');
       textButtonsContainer.append(publishButton)
-      daysCounter()
-      save()
+      publish()
+
     });
 });
 
 
-
-//STREAK COUNTER
-// Function adding 1 to the streak counter when the publish is clicked. Works only once a day. 
-function daysCounter() {
- // add the click event for the publish button
- $("#publish-button").click(function() {
-  console.log("Publish clicked");
-  // check if the difference between the lastClicked and the current time is greater than 24 hours
-  if (new Date() - lastClicked > 24 * 60 * 60 * 1000) {
-    count++;
-    lastClicked = new Date();
-    if (count == 1) {
-    $("#days-number").text(count + " day");}
-    else 
-    $("#days-number").text(count + " days")
-  }
-});
-}
-
-// Saves current entry to local storage ---------- NEEDS WORK!
-function save() {
-  // add the click event for the publish button
-  $("#save-button").click(function() {
-   console.log("save-clicked");
-   localStorage.setItem('textareaValue', $("#text-area-element").val())
+// PUBLISH BUTTON
+ function publish() {
+  $("#publish-button").click(function() {
+   console.log("publish-clicked");
+   streakCounter()
  });
  }
+
+
+
+// // Saves current entry to local storage ---------- NEEDS WORK!
+// function save() {
+//   // add the click event for the publish button
+//   $("#save-button").click(function() {
+//    console.log("save-clicked");
+//    localStorage.setItem('textareaValue', $("#text-area-element").val())
+//  });
+//  }
+
+
+// COUNTER FUNCTION 
+
+function streakCounter() {
+  let writingStreak = localStorage.getItem("writingStreak");
+  let lastClicked = localStorage.getItem("lastClicked");
+  if (writingStreak === null) {
+    writingStreak = 0;
+  } else {
+    writingStreak = parseInt(writingStreak);
+  }
+  if (lastClicked === null) {
+    lastClicked = new Date();
+  } else {
+    lastClicked = new Date(lastClicked);
+  }
+  let currentDate = new Date();
+  if (currentDate - lastClicked >= 24 * 60 * 60 * 1000) {
+    writingStreak++;
+  }
+  lastClicked = currentDate;
+  if (writingStreak === 1) {
+    $("#counter").text("Your current writing streak is " + writingStreak + " day");
+  } 
+  else if (writingStreak === 0) {
+    $("#counter").text("You've started your writing streak. Keep going tomorrow!");
+  }
+  else {
+    $("#counter").text("Your current writing streak is " + writingStreak + " days");
+  }
+  localStorage.setItem("writingStreak", writingStreak);
+  localStorage.setItem("lastClicked", lastClicked);
+}
 
 
 //SOUND FUNCTION
