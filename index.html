@@ -16,31 +16,35 @@
 </head>
 
 <body>
-
-  <!-- As a heading -->
+  <!-- Navigation bar -->
   <nav class="navbar navbar-light bg-light">
     <span id="app-name" class="navbar-brand mb-0 h1">Inspirite</span>
     <div id="counter">Your current streak is <span id="days-number"></span></div>
   </nav>
 
-  <div id="start-screen" class="jumbotron">
-    <h1 class="display-4">Choose your inspiration</h1>
-    <p class="task" >Click on a button below to receive a prompt to kick-start your writing exercise.</p>
+  <!-- main body -->
+  <main class="sections">
+    <!-- hero section: jumbotron featuring a background picture and button information -->
+    <section class="hero text-center">
+      <div id="start-screen" class="jumbotron">
+        <h1 class="display-4">Choose your inspiration</h1>
+        <p class="task">Please click on a button below <br>to receive a prompt <br>and experience the joy of writing.
+        </p>
+        <a id="quote" class="btn btn-primary btn-lg prompt-btn" href="#" role="button">Famous quote</a>
+        <a id="fact" class="btn btn-primary btn-lg prompt-btn" href="#" role="button">Fun<br>fact</a>
+        <a id="random-img" class="btn btn-primary btn-lg prompt-btn" href="#" role="button">Random picture</a>
+        <a id="gif" class="btn btn-primary btn-lg prompt-btn" href="#" role="button">GIF surprise</a>
+      </div>
+    </section>
+    <!-- prompt section displaying prompts -->
+    <section id="prompt-container" class="hide"></section>
+    <!-- user text input section for writing exercise -->
+    <section id="text-container" class="hide">
+      <div id="text-area" class="hide"></div>
+    </section>
+  </main>
 
-    <a id="quote" class="btn btn-primary btn-lg" href="#" role="button">Quote</a>
-    <a id="fact" class="btn btn-primary btn-lg" href="#" role="button">Fact</a>
-    <a id="random-img" class="btn btn-primary btn-lg" href="#" role="button">Image</a>
-    <a id="gif" class="btn btn-primary btn-lg" href="#" role="button">GIF</a>
-
-  </div>
-
-  <section id="prompt-container" class="hide"></section>
-
-  <div id="text-area" class="hide"> </div>
-
-
-
-
+  <!-- footer -->
   <footer>
     <div class="container text-center">
       <p>&copy; Team Inspirite 2023. All Rights Reserved.</p>
@@ -50,7 +54,6 @@
       <a href="https://github.com/sophiedodsworth" class="link">Sophie</a>
     </div>
   </footer>
-
 
 
   <!-- Moment.js -->

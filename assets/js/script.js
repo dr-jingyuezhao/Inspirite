@@ -57,7 +57,6 @@
 // }
 
 
-
 //QUOTES BUTTON
 //Buttons on click event
 $("#quote").on("click", function (event) {
