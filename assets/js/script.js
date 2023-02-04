@@ -279,8 +279,6 @@ function publish() {
   $("#publish-button").click(function() {
     console.log("publish-clicked");
     $("#text-area").css("display", "none");
-
-
     var textAreaValue = $("#text-area-element").val();
     if (!textAreaValue) {
       alert("Cannot publish an empty entry. Please add text to the entry before publishing.");
@@ -292,16 +290,24 @@ function publish() {
     newEntry.html(textAreaValue.replace(/\n/g, "<br>"));
     $("#new-entry-container").prepend(newEntryHeadline);
     $("#new-entry-container").append(newEntry);
+
+    //Storing entry in localstorage. It stores it in an array of objects
+    // each pos is marked with current date so that we can retrieve them on archives page.
+    var entries = JSON.parse(localStorage.getItem("entries")) || [];
+    entries.push({
+      date: currentDate,
+      content: $("#new-entry-container").html()
+    });
+    localStorage.setItem("entries", JSON.stringify(entries));
+
+    //Adds 1  streak to counter when post published
     streakCounter();
   });
 }
 
 
 
-
-
-
-// // Saves current entry to local storage ---------- NEEDS WORK!
+// SAVE BUTTON
 // function save() {
 //   // add the click event for the publish button
 //   $("#save-button").click(function() {
@@ -309,6 +315,8 @@ function publish() {
 //    localStorage.setItem('textareaValue', $("#text-area-element").val())
 //  });
 //  }
+
+//DISCARD BUTTON
 
 
 // COUNTER FUNCTION 
