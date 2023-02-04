@@ -287,3 +287,11 @@ footer {
     text-decoration: none !important;
 }
 
+#new-entry-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;;
+    align-items: center;
+    gap: 20px;
+    margin: 50px 300px 50px 300px;
+}

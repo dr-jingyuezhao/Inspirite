@@ -18,6 +18,10 @@
 
 //COUNTER ON PAGE REFRESH /  LOAD
 
+// GLOBAL VARIABLES
+
+var currentDate = moment().format("MMMM D, YYYY");
+
 $(document).ready(function(){
 
   let writingStreak = localStorage.getItem("writingStreak");
@@ -119,7 +123,7 @@ $("#quote").on("click", function (event) {
       publishButton.addClass('btn btn-success btn-lg');
            saveButton.attr("id" , "save-button")
       textButtonsContainer.append(publishButton)
-      daysCounter()
+      publish()
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -160,7 +164,7 @@ $("#fact").on("click", function (event) {
       publishButton.addClass('btn btn-success btn-lg');
            saveButton.attr("id" , "save-button")
       textButtonsContainer.append(publishButton)
-      daysCounter()
+      publish()
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -200,7 +204,7 @@ $("#random-img").on("click", function (event) {
       publishButton.addClass('btn btn-success btn-lg');
            saveButton.attr("id" , "save-button")
       textButtonsContainer.append(publishButton)
-      daysCounter()
+      publish()
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -251,12 +255,29 @@ $("#gif").on("click", function (event) {
 
 
 // PUBLISH BUTTON
- function publish() {
+function publish() {
   $("#publish-button").click(function() {
-   console.log("publish-clicked");
-   streakCounter()
- });
- }
+    console.log("publish-clicked");
+    $("#text-area").css("display", "none");
+
+
+    var textAreaValue = $("#text-area-element").val();
+    if (!textAreaValue) {
+      alert("Cannot publish an empty entry. Please add text to the entry before publishing.");
+      return;
+    }
+    var newEntryHeadline = $("<h3>")
+    newEntryHeadline.text("Your entry from " + currentDate );
+    var newEntry = $("<p>")
+    newEntry.html(textAreaValue.replace(/\n/g, "<br>"));
+    $("#new-entry-container").prepend(newEntryHeadline);
+    $("#new-entry-container").append(newEntry);
+    streakCounter();
+  });
+}
+
+
+
 
 
 
