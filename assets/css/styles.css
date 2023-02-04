@@ -310,6 +310,7 @@ p.task {
 footer {
     font-family: "IBM Plex Mono";
     color: var(--secondary-colour);
+    margin-bottom: 30px;
 
 }
 
