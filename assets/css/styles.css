@@ -8,9 +8,14 @@
 
 /* NAVBAR */
 
+#logo {
+    width: 20%;
+    margin-right: 10px;
+}
+
 #app-name {
     font-family: 'DB Serif Display', serif;
-    font-size: 50pt;
+    font-size: 30pt;
     padding-left: 10px;
 }
 
@@ -293,7 +298,7 @@ p.task {
 footer {
     font-family: "IBM Plex Mono";
     color: var(--secondary-colour);
-    
+
 }
 
 .link {
