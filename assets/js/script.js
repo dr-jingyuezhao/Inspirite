@@ -16,39 +16,21 @@
 
 // Add streak counter - counts new day when publish button pressed, once a day.
 
-//COUNTER ON PAGE REFRESH /  LOAD
+// Add notifications
 
-// GLOBAL VARIABLES
 
-var currentDate = moment().format("MMMM D, YYYY");
 
-$(document).ready(function () {
-
-  let writingStreak = localStorage.getItem("writingStreak");
-  let lastClicked = localStorage.getItem("lastClicked");
-  if (writingStreak === null) {
-    $("#counter").text("Start your writing streak!");
-  } else {
-    writingStreak = parseInt(writingStreak);
-  }
-  if (lastClicked === null) {
-    lastClicked = new Date();
-  } else {
-    lastClicked = new Date(lastClicked);
-  }
-
-  if (writingStreak === 1) {
-    $("#counter").text("Your current writing streak is " + writingStreak + " day");
-  }
-  else if (writingStreak > 1) {
-    $("#counter").text("Your current writing streak is " + writingStreak + " days");
-  }
-
-  else {
-    $("#counter").text("You've started your writing streak. Keep going tomorrow!");
-  }
-})
-
+// let writingStreak = localStorage.getItem("writingStreak")
+// if (writingStreak == 1) {
+//   var counter = $("<div>")
+//   counter.text("Your current streak: " + writingStreak + " day")
+//   $("#counter-section").append(counter);
+// }
+// else {
+//   var counter = $("<div>")
+//   counter.text("Your current streak: " + writingStreak + " days")
+//   $("#counter-section").append(counter);
+// }
 
 // //^NOTIFICATIONS
 
@@ -79,7 +61,6 @@ $(document).ready(function () {
 //Buttons on click event
 $("#quote").on("click", function (event) {
   event.preventDefault()
-
   //Launches Ajax call for quotes
   $.ajax({
     method: 'GET',
@@ -87,34 +68,25 @@ $("#quote").on("click", function (event) {
     headers: { 'X-Api-Key': ninjaKey },
     contentType: 'application/json',
     success: function (result) {
-
       //"Disappears" the start page jumbotron
       $("#start-screen").css("display", "none");
-
       //Creates a H2 for the quote with the id of quote
       var quoteElement = $("<h2>");
       quoteElement.attr("id", "quote-element");
       quoteElement.addClass("prompt-element");
-
       //Adds quote text from the API call to the new H2 element
       quoteElement.text('"' + result[0].quote + '"')
-
       //Adds quote author element and its attributes
       var authorElement = $("<h4>");
       authorElement.attr("id", "author");
       authorElement.addClass("prompt-element");
-
       //Sets author element text
       authorElement.text("- " + result[0].author);
-
       //Appends author to quote
       quoteElement.append(authorElement);
-
       //Appends quote to prompt container section in HTML
       $("#prompt-container").append(quoteElement);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
       $("#prompt-container").append($('<div id="text-area">'));
       //Creates a text area under writing prompt for user input
       var textArea = $('<textarea rows="8" class="col"></textarea>');
@@ -137,41 +109,6 @@ $("#quote").on("click", function (event) {
           daysCounter()
     
 
-=======
-      //Creates a text area under writing prompt for user input
-      var textArea = $('<textarea rows="8" class="col"></textarea>');
-=======
-      //Creates a text area under writing prompt for user input
-      var textArea = $('<textarea rows="8" class="col"></textarea>');
->>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
-      textArea.attr("id", "text-area-element")
-      $("#text-area").append(textArea);
-
-      //Creates a container for buttons and the save and publish buttons
-      var textButtonsContainer = $("<div>")
-      textButtonsContainer.attr("id", "text-buttons-container")
-      var discardButton = $('<button>');
-      discardButton.text('DISCARD');
-      discardButton.attr("id", "discard-button")
-
-      textButtonsContainer.append(discardButton)
-      var saveButton = $('<button>');
-      saveButton.text('SAVE');
-      saveButton.attr("id", "save-button")
-
-      textButtonsContainer.append(saveButton)
-      $("#text-area").append(textButtonsContainer);
-      var publishButton = $('<button>');
-      publishButton.text('PUBLISH');
-      publishButton.attr("id", "publish-button")
-
-      saveButton.attr("id", "save-button")
-      textButtonsContainer.append(publishButton)
-      publish()
-<<<<<<< HEAD
->>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
-=======
->>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -197,27 +134,12 @@ $("#fact").on("click", function (event) {
       factElement.text(result[0].fact + ".");
       $("#prompt-container").append(factElement);
       var textArea = $('<textarea rows="8" class="col"></textarea>');
-<<<<<<< HEAD
-<<<<<<< HEAD
       textArea.attr("id", "text-area-element");
-=======
-      textArea.attr("id", "text-area-element")
->>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
-=======
-      textArea.attr("id", "text-area-element")
->>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
       $("#text-area").append(textArea);
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
-      var discardButton = $('<button>');
-      discardButton.text('DISCARD');
-      discardButton.attr("id", "discard-button")
-
-      textButtonsContainer.append(discardButton)
       var saveButton = $('<button>');
       saveButton.text('SAVE');
-<<<<<<< HEAD
-<<<<<<< HEAD
       saveButton.attr("id", "save-button");
       saveButton.addClass('btn btn-info btn-lg');
       textButtonsContainer.append(saveButton);
@@ -229,24 +151,6 @@ $("#fact").on("click", function (event) {
       saveButton.attr("id", "save-button");
       textButtonsContainer.append(publishButton);
       daysCounter()
-=======
-=======
->>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
-      saveButton.attr("id", "save-button")
-
-      textButtonsContainer.append(saveButton)
-      $("#text-area").append(textButtonsContainer);
-      var publishButton = $('<button>');
-      publishButton.text('PUBLISH');
-      publishButton.attr("id", "publish-button")
-
-      saveButton.attr("id", "save-button")
-      textButtonsContainer.append(publishButton)
-      publish()
-<<<<<<< HEAD
->>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
-=======
->>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -274,40 +178,19 @@ $("#random-img").on("click", function (event) {
       $("#text-area").append(textArea);
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
-      var discardButton = $('<button>');
-      discardButton.text('DISCARD');
-      discardButton.attr("id", "discard-button")
-
-      textButtonsContainer.append(discardButton)
       var saveButton = $('<button>');
       saveButton.text('SAVE');
       saveButton.attr("id", "save-button")
-<<<<<<< HEAD
-<<<<<<< HEAD
       saveButton.addClass('btn btn-info btn-lg');
-=======
-
->>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
-=======
-
->>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
       textButtonsContainer.append(saveButton)
       $("#text-area").append(textButtonsContainer);
       var publishButton = $('<button>');
       publishButton.text('PUBLISH');
       publishButton.attr("id", "publish-button")
-<<<<<<< HEAD
-<<<<<<< HEAD
       publishButton.addClass('btn btn-success btn-lg');
-=======
-
->>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
-=======
-
->>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
       saveButton.attr("id", "save-button")
       textButtonsContainer.append(publishButton)
-      publish()
+      daysCounter()
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -340,63 +223,24 @@ $("#gif").on("click", function (event) {
       $("#text-area").append(textArea);
       var textButtonsContainer = $("<div>")
       textButtonsContainer.attr("id", "text-buttons-container")
-      var discardButton = $('<button>');
-      discardButton.text('DISCARD');
-      discardButton.attr("id", "discard-button")
-      textButtonsContainer.append(discardButton)
       var saveButton = $('<button>');
       saveButton.text('SAVE');
       saveButton.attr("id", "save-button")
-<<<<<<< HEAD
-<<<<<<< HEAD
       saveButton.addClass('btn btn-info btn-lg');
-=======
-
->>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
-=======
-
->>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
       textButtonsContainer.append(saveButton)
       $("#text-area").append(textButtonsContainer);
       var publishButton = $('<button>');
       publishButton.text('PUBLISH');
       publishButton.attr("id", "publish-button")
-<<<<<<< HEAD
-<<<<<<< HEAD
       publishButton.addClass('btn btn-success btn-lg');
-=======
-
-      saveButton.attr("id", "save-button")
->>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
-=======
-
-      saveButton.attr("id", "save-button")
->>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
       textButtonsContainer.append(publishButton)
-      publish()
+      daysCounter()
+      save()
     });
 });
 
 
-// PUBLISH BUTTON
-function publish() {
-  $("#publish-button").click(function () {
-    console.log("publish-clicked");
-    $("#text-area").css("display", "none");
-    var textAreaValue = $("#text-area-element").val();
-    if (!textAreaValue) {
-      alert("Cannot publish an empty entry. Please add text to the entry before publishing.");
-      return;
-    }
-    var newEntryHeadline = $("<h3>")
-    newEntryHeadline.text("Your entry from " + currentDate);
-    var newEntry = $("<p>")
-    newEntry.html(textAreaValue.replace(/\n/g, "<br>"));
-    $("#new-entry-container").prepend(newEntryHeadline);
-    $("#new-entry-container").append(newEntry);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 //STREAK COUNTER
 // Function adding 1 to the streak counter when the publish is clicked. Works only once a day. 
 function daysCounter() {
@@ -423,85 +267,6 @@ function save() {
     console.log("save-clicked");
     localStorage.setItem('textareaValue', $("#text-area-element").val())
   });
-=======
-    //Storing entry in localstorage. It stores it in an array of objects
-    // each pos is marked with current date so that we can retrieve them on archives page.
-    var entries = JSON.parse(localStorage.getItem("entries")) || [];
-    entries.push({
-      date: currentDate,
-      content: $("#new-entry-container").html()
-    });
-    localStorage.setItem("entries", JSON.stringify(entries));
-
-    //Adds 1  streak to counter when post published
-    streakCounter();
-  });
-}
-
-=======
-    //Storing entry in localstorage. It stores it in an array of objects
-    // each pos is marked with current date so that we can retrieve them on archives page.
-    var entries = JSON.parse(localStorage.getItem("entries")) || [];
-    entries.push({
-      date: currentDate,
-      content: $("#new-entry-container").html()
-    });
-    localStorage.setItem("entries", JSON.stringify(entries));
-
-    //Adds 1  streak to counter when post published
-    streakCounter();
-  });
-}
-
->>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
-
-// SAVE BUTTON
-// function save() {
-//   // add the click event for the publish button
-//   $("#save-button").click(function() {
-//    console.log("save-clicked");
-//    localStorage.setItem('textareaValue', $("#text-area-element").val())
-//  });
-//  }
-
-//DISCARD BUTTON
-
-
-// COUNTER FUNCTION 
-
-function streakCounter() {
-  let writingStreak = localStorage.getItem("writingStreak");
-  let lastClicked = localStorage.getItem("lastClicked");
-  if (writingStreak === null) {
-    writingStreak = 0;
-  } else {
-    writingStreak = parseInt(writingStreak);
-  }
-  if (lastClicked === null) {
-    lastClicked = new Date();
-  } else {
-    lastClicked = new Date(lastClicked);
-  }
-  let currentDate = new Date();
-  if (currentDate - lastClicked >= 24 * 60 * 60 * 1000) {
-    writingStreak++;
-  }
-  lastClicked = currentDate;
-  if (writingStreak === 1) {
-    $("#counter").text("Your current writing streak is " + writingStreak + " day");
-  }
-  else if (writingStreak === 0) {
-    $("#counter").text("You've started your writing streak. Keep going tomorrow!");
-  }
-  else {
-    $("#counter").text("Your current writing streak is " + writingStreak + " days");
-  }
-  localStorage.setItem("writingStreak", writingStreak);
-  localStorage.setItem("lastClicked", lastClicked);
-<<<<<<< HEAD
->>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
-=======
->>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
 }
 
 
