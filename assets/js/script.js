@@ -75,7 +75,7 @@ $("#quote").on("click", function (event) {
       quoteElement.attr("id", "quote-element");
       quoteElement.addClass("prompt-element");
       //Adds quote text from the API call to the new H2 element
-      quoteElement.text('"' + result[0].quote + '"')
+      quoteElement.text('"' + result[0].quote + '"');
       //Adds quote author element and its attributes
       var authorElement = $("<h4>");
       authorElement.attr("id", "author");
@@ -86,35 +86,32 @@ $("#quote").on("click", function (event) {
       quoteElement.append(authorElement);
       //Appends quote to prompt container section in HTML
       $("#prompt-container").append(quoteElement);
-
-      $("#prompt-container").append($('<div id="text-area">'));
+      $("#text-container").removeClass("hide");
       //Creates a text area under writing prompt for user input
       var textArea = $('<textarea rows="8" class="col"></textarea>');
-         $("#text-area").append(textArea);
-          //Creates a container for buttons and the save and publish buttons
-          var textButtonsContainer = $("<div>")
-          textButtonsContainer.attr("id", "text-buttons-container")
-          var saveButton = $('<button>');
-          saveButton.text('SAVE');
-          saveButton.attr("id", "save-button")
-          saveButton.addClass('btn btn-info btn-lg');
-          textButtonsContainer.append(saveButton)
-          $("#text-area").append(textButtonsContainer);
-          var publishButton = $('<button>');
-          publishButton.text('PUBLISH');
-          publishButton.attr("id", "publish-button")
-          publishButton.addClass('btn btn-success btn-lg');
-          saveButton.attr("id", "save-button")
-          textButtonsContainer.append(publishButton)
-          daysCounter()
-    
-
+      $("#text-area").append(textArea);
+      //Creates a container for buttons and the save and publish buttons
+      var textButtonsContainer = $("<div>");
+      textButtonsContainer.attr("id", "text-buttons-container");
+      var saveButton = $('<button>');
+      saveButton.text('SAVE');
+      saveButton.attr("id", "save-button")
+      saveButton.addClass('btn btn-info btn-lg');
+      textButtonsContainer.append(saveButton)
+      $("#text-area").append(textButtonsContainer);
+      var publishButton = $('<button>');
+      publishButton.text('PUBLISH');
+      publishButton.attr("id", "publish-button");
+      publishButton.addClass('btn btn-success btn-lg');
+      saveButton.attr("id", "save-button");
+      textButtonsContainer.append(publishButton);
+      daysCounter();
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
     }
   })
-  });
+});
 
 
 
@@ -133,6 +130,7 @@ $("#fact").on("click", function (event) {
       factElement.addClass("prompt-element");
       factElement.text(result[0].fact + ".");
       $("#prompt-container").append(factElement);
+      $("#text-container").removeClass("hide");
       var textArea = $('<textarea rows="8" class="col"></textarea>');
       textArea.attr("id", "text-area-element");
       $("#text-area").append(textArea);
@@ -172,12 +170,13 @@ $("#random-img").on("click", function (event) {
       imageElement.attr("src", ("data:image/jpg;base64," + result));
       imageElement.attr("id", "image-element");
       imageElement.addClass("prompt-element");
-      $("#prompt-container").append(imageElement)
+      $("#prompt-container").append(imageElement);
+      $("#text-container").removeClass("hide");
       var textArea = $('<textarea rows="8" class="col"></textarea>');
-      textArea.attr("id", "text-area-element")
+      textArea.attr("id", "text-area-element");
       $("#text-area").append(textArea);
-      var textButtonsContainer = $("<div>")
-      textButtonsContainer.attr("id", "text-buttons-container")
+      var textButtonsContainer = $("<div>");
+      textButtonsContainer.attr("id", "text-buttons-container");
       var saveButton = $('<button>');
       saveButton.text('SAVE');
       saveButton.attr("id", "save-button")
@@ -218,6 +217,7 @@ $("#gif").on("click", function (event) {
       gifElement.attr("id", "gif-element");
       gifElement.addClass("prompt-element");
       $("#prompt-container").prepend(gifElement);
+      $("#text-container").removeClass("hide");
       var textArea = $('<textarea rows="8" class="col"></textarea>');
       textArea.attr("id", "text-area-element")
       $("#text-area").append(textArea);

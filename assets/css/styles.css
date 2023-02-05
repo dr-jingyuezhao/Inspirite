@@ -202,6 +202,7 @@ p.task {
 
 /* Quote element */
 #quote-element {
+    margin: 20px 50px 0px 50px;
     padding: 40px;
     font-family: 'DB Serif Display', serif;
     color: antiquewhite;
@@ -211,6 +212,7 @@ p.task {
 
 /*  Fact element */
 #fact-element {
+    margin: 20px 50px 0px 50px;
     font-family: 'IBM Plex Mono', bold;
     padding: 40px;
     background-color: var(--signal-colour-hover);
@@ -224,7 +226,6 @@ p.task {
     border-color: var(--signal-colour);
     border-style: groove;
     border-radius: 10px;
-
 }
 
 /* GIF element */
@@ -235,8 +236,6 @@ p.task {
     border-color: var(--signal-colour);
     border-style: groove;
     border-radius: 10px;
-
-
 }
 
 
@@ -244,26 +243,15 @@ p.task {
 /* TEXT AREA */
 
 #text-area {
-
     align-items: center;
     border-color: gray;
     display: flex;
     flex-direction: column;
-    margin: 20px;
-
-}
-
-#text-area-element {
-
     font-family: 'Caveat';
     font-size: 20pt;
-    padding: 30px;
-    align-items: center;
-    border-color: gray;
-    display: flex;
-    flex-direction: column;
     height: 400px;
-    margin: 20px;
+    padding: 30px;
+    margin: 0px 20px;
 }
 
 /* SAVE and PUBLISH BUTTONS */
