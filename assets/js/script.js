@@ -114,6 +114,7 @@ $("#quote").on("click", function (event) {
       $("#prompt-container").append(quoteElement);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
       $("#prompt-container").append($('<div id="text-area">'));
       //Creates a text area under writing prompt for user input
       var textArea = $('<textarea rows="8" class="col"></textarea>');
@@ -139,6 +140,10 @@ $("#quote").on("click", function (event) {
 =======
       //Creates a text area under writing prompt for user input
       var textArea = $('<textarea rows="8" class="col"></textarea>');
+=======
+      //Creates a text area under writing prompt for user input
+      var textArea = $('<textarea rows="8" class="col"></textarea>');
+>>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
       textArea.attr("id", "text-area-element")
       $("#text-area").append(textArea);
 
@@ -163,6 +168,9 @@ $("#quote").on("click", function (event) {
       saveButton.attr("id", "save-button")
       textButtonsContainer.append(publishButton)
       publish()
+<<<<<<< HEAD
+>>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
+=======
 >>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
     },
     error: function ajaxError(jqXHR) {
@@ -190,7 +198,11 @@ $("#fact").on("click", function (event) {
       $("#prompt-container").append(factElement);
       var textArea = $('<textarea rows="8" class="col"></textarea>');
 <<<<<<< HEAD
+<<<<<<< HEAD
       textArea.attr("id", "text-area-element");
+=======
+      textArea.attr("id", "text-area-element")
+>>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
 =======
       textArea.attr("id", "text-area-element")
 >>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
@@ -205,6 +217,7 @@ $("#fact").on("click", function (event) {
       var saveButton = $('<button>');
       saveButton.text('SAVE');
 <<<<<<< HEAD
+<<<<<<< HEAD
       saveButton.attr("id", "save-button");
       saveButton.addClass('btn btn-info btn-lg');
       textButtonsContainer.append(saveButton);
@@ -217,6 +230,8 @@ $("#fact").on("click", function (event) {
       textButtonsContainer.append(publishButton);
       daysCounter()
 =======
+=======
+>>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
       saveButton.attr("id", "save-button")
 
       textButtonsContainer.append(saveButton)
@@ -228,6 +243,9 @@ $("#fact").on("click", function (event) {
       saveButton.attr("id", "save-button")
       textButtonsContainer.append(publishButton)
       publish()
+<<<<<<< HEAD
+>>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
+=======
 >>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
     },
     error: function ajaxError(jqXHR) {
@@ -265,7 +283,11 @@ $("#random-img").on("click", function (event) {
       saveButton.text('SAVE');
       saveButton.attr("id", "save-button")
 <<<<<<< HEAD
+<<<<<<< HEAD
       saveButton.addClass('btn btn-info btn-lg');
+=======
+
+>>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
 =======
 
 >>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
@@ -275,7 +297,11 @@ $("#random-img").on("click", function (event) {
       publishButton.text('PUBLISH');
       publishButton.attr("id", "publish-button")
 <<<<<<< HEAD
+<<<<<<< HEAD
       publishButton.addClass('btn btn-success btn-lg');
+=======
+
+>>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
 =======
 
 >>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
@@ -322,7 +348,11 @@ $("#gif").on("click", function (event) {
       saveButton.text('SAVE');
       saveButton.attr("id", "save-button")
 <<<<<<< HEAD
+<<<<<<< HEAD
       saveButton.addClass('btn btn-info btn-lg');
+=======
+
+>>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
 =======
 
 >>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
@@ -332,7 +362,12 @@ $("#gif").on("click", function (event) {
       publishButton.text('PUBLISH');
       publishButton.attr("id", "publish-button")
 <<<<<<< HEAD
+<<<<<<< HEAD
       publishButton.addClass('btn btn-success btn-lg');
+=======
+
+      saveButton.attr("id", "save-button")
+>>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
 =======
 
       saveButton.attr("id", "save-button")
@@ -360,6 +395,7 @@ function publish() {
     $("#new-entry-container").prepend(newEntryHeadline);
     $("#new-entry-container").append(newEntry);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 //STREAK COUNTER
 // Function adding 1 to the streak counter when the publish is clicked. Works only once a day. 
@@ -402,6 +438,22 @@ function save() {
   });
 }
 
+=======
+    //Storing entry in localstorage. It stores it in an array of objects
+    // each pos is marked with current date so that we can retrieve them on archives page.
+    var entries = JSON.parse(localStorage.getItem("entries")) || [];
+    entries.push({
+      date: currentDate,
+      content: $("#new-entry-container").html()
+    });
+    localStorage.setItem("entries", JSON.stringify(entries));
+
+    //Adds 1  streak to counter when post published
+    streakCounter();
+  });
+}
+
+>>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
 
 // SAVE BUTTON
 // function save() {
@@ -446,6 +498,9 @@ function streakCounter() {
   }
   localStorage.setItem("writingStreak", writingStreak);
   localStorage.setItem("lastClicked", lastClicked);
+<<<<<<< HEAD
+>>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
+=======
 >>>>>>> 28616887e0e118117cd547e5cad1bae38d1c6077
 }
 
