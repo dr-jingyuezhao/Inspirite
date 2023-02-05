@@ -1,8 +1,7 @@
 //TODO 
 
-// Dynamically create a div for displaying the selected prompt from API
 
-// Dynamically create / unveil a text writing field. 
+
 
 // Add save and publish buttons once the user starts writing
 
