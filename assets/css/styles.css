@@ -344,6 +344,7 @@ footer {
     border-style: none;
     box-shadow: 0 2px 10px rgb(202, 201, 201);
     transition: all 0.8s ease-in-out;
+    font-family: "IBM Plex Mono", bold;
 }
 
 #publishedCard:hover {
