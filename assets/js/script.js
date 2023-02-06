@@ -368,6 +368,15 @@ $("#discard-button").click(function() {
 });
 }
 
+//LOGO CLICK
+
+  $("#app-name").click(function() {
+    window.location.href = "index.html";
+  });
+  $("#app-name").css("cursor", "pointer");
+  
+  
+
 
 // COUNTER FUNCTION 
 
