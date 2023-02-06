@@ -350,6 +350,11 @@ footer {
     box-shadow: 0 2px 10px var(--signal-colour);
 }
 
+#cardMargin {
+    margin-top: 50px;
+    padding-top: 50px;
+}
+
 /* NEW ENTRY CONTAINER FOR SAVED TEXT FIELD */
 
 #new-entry-container {
