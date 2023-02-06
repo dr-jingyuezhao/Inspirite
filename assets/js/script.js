@@ -73,6 +73,23 @@ $(document).ready(function () {
 //   }
 // }
 
+// Create a function to add sound
+function soundEffect() {
+  // Create the switch button
+  $('<label class="switch">' +
+    '<input type="checkbox" id="soundToggle">' +
+    '<span class="slider round"></span>' +
+    '</label><label>Sound On/Off:</label>').insertAfter('#prompt-container');
+
+  // function to play sound on text area click
+  const audio = new Audio('assets/sounds/writing_7s.mp3');
+  document.getElementById("text-area").addEventListener("keydown", function () {
+    if ($('#soundToggle').is(':checked')) {
+      audio.play();
+    }
+  });
+}
+
 // Add text input box, discard, save, and publish buttons
 function addTextArea() {
   $("#text-container").removeClass("hide");
@@ -101,22 +118,7 @@ function addTextArea() {
   $("#text-area").append(textButtonsContainer);
 }
 
-// Create a function to add sound
-function soundEffect() {
-  // Create the switch button
-  $('<label class="switch">' +
-    '<input type="checkbox" id="soundToggle">' +
-    '<span class="slider round"></span>' +
-    '</label><label>Sound On/Off:</label>').insertAfter('#prompt-container');
 
-  // function to play sound on text area click
-  const audio = new Audio('assets/sounds/writing_7s.mp3');
-  document.getElementById("text-area").addEventListener("keydown", function () {
-    if ($('#soundToggle').is(':checked')) {
-      audio.play();
-    }
-  });
-}
 
 //QUOTES BUTTON
 //Buttons on click event
@@ -150,8 +152,9 @@ $("#quote").on("click", function (event) {
       $("#prompt-container").append(quoteElement);
       soundEffect();
       addTextArea();
+      discard();
+      save();
       publish();
-      daysCounter();
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -179,8 +182,9 @@ $("#fact").on("click", function (event) {
       $("#prompt-container").append(factElement);
       soundEffect();
       addTextArea();
+      discard();
+      save();
       publish();
-      daysCounter()
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -206,8 +210,9 @@ $("#random-img").on("click", function (event) {
       $("#prompt-container").append(imageElement);
       soundEffect();
       addTextArea();
+      discard();
+      save();
       publish();
-      daysCounter()
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -238,11 +243,49 @@ $("#gif").on("click", function (event) {
       $("#prompt-container").prepend(gifElement);
       soundEffect();
       addTextArea();
-      publish();
-      daysCounter();
+      discard();
       save();
+      publish();
     });
 });
+
+// DISCARD BUTTON
+// Create an event listener when clicking the discard button
+function discard() {
+  $('#discard-button').on('click', function (event) {
+    event.preventDefault();
+    console.log("discard-clicked");
+    $('#text-area-element').val("");
+  });
+}
+
+// SAVE BUTTON
+// Create an event listener when clicking the save button
+function save() {
+  $('#save-button').on('click', function (event) {
+    event.preventDefault();
+    // Add a modal to the save button
+    $('#save-button').attr("data-toggle", "modal");
+    $('#save-button').attr("data-target", "#exampleModal");
+    $('#save-button').append(`<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Please save your writing!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"><p class="small">Your writing will be saved in the records. You can view it on the published page.</p></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-warning">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>`);
+  });
+}
 
 // PUBLISH BUTTON
 function publish() {
