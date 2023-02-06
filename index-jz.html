@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Caveat|IBM Plex Mono|DM Serif Display">
+
+  <title>Inspirite: Your Creative Writing Catalyst</title>
+
+</head>
+
+<body>
+
+  <!-- As a heading -->
+  <nav id="nav-bar" class="navbar navbar-light bg-light">
+    <span id="app-name" class="navbar-brand mb-0 h1">Inspirite</span>
+    <div id="counter">Your current streak: <span id="days-number"></span></div>
+    <div id="published">View History</div>
+  </nav>
+
+  <div id="start-screen" class="jumbotron">
+    <h1 class="display-4">Get Inspired!</h1>
+    <p class="task"> Choose one of the options below to receive an inspiring prompt and kick-start your writing exercise.
+    </p>
+
+    <a id="quote" class="btn btn-primary btn-lg" href="#" role="button">Quote</a>
+    <a id="fact" class="btn btn-primary btn-lg" href="#" role="button">Fact</a>
+    <a id="random-img" class="btn btn-primary btn-lg" href="#" role="button">Image</a>
+    <a id="gif" class="btn btn-primary btn-lg" href="#" role="button">GIF</a>
+
+  </div>
+
+  <section id="prompt-container"></section>
+
+  <div id="text-area"> </div>
+
+  <article id="new-entry-container"></article>
+
+
+
+
+  <footer>
+    <div class="container text-center">
+      <p>&copy; Team Inspirite 2023. All Rights Reserved.</p>
+      <a href="https://github.com/dr-jingyuezhao/" class="link">Jingyue</a> |
+      <a href="https://github.com/LisaMLorenz" class="link">Lisa</a> |
+      <a href="https://github.com/manonthemon" class="link">Maciek</a> |
+      <a href="https://github.com/sophiedodsworth" class="link">Sophie</a>
+    </div>
+  </footer>
+
+
+
+  <!-- Moment.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="./assets/js/keys.js"></script>
+  <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
