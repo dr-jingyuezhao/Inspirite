@@ -19,18 +19,35 @@
 // Add notifications
 
 
+var currentDate = moment().format("MMMM D, YYYY");
 
-// let writingStreak = localStorage.getItem("writingStreak")
-// if (writingStreak == 1) {
-//   var counter = $("<div>")
-//   counter.text("Your current streak: " + writingStreak + " day")
-//   $("#counter-section").append(counter);
-// }
-// else {
-//   var counter = $("<div>")
-//   counter.text("Your current streak: " + writingStreak + " days")
-//   $("#counter-section").append(counter);
-// }
+$(document).ready(function () {
+
+  let writingStreak = localStorage.getItem("writingStreak");
+  let lastClicked = localStorage.getItem("lastClicked");
+  if (writingStreak === null) {
+    $("#counter").text("Start your writing streak!");
+  } else {
+    writingStreak = parseInt(writingStreak);
+  }
+  if (lastClicked === null) {
+    lastClicked = new Date();
+  } else {
+    lastClicked = new Date(lastClicked);
+  }
+
+  if (writingStreak === 1) {
+    $("#counter").text("Your current writing streak is " + writingStreak + " day");
+  }
+  else if (writingStreak > 1) {
+    $("#counter").text("Your current writing streak is " + writingStreak + " days");
+  }
+
+  else {
+    $("#counter").text("You've started your writing streak. Keep going tomorrow!");
+  }
+})
+
 
 // //^NOTIFICATIONS
 
@@ -56,6 +73,50 @@
 //   }
 // }
 
+// Add text input box, discard, save, and publish buttons
+function addTextArea() {
+  $("#text-container").removeClass("hide");
+  //Creates a text area under writing prompt for user input
+  var textArea = $('<textarea rows="8" class="col"></textarea>');
+  textArea.attr("id", "text-area-element")
+  $("#text-area").append(textArea);
+  // Creates a container for buttons: discard, save, and publish
+  var textButtonsContainer = $("<div>");
+  textButtonsContainer.attr("id", "text-buttons-container");
+  // add discard button
+  var discardButton = $('<button>');
+  discardButton.text('DISCARD');
+  discardButton.attr("id", "discard-button")
+  textButtonsContainer.append(discardButton)
+  // add save button
+  var saveButton = $('<button>');
+  saveButton.text('SAVE');
+  saveButton.attr("id", "save-button");
+  textButtonsContainer.append(saveButton);
+  // add publish button
+  var publishButton = $('<button>');
+  publishButton.text('PUBLISH');
+  publishButton.attr("id", "publish-button");
+  textButtonsContainer.append(publishButton);
+  $("#text-area").append(textButtonsContainer);
+}
+
+// Create a function to add sound
+function soundEffect() {
+  // Create the switch button
+  $('<label class="switch">' +
+    '<input type="checkbox" id="soundToggle">' +
+    '<span class="slider round"></span>' +
+    '</label><label>Sound On/Off:</label>').insertAfter('#prompt-container');
+
+  // function to play sound on text area click
+  const audio = new Audio('assets/sounds/writing_7s.mp3');
+  document.getElementById("text-area").addEventListener("keydown", function () {
+    if ($('#soundToggle').is(':checked')) {
+      audio.play();
+    }
+  });
+}
 
 //QUOTES BUTTON
 //Buttons on click event
@@ -70,8 +131,9 @@ $("#quote").on("click", function (event) {
     success: function (result) {
       //"Disappears" the start page jumbotron
       $("#start-screen").css("display", "none");
+      $("#prompt-container").removeClass("hide");
       //Creates a H2 for the quote with the id of quote
-      var quoteElement = $("<h2>");
+      var quoteElement = $("<h4>");
       quoteElement.attr("id", "quote-element");
       quoteElement.addClass("prompt-element");
       //Adds quote text from the API call to the new H2 element
@@ -86,25 +148,9 @@ $("#quote").on("click", function (event) {
       quoteElement.append(authorElement);
       //Appends quote to prompt container section in HTML
       $("#prompt-container").append(quoteElement);
-      $("#text-container").removeClass("hide");
-      //Creates a text area under writing prompt for user input
-      var textArea = $('<textarea rows="8" class="col"></textarea>');
-      $("#text-area").append(textArea);
-      //Creates a container for buttons and the save and publish buttons
-      var textButtonsContainer = $("<div>");
-      textButtonsContainer.attr("id", "text-buttons-container");
-      var saveButton = $('<button>');
-      saveButton.text('SAVE');
-      saveButton.attr("id", "save-button")
-      saveButton.addClass('btn btn-info btn-lg');
-      textButtonsContainer.append(saveButton)
-      $("#text-area").append(textButtonsContainer);
-      var publishButton = $('<button>');
-      publishButton.text('PUBLISH');
-      publishButton.attr("id", "publish-button");
-      publishButton.addClass('btn btn-success btn-lg');
-      saveButton.attr("id", "save-button");
-      textButtonsContainer.append(publishButton);
+      soundEffect();
+      addTextArea();
+      publish();
       daysCounter();
     },
     error: function ajaxError(jqXHR) {
@@ -125,29 +171,15 @@ $("#fact").on("click", function (event) {
     contentType: 'application/json',
     success: function (result) {
       $("#start-screen").css("display", "none");
-      var factElement = $("<h2>");
+      $("#prompt-container").removeClass("hide");
+      var factElement = $("<h4>");
       factElement.attr("id", "fact-element");
       factElement.addClass("prompt-element");
       factElement.text(result[0].fact + ".");
       $("#prompt-container").append(factElement);
-      $("#text-container").removeClass("hide");
-      var textArea = $('<textarea rows="8" class="col"></textarea>');
-      textArea.attr("id", "text-area-element");
-      $("#text-area").append(textArea);
-      var textButtonsContainer = $("<div>")
-      textButtonsContainer.attr("id", "text-buttons-container")
-      var saveButton = $('<button>');
-      saveButton.text('SAVE');
-      saveButton.attr("id", "save-button");
-      saveButton.addClass('btn btn-info btn-lg');
-      textButtonsContainer.append(saveButton);
-      $("#text-area").append(textButtonsContainer);
-      var publishButton = $('<button>');
-      publishButton.text('PUBLISH');
-      publishButton.attr("id", "publish-button");
-      publishButton.addClass('btn btn-success btn-lg');
-      saveButton.attr("id", "save-button");
-      textButtonsContainer.append(publishButton);
+      soundEffect();
+      addTextArea();
+      publish();
       daysCounter()
     },
     error: function ajaxError(jqXHR) {
@@ -166,29 +198,15 @@ $("#random-img").on("click", function (event) {
     headers: { 'X-Api-Key': ninjaKey },
     success: function (result) {
       $("#start-screen").css("display", "none");
+      $("#prompt-container").removeClass("hide");
       var imageElement = $("<img>");
       imageElement.attr("src", ("data:image/jpg;base64," + result));
       imageElement.attr("id", "image-element");
       imageElement.addClass("prompt-element");
       $("#prompt-container").append(imageElement);
-      $("#text-container").removeClass("hide");
-      var textArea = $('<textarea rows="8" class="col"></textarea>');
-      textArea.attr("id", "text-area-element");
-      $("#text-area").append(textArea);
-      var textButtonsContainer = $("<div>");
-      textButtonsContainer.attr("id", "text-buttons-container");
-      var saveButton = $('<button>');
-      saveButton.text('SAVE');
-      saveButton.attr("id", "save-button")
-      saveButton.addClass('btn btn-info btn-lg');
-      textButtonsContainer.append(saveButton)
-      $("#text-area").append(textButtonsContainer);
-      var publishButton = $('<button>');
-      publishButton.text('PUBLISH');
-      publishButton.attr("id", "publish-button")
-      publishButton.addClass('btn btn-success btn-lg');
-      saveButton.attr("id", "save-button")
-      textButtonsContainer.append(publishButton)
+      soundEffect();
+      addTextArea();
+      publish();
       daysCounter()
     },
     error: function ajaxError(jqXHR) {
@@ -211,68 +229,83 @@ $("#gif").on("click", function (event) {
   })
     .then(function (response) {
       $("#start-screen").css("display", "none");
+      $("#prompt-container").removeClass("hide");
       var gifUrl = response.data.images.original.url
       var gifElement = $("<img>");
       gifElement.attr("src", gifUrl);
       gifElement.attr("id", "gif-element");
       gifElement.addClass("prompt-element");
       $("#prompt-container").prepend(gifElement);
-      $("#text-container").removeClass("hide");
-      var textArea = $('<textarea rows="8" class="col"></textarea>');
-      textArea.attr("id", "text-area-element")
-      $("#text-area").append(textArea);
-      var textButtonsContainer = $("<div>")
-      textButtonsContainer.attr("id", "text-buttons-container")
-      var saveButton = $('<button>');
-      saveButton.text('SAVE');
-      saveButton.attr("id", "save-button")
-      saveButton.addClass('btn btn-info btn-lg');
-      textButtonsContainer.append(saveButton)
-      $("#text-area").append(textButtonsContainer);
-      var publishButton = $('<button>');
-      publishButton.text('PUBLISH');
-      publishButton.attr("id", "publish-button")
-      publishButton.addClass('btn btn-success btn-lg');
-      textButtonsContainer.append(publishButton)
-      daysCounter()
-      save()
+      soundEffect();
+      addTextArea();
+      publish();
+      daysCounter();
+      save();
     });
 });
 
-
-
-//STREAK COUNTER
-// Function adding 1 to the streak counter when the publish is clicked. Works only once a day. 
-function daysCounter() {
-  // add the click event for the publish button
+// PUBLISH BUTTON
+function publish() {
   $("#publish-button").click(function () {
-    console.log("Publish clicked");
-    // check if the difference between the lastClicked and the current time is greater than 24 hours
-    if (new Date() - lastClicked > 24 * 60 * 60 * 1000) {
-      count++;
-      lastClicked = new Date();
-      if (count == 1) {
-        $("#days-number").text(count + " day");
-      }
-      else
-        $("#days-number").text(count + " days")
+    console.log("publish-clicked");
+    $("#text-area").css("display", "none");
+    var textAreaValue = $("#text-area-element").val();
+    if (!textAreaValue) {
+      alert("Cannot publish an empty entry. Please add text to the entry before publishing.");
+      return;
     }
+    var newEntryHeadline = $("<h3>")
+    newEntryHeadline.text("Your entry from " + currentDate);
+    var newEntry = $("<p>")
+    newEntry.html(textAreaValue.replace(/\n/g, "<br>"));
+    $("#new-entry-container").prepend(newEntryHeadline);
+    $("#new-entry-container").append(newEntry);
+
+    //Storing entry in localstorage. It stores it in an array of objects
+    // each pos is marked with current date so that we can retrieve them on archives page.
+    var entries = JSON.parse(localStorage.getItem("entries")) || [];
+    entries.push({
+      date: currentDate,
+      content: $("#new-entry-container").html()
+    });
+    localStorage.setItem("entries", JSON.stringify(entries));
+
+    //Adds 1  streak to counter when post published
+    streakCounter();
   });
 }
 
-// Saves current entry to local storage ---------- NEEDS WORK!
-function save() {
-  // add the click event for the publish button
-  $("#save-button").click(function () {
-    console.log("save-clicked");
-    localStorage.setItem('textareaValue', $("#text-area-element").val())
-  });
+
+// COUNTER FUNCTION 
+
+function streakCounter() {
+  let writingStreak = localStorage.getItem("writingStreak");
+  let lastClicked = localStorage.getItem("lastClicked");
+  if (writingStreak === null) {
+    writingStreak = 0;
+  } else {
+    writingStreak = parseInt(writingStreak);
+  }
+  if (lastClicked === null) {
+    lastClicked = new Date();
+  } else {
+    lastClicked = new Date(lastClicked);
+  }
+  let currentDate = new Date();
+  if (currentDate - lastClicked >= 24 * 60 * 60 * 1000) {
+    writingStreak++;
+  }
+  lastClicked = currentDate;
+  if (writingStreak === 1) {
+    $("#counter").text("Your current writing streak: " + writingStreak + " day");
+  }
+  else if (writingStreak === 0) {
+    $("#counter").text("You've started your writing streak. Keep going tomorrow!");
+  }
+  else {
+    $("#counter").text("Your current writing streak: " + writingStreak + " days");
+  }
+  localStorage.setItem("writingStreak", writingStreak);
+  localStorage.setItem("lastClicked", lastClicked);
 }
 
-
-//SOUND FUNCTION
-// function to play sound on text area click
-const audio = new Audio('assets/sounds/writing_7s.mp3');
-document.getElementById("text-area").addEventListener("keydown", function () {
-  audio.play();
-});
