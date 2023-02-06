@@ -1,3 +1,36 @@
+function save() {
+  $("#save-button").click(function () {
+    console.log("save clicked");
+    $("#text-area").css("display", "none");
+    var textAreaValue = $("#text-area-element").val();
+    if (!textAreaValue) {
+      alert("Cannot save an empty entry. Please add text to the entry before saving.");
+      return;
+    }
+
+    var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
+    savedEntries.push({
+      date: currentDate,
+      content: textAreaValue
+    });
+    localStorage.setItem("savedEntries", JSON.stringify(savedEntries));
+  });
+}
+
+//DISCARD BUTTON
+function discard () {
+$("#discard-button").click(function() {
+  window.location.href = "index.html";
+});
+}
+
+//LOGO CLICK
+  $("#app-name").click(function() {
+    window.location.href = "index.html";
+  });
+  $("#app-name").css("cursor", "pointer");
+
+
 removeClass("hide");
 addClass("visible");
 

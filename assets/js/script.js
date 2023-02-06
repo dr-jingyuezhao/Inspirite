@@ -276,14 +276,23 @@ function save() {
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body"><p class="small">Your writing will be saved in the records. You can view it on the published page.</p></div>
+          <div class="modal-body"><p class="small">Your writing will be saved in the records. You can view it in Saved Writing.</p></div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-warning">Save changes</button>
+            <button type="button" id="saveChgBtn" class="btn btn-warning">Save changes</button>
           </div>
         </div>
       </div>
     </div>`);
+    // Add an event listener when clicking on the Save changes button and save entries to localStorage
+    $("#saveChgBtn").click(function () {
+      var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
+      savedEntries.push({
+        date: currentDate,
+        content: $("#text-area-element").val(),
+      });
+      localStorage.setItem("savedEntries", JSON.stringify(savedEntries));
+    });
   });
 }
 
