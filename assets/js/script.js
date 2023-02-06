@@ -254,8 +254,30 @@ $("#gif").on("click", function (event) {
 function discard() {
   $('#discard-button').on('click', function (event) {
     event.preventDefault();
-    console.log("discard-clicked");
-    $('#text-area-element').val("");
+    // Add a modal to the DISCARD button
+    $('#discard-button').attr("data-toggle", "modal");
+    $('#discard-button').attr("data-target", "#exampleModal");
+    $('#discard-button').append(`<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Are you sure about discarding your post?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"><p class="small">Your writing will be deleted and all progress will be lost!</p></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" id="deleteBtn" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>`);
+    // Add an event listener when clicking on the Delete button and empty the entries
+    $("#deleteBtn").click(function () {
+      $('#text-area-element').val("");
+    });
   });
 }
 
