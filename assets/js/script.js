@@ -269,7 +269,7 @@ function discard() {
           <div class="modal-body"><p class="small">Your writing will be deleted and all progress will be lost!</p></div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" id="deleteBtn" class="btn btn-danger">Delete</button>
+            <button type="button" id="deleteBtn" class="btn btn-danger">Delete writing</button>
           </div>
         </div>
       </div>
@@ -298,9 +298,9 @@ function save() {
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body"><p class="small">Your writing will be saved in the records. You can view it in Saved Writing.</p></div>
+          <div class="modal-body"><p class="small">Your writing will be saved in the records. You can view it on the Saved Writing page.</p></div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             <button type="button" id="saveChgBtn" class="btn btn-warning">Save changes</button>
           </div>
         </div>
@@ -320,35 +320,49 @@ function save() {
 
 // PUBLISH BUTTON
 function publish() {
-  $("#publish-button").click(function () {
-    console.log("publish-clicked");
-    $("#text-area").css("display", "none");
-    var textAreaValue = $("#text-area-element").val();
-    if (!textAreaValue) {
-      alert("Cannot publish an empty entry. Please add text to the entry before publishing.");
-      return;
-    }
-    var newEntryHeadline = $("<h3>")
-    newEntryHeadline.text("Your entry from " + currentDate);
-    var newEntry = $("<p>")
-    newEntry.html(textAreaValue.replace(/\n/g, "<br>"));
-    $("#new-entry-container").prepend(newEntryHeadline);
-    $("#new-entry-container").append(newEntry);
-
-    //Storing entry in localstorage. It stores it in an array of objects
-    // each pos is marked with current date so that we can retrieve them on archives page.
-    var entries = JSON.parse(localStorage.getItem("entries")) || [];
-    entries.push({
-      date: currentDate,
-      content: $("#new-entry-container").html()
+  $("#publish-button").click(function (event) {
+    event.preventDefault();
+    // Add a modal to the PUBLISH button
+    $('#publish-button').attr("data-toggle", "modal");
+    $('#publish-button').attr("data-target", "#exampleModal");
+    $('#publish-button').append(`<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Well done! One step closer to becoming a big writer!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"><p class="small">Your post will be published. You can view it on the Published Work page.</p></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" id="publishBtn" class="btn btn-success">Publish post</button>
+          </div>
+        </div>
+      </div>
+    </div>`);
+    // Add an event listener when clicking on the Save changes button and save entries to localStorage
+    $("#publishBtn").click(function () {
+      var newEntryHeadline = $("<h5>")
+      newEntryHeadline.text("Your post from " + currentDate);
+      var newEntry = $("<p>")
+      newEntry.html($("#text-area-element").val().replace(/\n/g, "<br>"));
+      $("#new-entry-container").prepend(newEntryHeadline);
+      $("#new-entry-container").append(newEntry);
+      //Storing new post entry in localstorage. It stores it in an array of objects
+      // each pos is marked with current date so that we can retrieve them on published page.
+      var postedEntries = JSON.parse(localStorage.getItem("postedEntries")) || [];
+      postedEntries.push({
+        date: currentDate,
+        content: $("#new-entry-container").html(),
+      });
+      localStorage.setItem("postedEntries", JSON.stringify(postedEntries));
+      //Adds 1  streak to counter when post published
+      streakCounter();
     });
-    localStorage.setItem("entries", JSON.stringify(entries));
-
-    //Adds 1  streak to counter when post published
-    streakCounter();
   });
 }
-
 
 // COUNTER FUNCTION 
 
