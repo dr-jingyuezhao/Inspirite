@@ -24,32 +24,28 @@ var currentDate = moment().format("MMMM D, YYYY");
 
 //COUNTER ON PAGE REFRESH /  LOAD
 
-// $(document).ready(function () {
+$(document).ready(function () {
 
-//   let writingStreak = localStorage.getItem("writingStreak");
-//   let lastClicked = localStorage.getItem("lastClicked");
-//   if (writingStreak === null) {
-//     $("#counter").text("Start your writing streak!");
-//   } else {
-//     writingStreak = parseInt(writingStreak);
-//   }
-//   if (lastClicked === null) {
-//     lastClicked = new Date();
-//   } else {
-//     lastClicked = new Date(lastClicked);
-//   }
 
-//   if (writingStreak === 1) {
-//     $("#counter").text("Your current writing streak is " + writingStreak + " day");
-//   }
-//   else if (writingStreak > 1) {
-//     $("#counter").text("Your current writing streak is " + writingStreak + " days");
-//   }
-
-//   else {
-//     $("#counter").text("You've started your writing streak. Keep going tomorrow!");
-//   }
-// })
+  let writingStreak = localStorage.getItem("writingStreak");
+  let lastClicked = localStorage.getItem("lastClicked");
+  if (writingStreak === null) {
+    $("#counter").text("Start your writing streak!");
+  } else {
+    writingStreak = parseInt(writingStreak);
+  }
+  if (lastClicked === null) {
+    lastClicked = new Date();
+  } else {
+    lastClicked = new Date(lastClicked);
+  }
+  if (writingStreak === 1) {
+    $("#counter").text("Your current writing streak is " + writingStreak + " day");
+  }
+  else if (writingStreak > 1) {
+    $("#counter").text("Your current writing streak is " + writingStreak + " days");
+  }
+})
 
 
 // //^NOTIFICATIONS
@@ -369,42 +365,46 @@ $("#discard-button").click(function() {
 }
 
 //LOGO CLICK
-
   $("#app-name").click(function() {
     window.location.href = "index.html";
   });
   $("#app-name").css("cursor", "pointer");
   
-  
-
 
 // COUNTER FUNCTION 
 
 function streakCounter() {
   let writingStreak = localStorage.getItem("writingStreak");
   let lastClicked = localStorage.getItem("lastClicked");
+  let increased = localStorage.getItem("increased");
+
   if (writingStreak === null) {
-    writingStreak = 0;
+    writingStreak = 0; 
   } else {
     writingStreak = parseInt(writingStreak);
   }
+
   if (lastClicked === null) {
     lastClicked = new Date();
   } else {
     lastClicked = new Date(lastClicked);
   }
+
   let currentDate = new Date();
-  if (currentDate - lastClicked >= 24 * 60 * 60 * 1000) {
+
+  if (currentDate - lastClicked < 24 * 60 * 60 * 1000 && increased !== "true") {
     writingStreak++;
+    localStorage.setItem("increased", "true");
+  } else if (currentDate - lastClicked >= 24 * 60 * 60 * 1000) {
+    writingStreak = 0;
+    localStorage.setItem("increased", "false");
   }
+  
   lastClicked = currentDate;
+
   if (writingStreak === 1) {
     $("#counter").text("Your current writing streak is " + writingStreak + " day");
-  }
-  else if (writingStreak === 0) {
-    $("#counter").text("You've started your writing streak. Keep going tomorrow!");
-  }
-  else {
+  } else {
     $("#counter").text("Your current writing streak is " + writingStreak + " days");
   }
   localStorage.setItem("writingStreak", writingStreak);
