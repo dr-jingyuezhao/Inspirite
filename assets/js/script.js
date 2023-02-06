@@ -15,38 +15,41 @@
 
 // Add streak counter - counts new day when publish button pressed, once a day.
 
-//COUNTER ON PAGE REFRESH /  LOAD
 
 // GLOBAL VARIABLES
 
 var currentDate = moment().format("MMMM D, YYYY");
 
-$(document).ready(function () {
 
-  let writingStreak = localStorage.getItem("writingStreak");
-  let lastClicked = localStorage.getItem("lastClicked");
-  if (writingStreak === null) {
-    $("#counter").text("Start your writing streak!");
-  } else {
-    writingStreak = parseInt(writingStreak);
-  }
-  if (lastClicked === null) {
-    lastClicked = new Date();
-  } else {
-    lastClicked = new Date(lastClicked);
-  }
 
-  if (writingStreak === 1) {
-    $("#counter").text("Your current writing streak is " + writingStreak + " day");
-  }
-  else if (writingStreak > 1) {
-    $("#counter").text("Your current writing streak is " + writingStreak + " days");
-  }
+//COUNTER ON PAGE REFRESH /  LOAD
 
-  else {
-    $("#counter").text("You've started your writing streak. Keep going tomorrow!");
-  }
-})
+// $(document).ready(function () {
+
+//   let writingStreak = localStorage.getItem("writingStreak");
+//   let lastClicked = localStorage.getItem("lastClicked");
+//   if (writingStreak === null) {
+//     $("#counter").text("Start your writing streak!");
+//   } else {
+//     writingStreak = parseInt(writingStreak);
+//   }
+//   if (lastClicked === null) {
+//     lastClicked = new Date();
+//   } else {
+//     lastClicked = new Date(lastClicked);
+//   }
+
+//   if (writingStreak === 1) {
+//     $("#counter").text("Your current writing streak is " + writingStreak + " day");
+//   }
+//   else if (writingStreak > 1) {
+//     $("#counter").text("Your current writing streak is " + writingStreak + " days");
+//   }
+
+//   else {
+//     $("#counter").text("You've started your writing streak. Keep going tomorrow!");
+//   }
+// })
 
 
 // //^NOTIFICATIONS
@@ -140,6 +143,8 @@ $("#quote").on("click", function (event) {
 
       saveButton.attr("id", "save-button")
       textButtonsContainer.append(publishButton)
+      discard()
+      save()
       publish()
     },
     error: function ajaxError(jqXHR) {
@@ -190,6 +195,8 @@ $("#fact").on("click", function (event) {
 
       saveButton.attr("id", "save-button")
       textButtonsContainer.append(publishButton)
+      discard()
+      save()
       publish()
     },
     error: function ajaxError(jqXHR) {
@@ -239,6 +246,8 @@ $("#random-img").on("click", function (event) {
 
       saveButton.attr("id", "save-button")
       textButtonsContainer.append(publishButton)
+      discard()
+      save()
       publish()
     },
     error: function ajaxError(jqXHR) {
@@ -293,6 +302,8 @@ $("#gif").on("click", function (event) {
 
       saveButton.attr("id", "save-button")
       textButtonsContainer.append(publishButton)
+      discard()
+      save()
       publish()
     });
 });
@@ -317,12 +328,12 @@ function publish() {
 
     //Storing entry in localstorage. It stores it in an array of objects
     // each pos is marked with current date so that we can retrieve them on archives page.
-    var entries = JSON.parse(localStorage.getItem("entries")) || [];
-    entries.push({
+    var publishedEntries = JSON.parse(localStorage.getItem("publishedEntries")) || [];
+    publishedEntries.push({
       date: currentDate,
       content: $("#new-entry-container").html()
     });
-    localStorage.setItem("entries", JSON.stringify(entries));
+    localStorage.setItem("publishedEntries", JSON.stringify(publishedEntries));
 
     //Adds 1  streak to counter when post published
     streakCounter();
@@ -331,15 +342,31 @@ function publish() {
 
 
 // SAVE BUTTON
-// function save() {
-//   // add the click event for the publish button
-//   $("#save-button").click(function() {
-//    console.log("save-clicked");
-//    localStorage.setItem('textareaValue', $("#text-area-element").val())
-//  });
-//  }
+function save() {
+  $("#save-button").click(function () {
+    console.log("save clicked");
+    $("#text-area").css("display", "none");
+    var textAreaValue = $("#text-area-element").val();
+    if (!textAreaValue) {
+      alert("Cannot save an empty entry. Please add text to the entry before saving.");
+      return;
+    }
+
+    var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
+    savedEntries.push({
+      date: currentDate,
+      content: textAreaValue
+    });
+    localStorage.setItem("savedEntries", JSON.stringify(savedEntries));
+  });
+}
 
 //DISCARD BUTTON
+function discard () {
+$("#discard-button").click(function() {
+  window.location.href = "index.html";
+});
+}
 
 
 // COUNTER FUNCTION 
