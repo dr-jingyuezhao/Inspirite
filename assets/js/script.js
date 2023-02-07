@@ -1,7 +1,7 @@
 
 // GLOBAL VARIABLES
 
-var currentDate = moment().format("MMMM D, YYYY");
+var currentDate = moment().format("DD/MM/YYYY, kk:mm");
 
 //Ninja APIs Key
 var ninjaKey = "7uO6vmcctMNbKS/uvDMn/Q==hOPwoCDiiaGwubha"
@@ -333,12 +333,8 @@ function publish() {
     console.log("publish-clicked");
     $("#text-area").css("display", "none");
     var textAreaValue = $("#text-area-element").val();
-    if (!textAreaValue) {
-      alert("Cannot publish an empty entry. Please add text to the entry before publishing.");
-      return;
-    }
     var newEntryHeadline = $("<h3>")
-    newEntryHeadline.text("Your entry from " + currentDate);
+    newEntryHeadline.text(currentDate);
     var newEntry = $("<p>")
     newEntry.html(textAreaValue.replace(/\n/g, "<br>"));
     $("#new-entry-container").prepend(newEntryHeadline);
@@ -399,10 +395,6 @@ function save() {
     console.log("save clicked");
     $("#text-area").css("display", "none");
     var textAreaValue = $("#text-area-element").val();
-    if (!textAreaValue) {
-      alert("Cannot save an empty entry. Please add text to the entry before saving.");
-      return;
-    }
     var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
     savedEntries.push({
       date: currentDate,
