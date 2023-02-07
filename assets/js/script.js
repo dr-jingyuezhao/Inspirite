@@ -1,32 +1,18 @@
-//TODO 
-
-
-
-
-// Add save and publish buttons once the user starts writing
-
-// The save button saves text to local storage
-
-// The publish buttons appends it to publication page and saves that page to local storage.
-
-// Create a page with grid of previously written stories. 
-
-//Each cell is a link to previously written story. 
-
-// Add streak counter - counts new day when publish button pressed, once a day.
-
 
 // GLOBAL VARIABLES
 
 var currentDate = moment().format("MMMM D, YYYY");
 
+//Ninja APIs Key
+var ninjaKey = "7uO6vmcctMNbKS/uvDMn/Q==hOPwoCDiiaGwubha"
+
+//Giphy API Key
+var giphyKey = "WdLpU2BkCnIWDlaD3YUH0DJNCA116UsI"
 
 
 //COUNTER ON PAGE REFRESH /  LOAD
 
 $(document).ready(function () {
-
-
   let writingStreak = localStorage.getItem("writingStreak");
   let lastClicked = localStorage.getItem("lastClicked");
   if (writingStreak === null) {
@@ -46,43 +32,40 @@ $(document).ready(function () {
     $("#counter").text("Your current writing streak is " + writingStreak + " days");
   }
 
-  //LOGO CLICK
-$("#app-name").click(function() {
-  window.location.href = "index.html";
-});
-$("#app-name").css("cursor", "pointer");
+  //LOGO CLICK Action (Go Home)
+  $("#app-name").click(function () {
+    window.location.href = "index.html";
+  });
+  $("#app-name").css("cursor", "pointer");
 
 
-//PUBLISHED MENU ITEM CLICK
+  //VIEW HISTORY NAVBAR ITEM CLICK
+  $("#published").click(function () {
+    window.location.href = "published.html";
+  });
+  $("#published").css("cursor", "pointer");
 
-$("#published").click(function() {
-  window.location.href = "published.html";
-});
-$("#published").css("cursor", "pointer");
+  // DISPLAYING PREVIOUSLY PUBLISHED POSTS
 
-// Displaying Archives (Menu Button)
+  var publishedEntries = JSON.parse(localStorage.getItem("publishedEntries")) || [];
+  console.log(publishedEntries);
 
-var publishedEntries = JSON.parse(localStorage.getItem("publishedEntries")) || [];
-console.log(publishedEntries);
-
-for (i = 0; i<publishedEntries.length; i++)
-{
-var card = $("<div>")
-card.addClass("card bg-light")
-var cardBody = $("<div>")
-cardBody.addClass("card-body text-center")
-var cardText = $("<p>")
-cardText.addClass("card-text")
-cardText.html(publishedEntries[i].date)
-$("#published-screen").append(card)
-card.append(cardBody)
-cardBody.append(cardText)
-card.click(function() {
-  console.log("archive card clicked");
-});
-}
+  for (i = 0; i < publishedEntries.length; i++) {
+    var card = $("<div>")
+    card.addClass("card bg-light")
+    var cardBody = $("<div>")
+    cardBody.addClass("card-body text-center")
+    var cardText = $("<p>")
+    cardText.addClass("card-text")
+    cardText.html(publishedEntries[i].date)
+    $("#published-screen").append(card)
+    card.append(cardBody)
+    cardBody.append(cardText)
+    card.click(function () {
+      console.log("archive card clicked");
+    });
+  }
 })
-
 
 // //^NOTIFICATIONS
 
@@ -107,7 +90,6 @@ card.click(function() {
 //     });
 //   }
 // }
-
 
 //QUOTES BUTTON
 //Buttons on click event
@@ -197,18 +179,13 @@ $("#quote").on("click", function (event) {
 //FACTS BUTTON
 $("#fact").on("click", function (event) {
   event.preventDefault()
-
   let textInput = document.getElementById("text-area");
-
   if (textInput.style.display === "none") {
     textInput.style.display = "block";
   } else {
     textInput.style.display = "none";
   }
-
   $('#soundToggleContainer').css('display', 'block');
-
-
   $.ajax({
     method: 'GET',
     url: 'https://api.api-ninjas.com/v1/facts?limit=1',
@@ -229,18 +206,15 @@ $("#fact").on("click", function (event) {
       var discardButton = $('<button>');
       discardButton.text('DISCARD');
       discardButton.attr("id", "discard-button")
-
       textButtonsContainer.append(discardButton)
       var saveButton = $('<button>');
       saveButton.text('SAVE');
       saveButton.attr("id", "save-button")
-
       textButtonsContainer.append(saveButton)
       $("#text-area").append(textButtonsContainer);
       var publishButton = $('<button>');
       publishButton.text('PUBLISH');
       publishButton.attr("id", "publish-button")
-
       saveButton.attr("id", "save-button")
       textButtonsContainer.append(publishButton)
       discard()
@@ -253,22 +227,16 @@ $("#fact").on("click", function (event) {
   })
 })
 
-
 //RANDOM IMAGE BUTTON
 $("#random-img").on("click", function (event) {
   event.preventDefault()
-
   let textInput = document.getElementById("text-area");
-
   if (textInput.style.display === "none") {
     textInput.style.display = "block";
   } else {
     textInput.style.display = "none";
   }
-
   $('#soundToggleContainer').css('display', 'block');
-
-
   $.ajax({
     method: 'GET',
     url: 'https://api.api-ninjas.com/v1/randomimage?',
@@ -288,18 +256,15 @@ $("#random-img").on("click", function (event) {
       var discardButton = $('<button>');
       discardButton.text('DISCARD');
       discardButton.attr("id", "discard-button")
-
       textButtonsContainer.append(discardButton)
       var saveButton = $('<button>');
       saveButton.text('SAVE');
       saveButton.attr("id", "save-button")
-
       textButtonsContainer.append(saveButton)
       $("#text-area").append(textButtonsContainer);
       var publishButton = $('<button>');
       publishButton.text('PUBLISH');
       publishButton.attr("id", "publish-button")
-
       saveButton.attr("id", "save-button")
       textButtonsContainer.append(publishButton)
       discard()
@@ -312,27 +277,19 @@ $("#random-img").on("click", function (event) {
   })
 })
 
-
 //GIF BUTTON
 var count = 0;
 var lastClicked = new Date();
-
 $("#gif").on("click", function (event) {
   event.preventDefault()
-
   let textInput = document.getElementById("text-area");
-
   if (textInput.style.display === "none") {
     textInput.style.display = "block";
   } else {
     textInput.style.display = "none";
   }
-
   $('#soundToggleContainer').css('display', 'block');
-
   var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=" + giphyKey; + "&rating=pg";
-
-
   $.ajax({
     url: queryURL,
     method: "GET"
@@ -357,13 +314,11 @@ $("#gif").on("click", function (event) {
       var saveButton = $('<button>');
       saveButton.text('SAVE');
       saveButton.attr("id", "save-button")
-
       textButtonsContainer.append(saveButton)
       $("#text-area").append(textButtonsContainer);
       var publishButton = $('<button>');
       publishButton.text('PUBLISH');
       publishButton.attr("id", "publish-button")
-
       saveButton.attr("id", "save-button")
       textButtonsContainer.append(publishButton)
       discard()
@@ -371,7 +326,6 @@ $("#gif").on("click", function (event) {
       publish()
     });
 });
-
 
 // PUBLISH BUTTON
 function publish() {
@@ -399,29 +353,24 @@ function publish() {
     });
     localStorage.setItem("publishedEntries", JSON.stringify(publishedEntries));
 
-
     //Adds 1  streak to counter when post published
     streakCounter();
   });
 
   let textArea = document.getElementById("text-area-element");
   let publishButton = document.getElementById("publish-button");
-
   publishButton.disabled = true;
-
-textArea.addEventListener("input", function() {
-  if (textArea.value.length > 0) {
-    publishButton.disabled = false;
-  } else {
-    publishButton.disabled = true;
-  }
-});
+  textArea.addEventListener("input", function () {
+    if (textArea.value.length > 0) {
+      publishButton.disabled = false;
+    } else {
+      publishButton.disabled = true;
+    }
+  });
 
   $("#publish-button").click(function (event) {
     event.preventDefault();
     console.log("publish clicked");
-
-
     // Add an event listener when clicking on the Save changes button and save entries to localStorage
     $("#publishBtn").click(function () {
       var newEntryHeadline = $("<h5>")
@@ -444,7 +393,6 @@ textArea.addEventListener("input", function() {
   });
 }
 
-
 // SAVE BUTTON
 function save() {
   $("#save-button").click(function () {
@@ -455,7 +403,6 @@ function save() {
       alert("Cannot save an empty entry. Please add text to the entry before saving.");
       return;
     }
-
     var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
     savedEntries.push({
       date: currentDate,
@@ -463,25 +410,19 @@ function save() {
     });
     localStorage.setItem("savedEntries", JSON.stringify(savedEntries));
   });
-
   let textArea = document.getElementById("text-area-element");
   let saveButton = document.getElementById("save-button");
-
   saveButton.disabled = true;
-
-textArea.addEventListener("input", function() {
-  if (textArea.value.length > 0) {
-    saveButton.disabled = false;
-  } else {
-    saveButton.disabled = true;
-  }
-});
-
+  textArea.addEventListener("input", function () {
+    if (textArea.value.length > 0) {
+      saveButton.disabled = false;
+    } else {
+      saveButton.disabled = true;
+    }
+  });
   $('#save-button').on('click', function (event) {
     event.preventDefault();
     console.log("save clicked");
-    // Add a modal to the save button
-
     // Add an event listener when clicking on the Save changes button and save entries to localStorage
     $("#saveChgBtn").click(function () {
       var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
@@ -495,18 +436,14 @@ textArea.addEventListener("input", function() {
 }
 
 //DISCARD BUTTON
-function discard () {
-// $("#discard-button").click(function() {
-//   window.location.href = "index.html";
-// });
-
-$('#discard-button').on('click', function (event) {
-  event.preventDefault();
-  console.log("discard clicked");
-  // Add a modal to the DISCARD button
-  $('#discard-button').attr("data-toggle", "modal");
-  $('#discard-button').attr("data-target", "#exampleModal");
-  $('#discard-button').append(`<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+function discard() {
+  $('#discard-button').on('click', function (event) {
+    event.preventDefault();
+    console.log("discard clicked");
+    // Add a modal to the DISCARD button
+    $('#discard-button').attr("data-toggle", "modal");
+    $('#discard-button').attr("data-target", "#exampleModal");
+    $('#discard-button').append(`<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -523,13 +460,12 @@ $('#discard-button').on('click', function (event) {
       </div>
     </div>
   </div>`);
-  // Add an event listener when clicking on the Delete button and empty the entries
-  $("#deleteBtn").click(function () {
-    $('#text-area-element').val("");
+    // Add an event listener when clicking on the Delete button and empty the entries
+    $("#deleteBtn").click(function () {
+      $('#text-area-element').val("");
+    });
   });
-});
 }
-
 
 // COUNTER FUNCTION 
 function streakCounter() {
@@ -538,7 +474,7 @@ function streakCounter() {
   let increased = localStorage.getItem("increased");
 
   if (writingStreak === null) {
-    writingStreak = 0; 
+    writingStreak = 0;
   } else {
     writingStreak = parseInt(writingStreak);
   }
@@ -558,7 +494,7 @@ function streakCounter() {
     writingStreak = 0;
     localStorage.setItem("increased", "false");
   }
-  
+
   lastClicked = currentDate;
 
   if (writingStreak === 1) {
@@ -569,7 +505,6 @@ function streakCounter() {
   localStorage.setItem("writingStreak", writingStreak);
   localStorage.setItem("lastClicked", lastClicked);
 }
-
 
 //SOUND FUNCTION
 
