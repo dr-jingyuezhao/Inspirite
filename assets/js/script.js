@@ -60,7 +60,7 @@ $("#published").click(function() {
 });
 $("#published").css("cursor", "pointer");
 
-// Displaying Archives
+// Displaying Archives (Menu Button)
 
 var publishedEntries = JSON.parse(localStorage.getItem("publishedEntries")) || [];
 console.log(publishedEntries);
@@ -77,6 +77,9 @@ cardText.html(publishedEntries[i].date)
 $("#published-screen").append(card)
 card.append(cardBody)
 cardBody.append(cardText)
+card.click(function() {
+  console.log("archive card clicked");
+});
 }
 })
 
