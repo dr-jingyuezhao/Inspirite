@@ -397,6 +397,7 @@ function publish() {
 function save() {
   $("#save-button").click(function () {
     console.log("save clicked");
+    var currentDate = moment().format("DD/MM/YYYY, kk:mm");
     $("#text-area").css("display", "none");
     var textAreaValue = $("#text-area-element").val();
     if (!textAreaValue) {
