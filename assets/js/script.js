@@ -73,13 +73,11 @@ var cardBody = $("<div>")
 cardBody.addClass("card-body text-center")
 var cardText = $("<p>")
 cardText.addClass("card-text")
-cardText.html(publishedEntries[i].content)
+cardText.html(publishedEntries[i].date)
 $("#published-screen").append(card)
 card.append(cardBody)
 cardBody.append(cardText)
 }
-
-
 })
 
 
@@ -374,34 +372,34 @@ $("#gif").on("click", function (event) {
 
 // PUBLISH BUTTON
 function publish() {
-  // $("#publish-button").click(function () {
-  //   console.log("publish-clicked");
-  //   $("#text-area").css("display", "none");
-  //   var textAreaValue = $("#text-area-element").val();
-  //   if (!textAreaValue) {
-  //     alert("Cannot publish an empty entry. Please add text to the entry before publishing.");
-  //     return;
-  //   }
-  //   var newEntryHeadline = $("<h3>")
-  //   newEntryHeadline.text("Your entry from " + currentDate);
-  //   var newEntry = $("<p>")
-  //   newEntry.html(textAreaValue.replace(/\n/g, "<br>"));
-  //   $("#new-entry-container").prepend(newEntryHeadline);
-  //   $("#new-entry-container").append(newEntry);
+  $("#publish-button").click(function () {
+    console.log("publish-clicked");
+    $("#text-area").css("display", "none");
+    var textAreaValue = $("#text-area-element").val();
+    if (!textAreaValue) {
+      alert("Cannot publish an empty entry. Please add text to the entry before publishing.");
+      return;
+    }
+    var newEntryHeadline = $("<h3>")
+    newEntryHeadline.text("Your entry from " + currentDate);
+    var newEntry = $("<p>")
+    newEntry.html(textAreaValue.replace(/\n/g, "<br>"));
+    $("#new-entry-container").prepend(newEntryHeadline);
+    $("#new-entry-container").append(newEntry);
 
-  //   //Storing entry in localstorage. It stores it in an array of objects
-  //   // each pos is marked with current date so that we can retrieve them on archives page.
-  //   var publishedEntries = JSON.parse(localStorage.getItem("publishedEntries")) || [];
-  //   publishedEntries.push({
-  //     date: currentDate,
-  //     content: $("#new-entry-container").html()
-  //   });
-  //   localStorage.setItem("publishedEntries", JSON.stringify(publishedEntries));
+    //Storing entry in localstorage. It stores it in an array of objects
+    // each pos is marked with current date so that we can retrieve them on archives page.
+    var publishedEntries = JSON.parse(localStorage.getItem("publishedEntries")) || [];
+    publishedEntries.push({
+      date: currentDate,
+      content: $("#new-entry-container").html()
+    });
+    localStorage.setItem("publishedEntries", JSON.stringify(publishedEntries));
 
 
-  //   //Adds 1  streak to counter when post published
-  //   streakCounter();
-  // });
+    //Adds 1  streak to counter when post published
+    streakCounter();
+  });
 
   let textArea = document.getElementById("text-area-element");
   let publishButton = document.getElementById("publish-button");
@@ -420,26 +418,7 @@ textArea.addEventListener("input", function() {
     event.preventDefault();
     console.log("publish clicked");
 
-    // Add a modal to the PUBLISH button
-    $('#publish-button').attr("data-toggle", "modal");
-    $('#publish-button').attr("data-target", "#exampleModal");
-    $('#publish-button').append(`<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Well done! One step closer to becoming a big writer!</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body"><p class="small">Your post will be published. You can view it on the Published Work page.</p></div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" id="publishBtn" class="btn btn-success">Publish post</button>
-          </div>
-        </div>
-      </div>
-    </div>`);
+
     // Add an event listener when clicking on the Save changes button and save entries to localStorage
     $("#publishBtn").click(function () {
       var newEntryHeadline = $("<h5>")
@@ -465,22 +444,22 @@ textArea.addEventListener("input", function() {
 
 // SAVE BUTTON
 function save() {
-  // $("#save-button").click(function () {
-  //   console.log("save clicked");
-  //   $("#text-area").css("display", "none");
-  //   var textAreaValue = $("#text-area-element").val();
-  //   if (!textAreaValue) {
-  //     alert("Cannot save an empty entry. Please add text to the entry before saving.");
-  //     return;
-  //   }
+  $("#save-button").click(function () {
+    console.log("save clicked");
+    $("#text-area").css("display", "none");
+    var textAreaValue = $("#text-area-element").val();
+    if (!textAreaValue) {
+      alert("Cannot save an empty entry. Please add text to the entry before saving.");
+      return;
+    }
 
-  //   var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
-  //   savedEntries.push({
-  //     date: currentDate,
-  //     content: textAreaValue
-  //   });
-  //   localStorage.setItem("savedEntries", JSON.stringify(savedEntries));
-  // });
+    var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
+    savedEntries.push({
+      date: currentDate,
+      content: textAreaValue
+    });
+    localStorage.setItem("savedEntries", JSON.stringify(savedEntries));
+  });
 
   let textArea = document.getElementById("text-area-element");
   let saveButton = document.getElementById("save-button");
@@ -499,25 +478,7 @@ textArea.addEventListener("input", function() {
     event.preventDefault();
     console.log("save clicked");
     // Add a modal to the save button
-    $('#save-button').attr("data-toggle", "modal");
-    $('#save-button').attr("data-target", "#exampleModal");
-    $('#save-button').append(`<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Please save your writing!</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body"><p class="small">Your writing will be saved in the records. You can view it on the Saved Writing page.</p></div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" id="saveChgBtn" class="btn btn-warning">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>`);
+
     // Add an event listener when clicking on the Save changes button and save entries to localStorage
     $("#saveChgBtn").click(function () {
       var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
@@ -567,9 +528,7 @@ $('#discard-button').on('click', function (event) {
 }
 
 
-
 // COUNTER FUNCTION 
-
 function streakCounter() {
   let writingStreak = localStorage.getItem("writingStreak");
   let lastClicked = localStorage.getItem("lastClicked");
