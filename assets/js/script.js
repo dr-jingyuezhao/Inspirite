@@ -45,6 +45,21 @@ $(document).ready(function () {
   else if (writingStreak > 1) {
     $("#counter").text("Your current writing streak is " + writingStreak + " days");
   }
+
+  //LOGO CLICK
+$("#app-name").click(function() {
+  window.location.href = "index.html";
+});
+$("#app-name").css("cursor", "pointer");
+
+
+//Published Menu Button 
+
+$("#published").click(function() {
+  window.location.href = "published.html";
+});
+$("#published").css("cursor", "pointer");
+
 })
 
 
@@ -331,6 +346,7 @@ function publish() {
     });
     localStorage.setItem("publishedEntries", JSON.stringify(publishedEntries));
 
+
     //Adds 1  streak to counter when post published
     streakCounter();
   });
@@ -364,12 +380,7 @@ $("#discard-button").click(function() {
 });
 }
 
-//LOGO CLICK
-  $("#app-name").click(function() {
-    window.location.href = "index.html";
-  });
-  $("#app-name").css("cursor", "pointer");
-  
+
 
 // COUNTER FUNCTION 
 
