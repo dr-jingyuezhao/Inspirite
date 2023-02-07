@@ -403,6 +403,19 @@ function publish() {
   //   streakCounter();
   // });
 
+  let textArea = document.getElementById("text-area-element");
+  let publishButton = document.getElementById("publish-button");
+
+  publishButton.disabled = true;
+
+textArea.addEventListener("input", function() {
+  if (textArea.value.length > 0) {
+    publishButton.disabled = false;
+  } else {
+    publishButton.disabled = true;
+  }
+});
+
   $("#publish-button").click(function (event) {
     event.preventDefault();
     console.log("publish clicked");
@@ -468,6 +481,19 @@ function save() {
   //   });
   //   localStorage.setItem("savedEntries", JSON.stringify(savedEntries));
   // });
+
+  let textArea = document.getElementById("text-area-element");
+  let saveButton = document.getElementById("save-button");
+
+  saveButton.disabled = true;
+
+textArea.addEventListener("input", function() {
+  if (textArea.value.length > 0) {
+    saveButton.disabled = false;
+  } else {
+    saveButton.disabled = true;
+  }
+});
 
   $('#save-button').on('click', function (event) {
     event.preventDefault();
