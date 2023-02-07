@@ -21,9 +21,9 @@
   <header>
     <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div><span id="app-name" class="navbar-brand mb-0 h1"><img id="logo"
-            src="assets/images/jz_Inspirite.png">Inspirite</span></div>
-      <div id="counter">Your current streak: <span id="days-number"></span></div>
+      <a href="#" id="app-name" class="navbar-brand mb-0 h1"><img id="logo"
+        src="assets/images/jz_Inspirite.png">Inspirite</a>
+      <div id="counter" class="font-weight-bold">Your current streak: <span id="days-number"></span></div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -31,14 +31,14 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#work">Saved Writing</a>
+            <a class="nav-link font-weight-bold" href="saved.html">Saved</a>
           </li>
           <li class="nav-item">
-            <a id="published" class="nav-link" href="published.html">Published Work</a>
+            <a id="published" class="nav-link font-weight-bold" href="published.html">Published</a>
           </li>
           <!-- CTA button -->
           <li class="nav-item">
-            <a class="btn btn-primary navCTA" href="#contact" role="button">Contact Us</a>
+            <a class="btn btn-danger navCTA" href="#contact" role="button">Contact Us</a>
           </li>
         </ul>
       </div>
@@ -53,13 +53,13 @@
     <!-- hero section: jumbotron featuring a background picture and button information -->
     <section class="hero text-center">
       <div id="start-screen" class="jumbotron">
-        <h1 class="display-4">Choose your inspiration</h1>
+        <h1 class="display-4 mb-5 font-weight-bold font-italic text-monospace text-uppercase text-danger">Choose your inspiration</h1>
         <p class="task">Please click on a button below <br>to receive a prompt <br>and experience the joy of writing.
         </p>
-        <a id="quote" class="btn btn-primary btn-lg prompt-btn" href="#" role="button">Famous quote</a>
-        <a id="fact" class="btn btn-primary btn-lg prompt-btn" href="#" role="button">Fun<br>fact</a>
-        <a id="random-img" class="btn btn-primary btn-lg prompt-btn" href="#" role="button">Random picture</a>
-        <a id="gif" class="btn btn-primary btn-lg prompt-btn" href="#" role="button">GIF surprise</a>
+        <a id="quote" class="btn btn-primary prompt-btn" href="#" role="button">Famous quote</a>
+        <a id="fact" class="btn btn-primary prompt-btn" href="#" role="button">Fun<br>fact</a>
+        <a id="random-img" class="btn btn-primary prompt-btn" href="#" role="button">Random picture</a>
+        <a id="gif" class="btn btn-primary prompt-btn" href="#" role="button">GIF surprise</a>
       </div>
     </section>
     <!-- prompt section displaying prompts -->
@@ -73,7 +73,7 @@
 
   <!-- footer -->
   <footer>
-    <div class="container text-center">
+    <div class="container text-center mt-3 mb-3">
       <p>&copy; Team Inspirite 2023. All Rights Reserved.</p>
       <div id="contact">
         <a href="https://github.com/dr-jingyuezhao/" class="link">Jingyue</a> |
