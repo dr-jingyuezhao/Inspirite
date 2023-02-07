@@ -287,7 +287,7 @@ function save() {
   $('#save-button').on('click', function (event) {
     event.preventDefault();
     console.log("save clicked");
-    var currentDate = moment().format("dddd, MMMM D, YYYY, h:mm:ss a");
+    var currentDate = moment().format("DD/MM/YYYY, kk:mm");
     var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
     console.log("savedEntries: ", savedEntries);
     savedEntries.push({
