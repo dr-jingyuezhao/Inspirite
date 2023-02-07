@@ -44,7 +44,7 @@ $(document).ready(function () {
   }
 
   else {
-    $("#counter").text("You've started your writing streak. Keep going tomorrow!");
+    $("#counter").text("You can start writing today. Keep writing everyday!");
   }
 })
 
@@ -388,7 +388,7 @@ function streakCounter() {
     $("#counter").text("Your current writing streak: " + writingStreak + " day");
   }
   else if (writingStreak === 0) {
-    $("#counter").text("You've started your writing streak. Keep going tomorrow!");
+    $("#counter").text("You've just started your writing streak!");
   }
   else {
     $("#counter").text("Your current writing streak: " + writingStreak + " days");
