@@ -93,6 +93,14 @@ $("#published").css("cursor", "pointer");
 $("#quote").on("click", function (event) {
   event.preventDefault()
 
+  let textInput = document.getElementById("text-area");
+  
+  if (textInput.style.display === "none") {
+    textInput.style.display = "block";
+  } else {
+    textInput.style.display = "none";
+  }
+
   $('#soundToggleContainer').css('display', 'block');
 
 
@@ -169,6 +177,14 @@ $("#quote").on("click", function (event) {
 $("#fact").on("click", function (event) {
   event.preventDefault()
 
+  let textInput = document.getElementById("text-area");
+  
+  if (textInput.style.display === "none") {
+    textInput.style.display = "block";
+  } else {
+    textInput.style.display = "none";
+  }
+
   $('#soundToggleContainer').css('display', 'block');
 
 
@@ -220,6 +236,14 @@ $("#fact").on("click", function (event) {
 //RANDOM IMAGE BUTTON
 $("#random-img").on("click", function (event) {
   event.preventDefault()
+
+  let textInput = document.getElementById("text-area");
+  
+  if (textInput.style.display === "none") {
+    textInput.style.display = "block";
+  } else {
+    textInput.style.display = "none";
+  }
 
   $('#soundToggleContainer').css('display', 'block');
 
@@ -274,6 +298,14 @@ var lastClicked = new Date();
 
 $("#gif").on("click", function (event) {
   event.preventDefault()
+
+  let textInput = document.getElementById("text-area");
+  
+  if (textInput.style.display === "none") {
+    textInput.style.display = "block";
+  } else {
+    textInput.style.display = "none";
+  }
 
   $('#soundToggleContainer').css('display', 'block');
 
