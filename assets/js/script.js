@@ -53,12 +53,32 @@ $("#app-name").click(function() {
 $("#app-name").css("cursor", "pointer");
 
 
-//Published Menu Button 
+//PUBLISHED MENU ITEM CLICK
 
 $("#published").click(function() {
   window.location.href = "published.html";
 });
 $("#published").css("cursor", "pointer");
+
+// Displaying Archives
+
+var publishedEntries = JSON.parse(localStorage.getItem("publishedEntries")) || [];
+console.log(publishedEntries);
+
+for (i = 0; i<publishedEntries.length; i++)
+{
+var card = $("<div>")
+card.addClass("card bg-light")
+var cardBody = $("<div>")
+cardBody.addClass("card-body text-center")
+var cardText = $("<p>")
+cardText.addClass("card-text")
+cardText.html(publishedEntries[i].content)
+$("#published-screen").append(card)
+card.append(cardBody)
+cardBody.append(cardText)
+}
+
 
 })
 
@@ -92,14 +112,6 @@ $("#published").css("cursor", "pointer");
 //Buttons on click event
 $("#quote").on("click", function (event) {
   event.preventDefault()
-
-  let textInput = document.getElementById("text-area");
-  
-  if (textInput.style.display === "none") {
-    textInput.style.display = "block";
-  } else {
-    textInput.style.display = "none";
-  }
 
   $('#soundToggleContainer').css('display', 'block');
 
@@ -177,14 +189,6 @@ $("#quote").on("click", function (event) {
 $("#fact").on("click", function (event) {
   event.preventDefault()
 
-  let textInput = document.getElementById("text-area");
-  
-  if (textInput.style.display === "none") {
-    textInput.style.display = "block";
-  } else {
-    textInput.style.display = "none";
-  }
-
   $('#soundToggleContainer').css('display', 'block');
 
 
@@ -236,14 +240,6 @@ $("#fact").on("click", function (event) {
 //RANDOM IMAGE BUTTON
 $("#random-img").on("click", function (event) {
   event.preventDefault()
-
-  let textInput = document.getElementById("text-area");
-  
-  if (textInput.style.display === "none") {
-    textInput.style.display = "block";
-  } else {
-    textInput.style.display = "none";
-  }
 
   $('#soundToggleContainer').css('display', 'block');
 
@@ -298,14 +294,6 @@ var lastClicked = new Date();
 
 $("#gif").on("click", function (event) {
   event.preventDefault()
-
-  let textInput = document.getElementById("text-area");
-  
-  if (textInput.style.display === "none") {
-    textInput.style.display = "block";
-  } else {
-    textInput.style.display = "none";
-  }
 
   $('#soundToggleContainer').css('display', 'block');
 
@@ -455,19 +443,20 @@ function streakCounter() {
 }
 
 
-//SOUND FUNCTION
+// //SOUND FUNCTION
 
-// Create the switch button
-$('<label class="switch">' +
-  '<input type="checkbox" id="soundToggle">' +
-  '<span class="slider round"></span>' +
-  '</label><label>Sound On/Off:</label>').insertAfter('#prompt-container');
+// // Create the switch button
+// $('<label class="switch">' +
+//   '<input type="checkbox" id="soundToggle">' +
+//   '<span class="slider round"></span>' +
+//   '</label><label>Sound On/Off:</label>').insertAfter('#prompt-container');
 
-// function to play sound on text area click
-const audio = new Audio('assets/sounds/writing_7s.mp3');
-document.getElementById("text-area").addEventListener("keydown", function () {
-  if ($('#soundToggle').is(':checked')) {
-    audio.play();
-  }
-});
+// // function to play sound on text area click ---- DOES NOT DISPLAY ON PUBLISHED PAGE AND CAUSES ERROR
+// const audio = new Audio('assets/sounds/writing_7s.mp3');
+// document.getElementById("text-area").addEventListener("keydown", function () {
+//   if ($('#soundToggle').is(':checked')) {
+//     audio.play();
+//   }
+// });
+
 
