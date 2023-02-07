@@ -244,6 +244,10 @@ p.task {
 
 #text-buttons-container {
     font-family: 'IBM Plex Mono';
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: space-around;
 
 }
 
