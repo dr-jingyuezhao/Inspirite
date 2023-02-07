@@ -286,35 +286,15 @@ function discard() {
 function save() {
   $('#save-button').on('click', function (event) {
     event.preventDefault();
-    // Add a modal to the save button
-    $('#save-button').attr("data-toggle", "modal");
-    $('#save-button').attr("data-target", "#exampleModal");
-    $('#save-button').append(`<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Please save your writing!</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body"><p class="small">Your writing will be saved in the records. You can view it on the Saved Writing page.</p></div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" id="saveChgBtn" class="btn btn-warning">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>`);
-    // Add an event listener when clicking on the Save changes button and save entries to localStorage
-    $("#saveChgBtn").click(function () {
-      var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
-      savedEntries.push({
-        date: currentDate,
-        content: $("#text-area-element").val(),
-      });
-      localStorage.setItem("savedEntries", JSON.stringify(savedEntries));
+    console.log("save clicked");
+    var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
+    console.log("savedEntries: ", savedEntries);
+    savedEntries.push({
+      date: currentDate,
+      content: $("#text-area-element").val(),
     });
+    console.log("new savedEntries", savedEntries)
+    localStorage.setItem("savedEntries", JSON.stringify(savedEntries));
   });
 }
 
