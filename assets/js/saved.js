@@ -29,20 +29,17 @@ for (var i = 0; i < savedEntries.length; i++) {
 $(".continueBtn").each(function () {
   $(this).click(function (event) {
     event.preventDefault();
-
     // Hide the saved card section and display the writing section
     $("#cardSection").css("display", "none");
     $("#text-area").css("display", "block");
-
     // Create respective continue writing page 
     var entryIndex = parseInt($(this).attr("id").split("#")[1]);
     console.log("entryIndex: ", entryIndex);
     var savedDraft = savedEntries[entryIndex].content;
     console.log("saved draft: ", savedDraft);
-    //Creates a text area for user input to continue writing
+    //Create a text area for user input to continue writing
     $('#text-area').append(`<textarea id="text-area-element" class="col">${savedDraft}</textarea>`);
-
-    //Creates a container for buttons and the save and publish buttons
+    //Create a container for buttons and the save and publish buttons
     var textButtonsContainer = $("<div>");
     textButtonsContainer.attr("id", "text-buttons-container");
     // Create a Discard button
@@ -60,8 +57,8 @@ $(".continueBtn").each(function () {
     publishButton.text('PUBLISH');
     publishButton.attr("id", "publish-button");
     textButtonsContainer.append(publishButton);
-
     $("#text-area").append(textButtonsContainer);
+    // Call the function for each button
     discard();
     save();
     publish();
@@ -80,12 +77,12 @@ function discard() {
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Are you sure about discarding your post?</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Are you sure about discarding your draft?</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body"><p class="small">Your writing will be deleted and all progress will be lost!</p></div>
+          <div class="modal-body"><p class="small">Your writing will be deleted. You can start again with a fresh inspiration!</p></div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             <button type="button" id="deleteBtn" class="btn btn-danger">Delete writing</button>
@@ -112,12 +109,12 @@ function save() {
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Please save your writing!</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Great progress! Please save your draft!</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body"><p class="small">Your writing will be saved in the records. You can view it on the Saved Writing page.</p></div>
+          <div class="modal-body"><p class="small">Your writing will be saved. You can view it on the Saved Writing page.</p></div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             <button type="button" id="saveChgBtn" class="btn btn-warning">Save changes</button>
@@ -153,7 +150,7 @@ function publish() {
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body"><p class="small">Your post will be published. You can view it on the Published Work page.</p></div>
+          <div class="modal-body"><p class="small">Your writing will be published. You can view it on the Published Work page.</p></div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             <button type="button" id="publishBtn" class="btn btn-success">Publish post</button>
@@ -177,8 +174,6 @@ function publish() {
         content: $("#new-entry-container").html(),
       });
       localStorage.setItem("postedEntries", JSON.stringify(postedEntries));
-      //Adds 1  streak to counter when post published
-      streakCounter();
     });
   });
 }

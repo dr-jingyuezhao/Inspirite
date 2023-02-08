@@ -274,20 +274,21 @@ p.task {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    height: 400px;
+    min-height: 400px;
     margin: 10px;
 }
 
-/* SAVE and PUBLISH BUTTONS */
-
-/* Container for both buttons */
+/* Style for Container of three buttons */
 
 #text-buttons-container {
     font-family: 'IBM Plex Mono';
-
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: space-around;
 }
 
-/* DISCARD button */
+/* Style for DISCARD button */
 
 #discard-button {
     font-size: large;
@@ -309,7 +310,7 @@ p.task {
     box-shadow: 0 5px 15px var(--signal-colour-hover);
 }
 
-/* Save button */
+/* Style for SAVE button */
 
 #save-button {
     width: 150px;
@@ -324,14 +325,13 @@ p.task {
     border-style: none;
     box-shadow: 0 2px 10px rgb(100, 92, 92);
     transition: all 0.8s ease-in-out;
-
 }
 
 #save-button:hover {
     box-shadow: 0 5px 15px var(--signal-colour) !important;
 }
 
-/* Publish button */
+/* Style for PUBLISH button */
 
 #publish-button {
     width: 150px;
@@ -351,6 +351,8 @@ p.task {
 #publish-button:hover {
     box-shadow: 0 5px 15px var(--signal-colour-hover);
 }
+
+/* Style for footer */
 
 footer {
     font-family: "IBM Plex Mono";
