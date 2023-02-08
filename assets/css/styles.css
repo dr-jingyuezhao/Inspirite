@@ -160,6 +160,50 @@ p.task {
     box-shadow: 0 5px 15px var(--signal-colour-hover);
 }
 
+/* MODAL */
+/* DELETE BUTTON */
+
+#deleteBtn.btn.btn-danger {
+    width: 100px;
+    font-size: large;
+    text-align: center;
+    font-family: "IBM Plex Mono", bold;
+    margin: 10px;
+    background-color: var(--signal-colour);
+    border-color: var(--signal-colour);
+    border-radius: 30px;
+    box-shadow: 0 2px 10px rgb(100, 92, 92);
+    transition: all 0.5s ease-in-out;
+}
+
+#deleteBtn.btn.btn-danger:hover {
+    box-shadow: 0 5px 15px var(--signal-colour-hover);
+}
+
+.modal-footer{
+    align-content: center;
+    justify-content: center;
+}
+
+/* CANCEL BUTTON */
+
+#cancelBtn.btn.btn-secondary {
+    width: 100px;
+    font-size: large;
+    text-align: center;
+    font-family: "IBM Plex Mono", bold;
+    margin: 10px;
+    background-color: var(--secondary-colour);
+    border-color: var(--secondary-colour);
+    border-radius: 30px;
+    box-shadow: 0 2px 10px rgb(100, 92, 92);
+    transition: all 0.5s ease-in-out;
+}
+
+#cancelBtn.btn.btn-secondary:hover {
+    box-shadow: 0 5px 15px var(--signal-colour);
+}
+
 /* PROMPT ELEMENTS */
 
 /* Main container for the writing prompts */

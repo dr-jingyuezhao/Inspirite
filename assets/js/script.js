@@ -473,15 +473,15 @@ function discard() {
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Are you sure about discarding your post?</h5>
+          <h3 class="modal-title" id="exampleModalLabel">Are you sure about discarding your post?</h3>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body"><p class="small">Your writing will be deleted and all progress will be lost!</p></div>
+        <div class="modal-body"><p class="smaller">Your writing will be deleted and all progress will be lost!</p></div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="button" id="deleteBtn" class="btn btn-danger">Delete writing</button>
+          <button type="button" id="cancelBtn" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" id="deleteBtn" class="btn btn-danger">Delete</button>
         </div>
       </div>
     </div>
