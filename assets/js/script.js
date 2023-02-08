@@ -45,12 +45,12 @@ $(document).ready(function () {
   });
   $("#published").css("cursor", "pointer");
 
-    //VIEW SAVED NAVBAR ITEM CLICK
-    $("#saved").click(function () {
-      window.location.href = "saved.html";
-    });
-    $("#saved").css("cursor", "pointer");
-  
+  //VIEW SAVED NAVBAR ITEM CLICK
+  $("#saved").click(function () {
+    window.location.href = "saved.html";
+  });
+  $("#saved").css("cursor", "pointer");
+
 
   // DISPLAYING PREVIOUSLY PUBLISHED POSTS
 
@@ -298,7 +298,7 @@ $("#gif").on("click", function (event) {
   } else {
     textInput.style.display = "none";
   }
-  
+
   $('#soundToggleContainer').css('display', 'block');
 
   var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=" + giphyKey; + "&rating=pg";
@@ -341,6 +341,18 @@ $("#gif").on("click", function (event) {
 
 // PUBLISH BUTTON
 function publish() {
+
+  let textArea = document.getElementById("text-area-element");
+  let publishButton = document.getElementById("publish-button");
+  publishButton.disabled = true;
+  textArea.addEventListener("input", function () {
+    if (textArea.value.length > 0) {
+      publishButton.disabled = false;
+    } else {
+      publishButton.disabled = true;
+    }
+  });
+
   $("#publish-button").click(function () {
     console.log("publish-clicked");
     $("#text-area").css("display", "none");
@@ -367,16 +379,7 @@ function publish() {
     streakCounter();
   });
 
-  let textArea = document.getElementById("text-area-element");
-  let publishButton = document.getElementById("publish-button");
-  publishButton.disabled = true;
-  textArea.addEventListener("input", function () {
-    if (textArea.value.length > 0) {
-      publishButton.disabled = false;
-    } else {
-      publishButton.disabled = true;
-    }
-  });
+
 
   $("#publish-button").click(function (event) {
     event.preventDefault();
@@ -406,6 +409,18 @@ function publish() {
 
 // SAVE BUTTON
 function save() {
+
+  let textArea = document.getElementById("text-area-element");
+  let saveButton = document.getElementById("save-button");
+  saveButton.disabled = true;
+  textArea.addEventListener("input", function () {
+    if (textArea.value.length > 0) {
+      saveButton.disabled = false;
+    } else {
+      saveButton.disabled = true;
+    }
+  });
+
   $("#save-button").click(function () {
     console.log("save clicked");
     var currentDate = moment().format("DD/MM/YYYY, kk:mm");
@@ -418,16 +433,7 @@ function save() {
     });
     localStorage.setItem("savedEntries", JSON.stringify(savedEntries));
   });
-  let textArea = document.getElementById("text-area-element");
-  let saveButton = document.getElementById("save-button");
-  saveButton.disabled = true;
-  textArea.addEventListener("input", function () {
-    if (textArea.value.length > 0) {
-      saveButton.disabled = false;
-    } else {
-      saveButton.disabled = true;
-    }
-  });
+
   $('#save-button').on('click', function (event) {
     event.preventDefault();
     console.log("save clicked");

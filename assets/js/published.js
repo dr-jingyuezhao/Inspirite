@@ -8,17 +8,13 @@ console.log("postedEntries: ", postedEntries);
 for (var i = 0; i < postedEntries.length; i++) {
     var postedDate = moment(postedEntries[i].date).format("DD/MM/YYYY, H:mm");
     var daysAgo = moment(postedDate).fromNow();
-    $('#publishedWork').append(`<div class="blogCard card bg-dark text-white ml-3 mr-3 mb-5 mx-auto col-xs-12 col-lg-6 w-auto">
-    <img src="assets/images/hd-wallpaper-7091379_1920.jpg" class="card-img"
-        alt="The background image for each published blog.">
-    <div class="card-img-overlay" style="padding: 50px;">
+    $('#publishedWork').append(`<div class="blogCard card bg-light text-black ml-3 mr-3 mb-5 mx-auto col-xs-12 col-lg-6 w-auto">
+    
     <h5 class="card-title">${postedDate}</h5>
         <p class="card-text">${postedEntries[i].content.substr(0, 256)}</p>
-        <button type="button" id="posted#${i}" class="readBtn btn btn-success mt-auto">Read more</button>
+        <button type="button" id="posted#${i}" class="readBtn btn mt-auto">Read more</button>
     </div>
-    <div class="card-footer text-muted small text-center">
-        Posted ${daysAgo}
-    </div>
+    
 </div>`);
 }
 
@@ -39,7 +35,4 @@ $(".readBtn").each(function () {
         $("#blog-container").html(postedBlog);
     });
 });
-
-
-
 
