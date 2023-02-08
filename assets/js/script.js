@@ -1,7 +1,6 @@
-
 // GLOBAL VARIABLES
 
-var currentDate = moment().format("DD/MM/YYYY, kk:mm");
+var currentDate = moment().format("DD/MM/YYYY, H:mm");
 
 //Ninja APIs Key
 var ninjaKey = "7uO6vmcctMNbKS/uvDMn/Q==hOPwoCDiiaGwubha"
@@ -167,9 +166,9 @@ $("#quote").on("click", function (event) {
 
       saveButton.attr("id", "save-button")
       textButtonsContainer.append(publishButton)
-      discard()
-      save()
-      publish()
+      discard();
+      save(result);
+      publish(result);
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -219,9 +218,9 @@ $("#fact").on("click", function (event) {
       publishButton.attr("id", "publish-button")
       saveButton.attr("id", "save-button")
       textButtonsContainer.append(publishButton)
-      discard()
-      save()
-      publish()
+      discard();
+      save(result);
+      publish(result);
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -269,9 +268,9 @@ $("#random-img").on("click", function (event) {
       publishButton.attr("id", "publish-button")
       saveButton.attr("id", "save-button")
       textButtonsContainer.append(publishButton)
-      discard()
-      save()
-      publish()
+      discard();
+      save(result);
+      publish(result);
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -298,9 +297,9 @@ $("#gif").on("click", function (event) {
     url: queryURL,
     method: "GET"
   })
-    .then(function (response) {
+    .then(function (result) {
       $("#start-screen").css("display", "none");
-      var gifUrl = response.data.images.original.url
+      var gifUrl = result.data.images.original.url
       var gifElement = $("<img>");
       gifElement.attr("src", gifUrl);
       gifElement.attr("id", "gif-element");
@@ -326,60 +325,53 @@ $("#gif").on("click", function (event) {
       saveButton.attr("id", "save-button")
       textButtonsContainer.append(publishButton)
       discard()
-      save()
-      publish()
+      save(result);
+      publish(result);
     });
 });
 
 // PUBLISH BUTTON
-function publish() {
-  $("#publish-button").click(function () {
-    console.log("publish-clicked");
-    $("#text-area").css("display", "none");
-    var textAreaValue = $("#text-area-element").val();
-    var newEntryHeadline = $("<h3>")
-    newEntryHeadline.text(currentDate);
-    var newEntry = $("<p>")
-    newEntry.html(textAreaValue.replace(/\n/g, "<br>"));
-    $("#new-entry-container").css("display", "block");
-    $("#new-entry-container").prepend(newEntryHeadline);
-    $("#new-entry-container").append(newEntry);
-
-
-    //Storing entry in localstorage. It stores it in an array of objects
-    // each pos is marked with current date so that we can retrieve them on archives page.
-    var publishedEntries = JSON.parse(localStorage.getItem("publishedEntries")) || [];
-    publishedEntries.push({
-      date: currentDate,
-      content: $("#new-entry-container").html()
-    });
-    localStorage.setItem("publishedEntries", JSON.stringify(publishedEntries));
-
-    //Adds 1  streak to counter when post published
-    streakCounter();
-  });
-
-  let textArea = document.getElementById("text-area-element");
-  let publishButton = document.getElementById("publish-button");
-  publishButton.disabled = true;
-  textArea.addEventListener("input", function () {
-    if (textArea.value.length > 0) {
-      publishButton.disabled = false;
-    } else {
-      publishButton.disabled = true;
-    }
-  });
-
+function publish(inspiration) {
   $("#publish-button").click(function (event) {
     event.preventDefault();
-    console.log("publish clicked");
+    // Add a modal to the PUBLISH button
+    $('#publish-button').attr("data-toggle", "modal");
+    $('#publish-button').attr("data-target", "#exampleModal-3");
+    $('#publish-button').append(`<div class="modal fade" id="exampleModal-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Well done! One step closer to becoming a big writer!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"><p class="small">Your post will be published. You can view it on the Published Work page.</p></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" id="publishBtn" class="btn btn-success">Publish blog</button>
+          </div>
+        </div>
+      </div>
+    </div>`);
+
+    let textArea = document.getElementById("text-area-element");
+    let publishButton = document.getElementById("publish-button");
+    publishButton.disabled = true;
+    textArea.addEventListener("input", function () {
+      if (textArea.value.length > 0) {
+        publishButton.disabled = false;
+      } else {
+        publishButton.disabled = true;
+      }
+    });
+
     // Add an event listener when clicking on the Save changes button and save entries to localStorage
     $("#publishBtn").click(function () {
       var newEntryHeadline = $("<h5>")
-      newEntryHeadline.text("Your post from " + currentDate);
+      newEntryHeadline.text("Your blog from " + currentDate);
       var newEntry = $("<p>")
       newEntry.html($("#text-area-element").val().replace(/\n/g, "<br>"));
-      $("#new-entry-container").css("display", "block");
       $("#new-entry-container").prepend(newEntryHeadline);
       $("#new-entry-container").append(newEntry);
       //Storing new post entry in localstorage. It stores it in an array of objects
@@ -387,7 +379,8 @@ function publish() {
       var postedEntries = JSON.parse(localStorage.getItem("postedEntries")) || [];
       postedEntries.push({
         date: currentDate,
-        content: $("#new-entry-container").html(),
+        content: newEntry.html(),
+        prompt: inspiration,
       });
       localStorage.setItem("postedEntries", JSON.stringify(postedEntries));
       //Adds 1  streak to counter when post published
@@ -396,76 +389,226 @@ function publish() {
   });
 }
 
+// // PUBLISH BUTTON
+// function publish() {
+//   $("#publish-button").click(function () {
+//     console.log("publish-clicked");
+//     $("#text-area").css("display", "none");
+//     var textAreaValue = $("#text-area-element").val();
+//     var newEntryHeadline = $("<h3>")
+//     newEntryHeadline.text(currentDate);
+//     var newEntry = $("<p>")
+//     newEntry.html(textAreaValue.replace(/\n/g, "<br>"));
+//     $("#new-entry-container").css("display", "block");
+//     $("#new-entry-container").prepend(newEntryHeadline);
+//     $("#new-entry-container").append(newEntry);
+
+
+//     //Storing entry in localstorage. It stores it in an array of objects
+//     // each pos is marked with current date so that we can retrieve them on archives page.
+//     var publishedEntries = JSON.parse(localStorage.getItem("publishedEntries")) || [];
+//     publishedEntries.push({
+//       date: currentDate,
+//       content: $("#new-entry-container").html()
+//     });
+//     localStorage.setItem("publishedEntries", JSON.stringify(publishedEntries));
+
+//     //Adds 1  streak to counter when post published
+//     streakCounter();
+//   });
+
+//   let textArea = document.getElementById("text-area-element");
+//   let publishButton = document.getElementById("publish-button");
+//   publishButton.disabled = true;
+//   textArea.addEventListener("input", function () {
+//     if (textArea.value.length > 0) {
+//       publishButton.disabled = false;
+//     } else {
+//       publishButton.disabled = true;
+//     }
+//   });
+
+//   $("#publish-button").click(function (event) {
+//     event.preventDefault();
+//     console.log("publish clicked");
+//     // Add an event listener when clicking on the Save changes button and save entries to localStorage
+//     $("#publishBtn").click(function () {
+//       var newEntryHeadline = $("<h5>")
+//       newEntryHeadline.text("Your post from " + currentDate);
+//       var newEntry = $("<p>")
+//       newEntry.html($("#text-area-element").val().replace(/\n/g, "<br>"));
+//       $("#new-entry-container").css("display", "block");
+//       $("#new-entry-container").prepend(newEntryHeadline);
+//       $("#new-entry-container").append(newEntry);
+//       //Storing new post entry in localstorage. It stores it in an array of objects
+//       // each pos is marked with current date so that we can retrieve them on published page.
+//       var postedEntries = JSON.parse(localStorage.getItem("postedEntries")) || [];
+//       postedEntries.push({
+//         date: currentDate,
+//         content: $("#new-entry-container").html(),
+//       });
+//       localStorage.setItem("postedEntries", JSON.stringify(postedEntries));
+//       //Adds 1  streak to counter when post published
+//       streakCounter();
+//     });
+//   });
+// }
+
 // SAVE BUTTON
-function save() {
-  $("#save-button").click(function () {
-    console.log("save clicked");
-    var currentDate = moment().format("DD/MM/YYYY, kk:mm");
-    $("#text-area").css("display", "none");
-    var textAreaValue = $("#text-area-element").val();
-    var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
-    savedEntries.push({
-      date: currentDate,
-      content: textAreaValue
-    });
-    localStorage.setItem("savedEntries", JSON.stringify(savedEntries));
-  });
-  let textArea = document.getElementById("text-area-element");
-  let saveButton = document.getElementById("save-button");
-  saveButton.disabled = true;
-  textArea.addEventListener("input", function () {
-    if (textArea.value.length > 0) {
-      saveButton.disabled = false;
-    } else {
-      saveButton.disabled = true;
-    }
-  });
+// Create an event listener when clicking the save button
+function save(inspiration) {
   $('#save-button').on('click', function (event) {
     event.preventDefault();
-    console.log("save clicked");
+    // Add a modal to the save button
+    $('#save-button').attr("data-toggle", "modal");
+    $('#save-button').attr("data-target", "#exampleModal-2");
+    $('#save-button').append(`<div class="modal fade" id="exampleModal-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Please save your writing!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"><p class="small">Your writing will be saved in the records. You can view it on the Saved Writing page.</p></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" id="saveChgBtn" class="btn btn-warning">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>`);
+
+    let textArea = document.getElementById("text-area-element");
+    let saveButton = document.getElementById("save-button");
+    saveButton.disabled = true;
+    textArea.addEventListener("input", function () {
+      if (textArea.value.length > 0) {
+        saveButton.disabled = false;
+      } else {
+        saveButton.disabled = true;
+      }
+    });
+
     // Add an event listener when clicking on the Save changes button and save entries to localStorage
     $("#saveChgBtn").click(function () {
       var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
       savedEntries.push({
         date: currentDate,
         content: $("#text-area-element").val(),
+        prompt: inspiration,
       });
       localStorage.setItem("savedEntries", JSON.stringify(savedEntries));
     });
   });
 }
 
-//DISCARD BUTTON
+
+
+// // SAVE BUTTON
+// function save() {
+//   $("#save-button").click(function () {
+//     console.log("save clicked");
+//     var currentDate = moment().format("DD/MM/YYYY, kk:mm");
+//     $("#text-area").css("display", "none");
+//     var textAreaValue = $("#text-area-element").val();
+//     var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
+//     savedEntries.push({
+//       date: currentDate,
+//       content: textAreaValue
+//     });
+//     localStorage.setItem("savedEntries", JSON.stringify(savedEntries));
+//   });
+//   let textArea = document.getElementById("text-area-element");
+//   let saveButton = document.getElementById("save-button");
+//   saveButton.disabled = true;
+//   textArea.addEventListener("input", function () {
+//     if (textArea.value.length > 0) {
+//       saveButton.disabled = false;
+//     } else {
+//       saveButton.disabled = true;
+//     }
+//   });
+//   $('#save-button').on('click', function (event) {
+//     event.preventDefault();
+//     console.log("save clicked");
+//     // Add an event listener when clicking on the Save changes button and save entries to localStorage
+//     $("#saveChgBtn").click(function () {
+//       var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
+//       savedEntries.push({
+//         date: currentDate,
+//         content: $("#text-area-element").val(),
+//       });
+//       localStorage.setItem("savedEntries", JSON.stringify(savedEntries));
+//     });
+//   });
+// }
+
+// DISCARD BUTTON
+// Create an event listener when clicking the discard button
 function discard() {
   $('#discard-button').on('click', function (event) {
     event.preventDefault();
-    console.log("discard clicked");
     // Add a modal to the DISCARD button
     $('#discard-button').attr("data-toggle", "modal");
-    $('#discard-button').attr("data-target", "#exampleModal");
-    $('#discard-button').append(`<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Are you sure about discarding your post?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body"><p class="small">Your writing will be deleted and all progress will be lost!</p></div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="button" id="deleteBtn" class="btn btn-danger">Delete writing</button>
+    $('#discard-button').attr("data-target", "#exampleModal-1");
+    $('#discard-button').append(`<div class="modal fade" id="exampleModal-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Are you sure about discarding your post?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"><p class="small">Your writing will be deleted and all progress will be lost!</p></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" id="deleteBtn" class="btn btn-danger">Delete writing</button>
+          </div>
         </div>
       </div>
-    </div>
-  </div>`);
+    </div>`);
     // Add an event listener when clicking on the Delete button and empty the entries
     $("#deleteBtn").click(function () {
       $('#text-area-element').val("");
     });
   });
 }
+
+
+// //DISCARD BUTTON
+// function discard() {
+//   $('#discard-button').on('click', function (event) {
+//     event.preventDefault();
+//     console.log("discard clicked");
+//     // Add a modal to the DISCARD button
+//     $('#discard-button').attr("data-toggle", "modal");
+//     $('#discard-button').attr("data-target", "#exampleModal");
+//     $('#discard-button').append(`<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+//     <div class="modal-dialog" role="document">
+//       <div class="modal-content">
+//         <div class="modal-header">
+//           <h5 class="modal-title" id="exampleModalLabel">Are you sure about discarding your post?</h5>
+//           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+//             <span aria-hidden="true">&times;</span>
+//           </button>
+//         </div>
+//         <div class="modal-body"><p class="small">Your writing will be deleted and all progress will be lost!</p></div>
+//         <div class="modal-footer">
+//           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+//           <button type="button" id="deleteBtn" class="btn btn-danger">Delete writing</button>
+//         </div>
+//       </div>
+//     </div>
+//   </div>`);
+//     // Add an event listener when clicking on the Delete button and empty the entries
+//     $("#deleteBtn").click(function () {
+//       $('#text-area-element').val("");
+//     });
+//   });
+// }
 
 // COUNTER FUNCTION 
 function streakCounter() {
