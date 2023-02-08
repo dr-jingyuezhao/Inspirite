@@ -57,7 +57,7 @@ N/A
 ## Usage
 
 GitHub Repo: https://github.com/dr-jingyuezhao/Inspirite
-GitHub Pages: 
+GitHub Pages: https://dr-jingyuezhao.github.io/Inspirite/
 
 
 ### Task: This is what the app should do: Technical Requirements
@@ -77,9 +77,12 @@ GitHub Pages:
 [Click here to see the deployed screenshot](/assets/images/screenshot_inspirite_landing.png)
 <img width="1262" alt="Inspirite Landing Page Screenshot" src="https://user-images.githubusercontent.com/116456417/217004757-ee3c567f-cc6f-423a-b917-ada9ba8b495e.png">
 
+## Elevator Pitch
+https://docs.google.com/document/d/1_e-iMsE5rRu6HXCnrnoc4OajT5UvslIOAEcLzokCVnM/edit?usp=sharing
+https://drive.google.com/file/d/1brsqEuIZ28dgOupK-QWiErJAWuNk4cC-/view?usp=sharing
 
 ## Credits
-Sophie, Maciek, Jingyue, Lisa
+Sophie https://github.com/sophiedodsworth | Maciek https://github.com/manonthemon | Jingyue https://github.com/dr-jingyuezhao | Lisa https://github.com/LisaMLorenz
 
 ## License
 N/A
