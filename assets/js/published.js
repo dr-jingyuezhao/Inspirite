@@ -3,6 +3,22 @@ var currentDate = moment().format("DD/MM/YYYY, H:mm");
 console.log("Current date/time is: " + currentDate);
 var postedEntries = JSON.parse(localStorage.getItem("postedEntries")) || [];
 console.log("postedEntries: ", postedEntries);
+var writingStreak = JSON.parse(localStorage.getItem("writingStreak")) || [];
+console.log("writingStreak: ", writingStreak);
+
+
+//COUNTER ON PAGE REFRESH /  LOAD
+
+$(document).ready(function() {
+    
+      if (writingStreak === 1) {
+        $("#counter").text("Your current writing streak is " + writingStreak + " day");
+      }
+      else if (writingStreak > 1) {
+        $("#counter").text("Your current writing streak is " + writingStreak + " days");
+      }
+ });
+
 
 // Create a card for each posted entry
 for (var i = 0; i < postedEntries.length; i++) {
@@ -35,4 +51,6 @@ $(".readBtn").each(function () {
         $("#blog-container").html(postedBlog);
     });
 });
+
+
 
