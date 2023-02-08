@@ -146,26 +146,47 @@ $("#quote").on("click", function (event) {
       textArea.attr("id", "text-area-element")
       $("#text-area").append(textArea);
 
-      //Creates a container for buttons and the save and publish buttons
-      var textButtonsContainer = $("<div>")
-      textButtonsContainer.attr("id", "text-buttons-container")
+      // Creates a container for buttons: discard, save, and publish
+      var textButtonsContainer = $("<div>");
+      textButtonsContainer.attr("id", "text-buttons-container");
+      // add discard button
       var discardButton = $('<button>');
       discardButton.text('DISCARD');
       discardButton.attr("id", "discard-button")
-
       textButtonsContainer.append(discardButton)
+      // add save button
       var saveButton = $('<button>');
       saveButton.text('SAVE');
-      saveButton.attr("id", "save-button")
-
-      textButtonsContainer.append(saveButton)
-      $("#text-area").append(textButtonsContainer);
+      saveButton.attr("id", "save-button");
+      textButtonsContainer.append(saveButton);
+      // add publish button
       var publishButton = $('<button>');
       publishButton.text('PUBLISH');
-      publishButton.attr("id", "publish-button")
+      publishButton.attr("id", "publish-button");
+      textButtonsContainer.append(publishButton);
+      $("#text-area").append(textButtonsContainer);
 
-      saveButton.attr("id", "save-button")
-      textButtonsContainer.append(publishButton)
+
+      // //Creates a container for buttons and the save and publish buttons
+      // var textButtonsContainer = $("<div>")
+      // textButtonsContainer.attr("id", "text-buttons-container")
+      // var discardButton = $('<button>');
+      // discardButton.text('DISCARD');
+      // discardButton.attr("id", "discard-button")
+
+      // textButtonsContainer.append(discardButton)
+      // var saveButton = $('<button>');
+      // saveButton.text('SAVE');
+      // saveButton.attr("id", "save-button")
+
+      // textButtonsContainer.append(saveButton)
+      // $("#text-area").append(textButtonsContainer);
+      // var publishButton = $('<button>');
+      // publishButton.text('PUBLISH');
+      // publishButton.attr("id", "publish-button")
+
+      // saveButton.attr("id", "save-button")
+      // textButtonsContainer.append(publishButton)
       discard();
       save(result);
       publish(result);
@@ -332,6 +353,17 @@ $("#gif").on("click", function (event) {
 
 // PUBLISH BUTTON
 function publish(inspiration) {
+  let textArea = document.getElementById("text-area-element");
+  let publishButton = document.getElementById("publish-button");
+  publishButton.disabled = true;
+  textArea.addEventListener("input", function () {
+    if (textArea.value.length > 0) {
+      publishButton.disabled = false;
+    } else {
+      publishButton.disabled = true;
+    }
+  });
+
   $("#publish-button").click(function (event) {
     event.preventDefault();
     // Add a modal to the PUBLISH button
@@ -355,17 +387,6 @@ function publish(inspiration) {
       </div>
     </div>`);
 
-    let textArea = document.getElementById("text-area-element");
-    let publishButton = document.getElementById("publish-button");
-    publishButton.disabled = true;
-    textArea.addEventListener("input", function () {
-      if (textArea.value.length > 0) {
-        publishButton.disabled = false;
-      } else {
-        publishButton.disabled = true;
-      }
-    });
-
     // Add an event listener when clicking on the Save changes button and save entries to localStorage
     $("#publishBtn").click(function () {
       var newEntryHeadline = $("<h5>")
@@ -388,6 +409,7 @@ function publish(inspiration) {
     });
   });
 }
+
 
 // // PUBLISH BUTTON
 // function publish() {
@@ -457,6 +479,17 @@ function publish(inspiration) {
 // SAVE BUTTON
 // Create an event listener when clicking the save button
 function save(inspiration) {
+  let textArea = document.getElementById("text-area-element");
+  let saveButton = document.getElementById("save-button");
+  saveButton.disabled = true;
+  textArea.addEventListener("input", function () {
+    if (textArea.value.length > 0) {
+      saveButton.disabled = false;
+    } else {
+      saveButton.disabled = true;
+    }
+  });
+
   $('#save-button').on('click', function (event) {
     event.preventDefault();
     // Add a modal to the save button
@@ -480,16 +513,15 @@ function save(inspiration) {
       </div>
     </div>`);
 
-    let textArea = document.getElementById("text-area-element");
-    let saveButton = document.getElementById("save-button");
-    saveButton.disabled = true;
-    textArea.addEventListener("input", function () {
-      if (textArea.value.length > 0) {
-        saveButton.disabled = false;
-      } else {
-        saveButton.disabled = true;
-      }
-    });
+    // let textArea = document.getElementById("text-area-element");
+    // let saveButton = document.getElementById("save-button");
+    // saveButton.disabled = true;
+    // textArea.addEventListener("input", function () {
+    //   if (textArea.value.length > 0) {
+    //     saveButton.disabled = false;
+    //   } else {
+    //     saveButton.disabled = true;
+    //   }
 
     // Add an event listener when clicking on the Save changes button and save entries to localStorage
     $("#saveChgBtn").click(function () {
@@ -503,8 +535,6 @@ function save(inspiration) {
     });
   });
 }
-
-
 
 // // SAVE BUTTON
 // function save() {
