@@ -305,12 +305,13 @@ var lastClicked = new Date();
 $("#gif").on("click", function (event) {
   event.preventDefault()
 
-  let slideSound = document.getElementById('slider');
-  if (slideSound.style.display === "none") {
-    slideSound.style.display = "block";
+  let textInput = document.getElementById("text-area");
+  if (textInput.style.display === "none") {
+    textInput.style.display = "block";
   } else {
-    slideSound.style.display = "none";
+    textInput.style.display = "none";
   }
+  
   $('#soundToggleContainer').css('display', 'block');
 
   var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=" + giphyKey; + "&rating=pg";
@@ -578,6 +579,18 @@ function save(inspiration) {
 // DISCARD BUTTON
 // Create an event listener when clicking the discard button
 function discard() {
+
+  let textArea = document.getElementById("text-area-element");
+  let discardButton = document.getElementById("discard-button");
+  discardButton.disabled = true;
+  textArea.addEventListener("input", function () {
+    if (textArea.value.length > 0) {
+      discardButton.disabled = false;
+    } else {
+      discardButton.disabled = true;
+    }
+  });
+
   $('#discard-button').on('click', function (event) {
     event.preventDefault();
     // Add a modal to the DISCARD button
