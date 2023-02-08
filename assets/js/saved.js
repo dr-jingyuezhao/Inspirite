@@ -11,7 +11,7 @@ for (var i = 0; i < savedEntries.length; i++) {
   $('#savedWriting').append(`<div class="cardContainer mb-3 col-xs-12 col-md-6 col-xl-3">
   <div class="card text-center">
     <div id="cardTitle" class="card-header">
-    ${savedEntries[i].date}
+    ${savedDate}
     </div>
     <div class="card-body">
       <h5 class="card-title">Draft #${i + 1}</h5>

@@ -12,7 +12,8 @@ for (var i = 0; i < postedEntries.length; i++) {
     <img src="assets/images/hd-wallpaper-7091379_1920.jpg" class="card-img"
         alt="The background image for each published blog.">
     <div class="card-img-overlay" style="padding: 50px;">
-        <p class="card-text">${postedEntries[i].content.substr(0, 263)}</p>
+    <h5 class="card-title">${postedDate}</h5>
+        <p class="card-text">${postedEntries[i].content.substr(0, 256)}</p>
         <button type="button" id="posted#${i}" class="readBtn btn btn-success mt-auto">Read more</button>
     </div>
     <div class="card-footer text-muted small text-center">
