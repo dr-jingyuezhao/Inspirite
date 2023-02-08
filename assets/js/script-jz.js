@@ -368,7 +368,7 @@ function publish(inspiration) {
           <div class="modal-body"><p class="small">Your post will be published. You can view it on the Published Work page.</p></div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" id="publishBtn" class="btn btn-success">Publish post</button>
+            <button type="button" id="publishBtn" class="btn btn-success">Publish blog</button>
           </div>
         </div>
       </div>
@@ -376,7 +376,7 @@ function publish(inspiration) {
     // Add an event listener when clicking on the Save changes button and save entries to localStorage
     $("#publishBtn").click(function () {
       var newEntryHeadline = $("<h5>")
-      newEntryHeadline.text("Your post from " + currentDate);
+      newEntryHeadline.text("Your blog from " + currentDate);
       var newEntry = $("<p>")
       newEntry.html($("#text-area-element").val().replace(/\n/g, "<br>"));
       $("#new-entry-container").prepend(newEntryHeadline);
@@ -386,7 +386,7 @@ function publish(inspiration) {
       var postedEntries = JSON.parse(localStorage.getItem("postedEntries")) || [];
       postedEntries.push({
         date: currentDate,
-        content: $("#new-entry-container").html(),
+        content: newEntry.html(),
         prompt: inspiration,
       });
       localStorage.setItem("postedEntries", JSON.stringify(postedEntries));

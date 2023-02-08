@@ -153,7 +153,7 @@ function publish() {
           <div class="modal-body"><p class="small">Your writing will be published. You can view it on the Published Work page.</p></div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" id="publishBtn" class="btn btn-success">Publish post</button>
+            <button type="button" id="publishBtn" class="btn btn-success">Publish blog</button>
           </div>
         </div>
       </div>
