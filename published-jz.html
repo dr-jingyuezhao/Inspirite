@@ -58,14 +58,18 @@
                 </h4>
                 <div id="publishedWork" class="row mx-auto">
 
-                    <div class="blogCard card bg-dark text-white ml-3 mr-3 mb-5 mx-auto col-xs-12 col-lg-6 w-auto">
+                    <!-- <div class="blogCard card bg-dark text-white ml-3 mr-3 mb-5 mx-auto col-xs-12 col-lg-6 w-auto">
                         <img src="assets/images/hd-wallpaper-7091379_1920.jpg" class="card-img"
                             alt="The background image for each published blog.">
                         <div class="card-img-overlay" style="padding: 50px;">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <p class="card-text small text-right">Last updated 3 mins ago</p>
+                                additional content. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
+                                repudiandae, inventore voluptatem facere hic alias minima amet cumque est deserunt!</p>
+                            <button type="button" id="publishedBlog" class="btn btn-success readBtn">Read more</button>
+                        </div>
+                        <div class="card-footer text-muted small text-center">
+                            Posted 2 days ago
                         </div>
                     </div>
 
@@ -90,111 +94,24 @@
                                 additional content. This content is a little bit longer.</p>
                             <p class="card-text small text-right">Last updated 3 mins ago</p>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
         </section>
 
-        <section id="publishedSection">
-            <div id="text-area" style="display: none">
+        <section id="blogSection" class="hide">
+            <div id="blogHeader">
                 <p class="font-weight-bold font-italic text-monospace text-uppercase text-danger mb-3 ml-3">Please find
-                    your
-                    published blog below:</p>
+                    your published blog below:</p>
             </div>
+            <div id="blog-area">
+                <h6 id="blogDate" class="text-center"></h6>
+                <article id="blog-container" class="text-left ml-3 mr-3 mt-3 mb-5"></article>
+            </div>
+
         </section>
     </main>
-
-    <!-- <div id="published-screen" class="jumbotron-published">
-            <h3 class="display-6">My published writing</h3>
-
-            <div class="container-fluid">
-                <div class="card-deck">
-                    <div class="card bg-light publishedCard" id="card1">
-                        <div class="card-body text-center">
-                            <h4>A Quote</h4>
-                            <p class="card-text">Some text inside the first card</p>
-                        </div>
-                    </div>
-                    <div class="card bg-light publishedCard" id="card2">
-                        <div class="card-body text-center">
-                            <h4>A GIF</h4>
-                            <p class="card-text">Some text inside the second card</p>
-                        </div>
-                    </div>
-                    <div class="card bg-light publishedCard" id="card3">
-                        <div class="card-body text-center">
-                            <h4>Another GIF</h4>
-                            <p class="card-text">Some text inside the third card</p>
-                        </div>
-                    </div>
-                    <div class="card bg-light publishedCard" id="card4">
-                        <div class="card-body text-center">
-                            <h4>Sonnett</h4>
-                            <p class="card-text">Some text inside the fourth card</p>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
-    <!-- <div class="container-fluid">
-                <div class="card-deck">
-                    <div class="card bg-light publishedCard" id="card5">
-                        <div class="card-body text-center">
-                            <h4>Another GIF</h4>
-                            <p class="card-text">Some text inside the first card</p>
-                        </div>
-                    </div>
-                    <div class="card bg-light publishedCard" id="card6">
-                        <div class="card-body text-center">
-                            <h4>Haiku</h4>
-                            <p class="card-text">Some text inside the second card</p>
-                        </div>
-                    </div>
-                    <div class="card bg-light publishedCard" id="card7">
-                        <div class="card-body text-center">
-                            <h4>Short Story</h4>
-                            <p class="card-text">Some text inside the third card</p>
-                        </div>
-                    </div>
-                    <div class="card bg-light publishedCard" id="card8">
-                        <div class="card-body text-center">
-                            <h4>A Quote</h4>
-                            <p class="card-text">Some text inside the fourth card</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container-fluid">
-                <div class="card-deck mb-5">
-                    <div class="card bg-light publishedCard" id="card9">
-                        <div class="card-body text-center">
-                            <h4>GIF</h4>
-                            <p class="card-text">Some text inside the first card</p>
-                        </div>
-                    </div>
-                    <div class="card bg-light publishedCard" id="card10">
-                        <div class="card-body text-center">
-                            <h4>GIF</h4>
-                            <p class="card-text">Some text inside the second card</p>
-                        </div>
-                    </div>
-                    <div class="card bg-light publishedCard" id="card11">
-                        <div class="card-body text-center">
-                            <h4>Haiku</h4>
-                            <p class="card-text">Some text inside the third card</p>
-                        </div>
-                    </div>
-                    <div class="card bg-light publishedCard" id="card12">
-                        <div class="card-body text-center">
-                            <h4>Another GIF</h4>
-                            <p class="card-text">Some text inside the fourth card</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
 
     <!-- footer -->
     <footer>
@@ -223,7 +140,7 @@
         crossorigin="anonymous"></script>
 
     <script src="./assets/js/keys.js"></script>
-    <script src="./assets/js/script-jz.js"></script>
+    <script src="./assets/js/published.js"></script>
 </body>
 
 </html>
