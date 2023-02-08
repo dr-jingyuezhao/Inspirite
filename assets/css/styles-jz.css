@@ -497,9 +497,9 @@ input:checked+.slider:before {
 /* Styling for published blog card */
 .blogCard {
     padding: 20px;
-    max-width: 620px;
+    max-width: 600px;
     margin: 20px 20px;
-    background-color: rgb(228, 222, 222) !important;
+    background-color: rgb(238, 237, 237) !important;
     border-color: var(--signal-colour);
     border-style: groove;
     border-radius: 10px;
