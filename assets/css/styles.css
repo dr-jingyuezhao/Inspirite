@@ -541,12 +541,15 @@ a {
 }
 
 #nav-bar {
-    font-family: "IBM Plex Mono", bold;
-    font-size: 13px;
+    font-family: 'IBM Plex Mono', bold;
+    font-size: small;
+    padding-right: 10px;
     color: var(--signal-colour);
-    text-decoration: none;
 }
 
-#nav-bar:hover {
+#nav-bar a:hover {
     text-decoration: none;
+    color: var(--signal-colour);
+    text-decoration: none;
+    text-decoration: none !important;
 }
