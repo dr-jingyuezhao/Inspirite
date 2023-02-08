@@ -9,10 +9,13 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- kit code from fontawesome -->
+  <script src="https://kit.fontawesome.com/c298d07cae.js" crossorigin="anonymous"></script>
+
   <!-- Customised CSS -->
   <link rel="stylesheet" href="./assets/css/styles-jz.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Caveat|IBM Plex Mono|DM Serif Display">
-  
+
   <title>Inspirite: Your Creative Writing Catalyst</title>
 
 </head>
@@ -21,8 +24,8 @@
   <header>
     <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a href="#" id="app-name" class="navbar-brand mb-0 h1"><img id="logo"
-        src="assets/images/jz_Inspirite.png">Inspirite</a>
+      <a href="index-jz.html" id="app-name" class="navbar-brand mb-0 h1"><img id="logo"
+          src="assets/images/jz_Inspirite.png">Inspirite</a>
       <div id="counter" class="font-weight-bold">Your current streak: <span id="days-number"></span></div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,10 +34,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link font-weight-bold" href="saved.html">Saved</a>
+            <a id="home-page" class="nav-link" href="index-jz.html"><i class="fa-solid fa-house"></i></a>
           </li>
           <li class="nav-item">
-            <a id="published" class="nav-link font-weight-bold" href="published.html">Published</a>
+            <a class="nav-link font-weight-bold" href="saved.html">Saved Writing</a>
+          </li>
+          <li class="nav-item">
+            <a id="published" class="nav-link font-weight-bold mr-2" href="published.html">Published Work</a>
           </li>
           <!-- CTA button -->
           <li class="nav-item">
@@ -53,7 +59,8 @@
     <!-- hero section: jumbotron featuring a background picture and button information -->
     <section class="hero text-center">
       <div id="start-screen" class="jumbotron">
-        <h1 class="display-4 mb-5 font-weight-bold font-italic text-monospace text-uppercase text-danger">Choose your inspiration</h1>
+        <h1 class="display-4 mb-5 font-weight-bold font-italic text-monospace text-uppercase text-danger">Choose your
+          inspiration</h1>
         <p class="task">Please click on a button below <br>to receive a prompt <br>and experience the joy of writing.
         </p>
         <a id="quote" class="btn btn-primary prompt-btn" href="#" role="button">Famous quote</a>

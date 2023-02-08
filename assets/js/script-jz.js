@@ -19,7 +19,7 @@
 // Add notifications
 
 
-var currentDate = moment().format("DD/MM/YYYY, kk:mm");
+var currentDate = moment().format("DD/MM/YYYY, H:mm");
 
 $(document).ready(function () {
 
@@ -44,7 +44,7 @@ $(document).ready(function () {
   }
 
   else {
-    $("#counter").text("You can start writing today. Keep writing everyday!");
+    $("#counter").text("Keep writing everyday!");
   }
 })
 
@@ -123,7 +123,10 @@ function addTextArea() {
 //QUOTES BUTTON
 //Buttons on click event
 $("#quote").on("click", function (event) {
-  event.preventDefault()
+  event.preventDefault();
+  var promptCategory = this.id;
+  console.log("prompt category: ", promptCategory);
+
   //Launches Ajax call for quotes
   $.ajax({
     method: 'GET',
@@ -167,7 +170,10 @@ $("#quote").on("click", function (event) {
 
 //FACTS BUTTON
 $("#fact").on("click", function (event) {
-  event.preventDefault()
+  event.preventDefault();
+  var promptCategory = this.id;
+  console.log("prompt category: ", promptCategory);
+
   $.ajax({
     method: 'GET',
     url: 'https://api.api-ninjas.com/v1/facts?limit=1',
@@ -197,7 +203,9 @@ $("#fact").on("click", function (event) {
 
 //RANDOM IMAGE BUTTON
 $("#random-img").on("click", function (event) {
-  event.preventDefault()
+  event.preventDefault();
+  var promptCategory = this.id;
+  console.log("prompt category: ", promptCategory);
   $.ajax({
     method: 'GET',
     url: 'https://api.api-ninjas.com/v1/randomimage?',
@@ -229,7 +237,9 @@ var count = 0;
 var lastClicked = new Date();
 
 $("#gif").on("click", function (event) {
-  event.preventDefault()
+  event.preventDefault();
+  var promptCategory = this.id;
+  console.log("prompt category: ", promptCategory);
   var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=" + giphyKey; + "&rating=pg";
   $.ajax({
     url: queryURL,
@@ -239,7 +249,7 @@ $("#gif").on("click", function (event) {
       console.log("The prompt is: ", result);
       $("#start-screen").css("display", "none");
       $("#prompt-container").removeClass("hide");
-      var gifUrl = response.data.images.original.url
+      var gifUrl = result.data.images.original.url;
       var gifElement = $("<img>");
       gifElement.attr("src", gifUrl);
       gifElement.attr("id", "gif-element");

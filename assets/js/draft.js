@@ -1,4 +1,7 @@
-event.preventDefault();
+
+
+
+
 // Add a modal to the save changes button
 // $('#saveChgBtn').attr("data-toggle", "modal");
 // $('#saveChgBtn').attr("data-target", "#exampleModal");
