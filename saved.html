@@ -8,13 +8,14 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   <!-- kit code from fontawesome -->
   <script src="https://kit.fontawesome.com/c298d07cae.js" crossorigin="anonymous"></script>
   <!-- Customised CSS -->
   <link rel="stylesheet" href="./assets/css/styles-jz.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Caveat|IBM Plex Mono|DM Serif Display">
 
-  <title>Saved Writing</title>
+  <title>Inspirite: Saved Writing</title>
 
 </head>
 
@@ -22,7 +23,7 @@
   <header>
     <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-      <a href="#" id="app-name" class="navbar-brand mb-0 h1"><img id="logo"
+      <a href="index-jz.html" id="app-name" class="navbar-brand mb-0 h1"><img id="logo"
           src="assets/images/jz_Inspirite.png">Inspirite</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,13 +32,14 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a id="home-page" class="nav-link" href="index.html"><i class="fa-solid fa-house"></i></a>
+            <a id="home-page" class="nav-link" href="index-jz.html"><i class="fa-solid fa-house"></i></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link font-weight-bold" href="#">Saved<span class="sr-only">(current)</span></a>
+            <a class="nav-link font-weight-bold mr-1" href="saved.html">Saved Writing<span
+                class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link font-weight-bold" href="published.html">Published</a>
+            <a class="nav-link font-weight-bold mr-3" href="published-jz.html">Published Work</a>
           </li>
         </ul>
         <form class="form-inline">
@@ -49,74 +51,17 @@
   </header>
 
   <!-- main body -->
-  <main class="cardSection ml-3 mr-3">
-    <div id="savedWriting" class="row">
+  <main class="sections ml-3 mr-3">
+    <section id="cardSection">
+      <div id="savedWriting" class="row"></div>
+    </section>
 
-      <!-- <div class="cardContainer mb-3 col-xs-12 col-md-6 col-xl-3">
-        <div class="card text-center">
-          <div class="card-header">
-            Date
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Title 1</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-sm btn-danger">Continue writing</a>
-          </div>
-          <div class="card-footer text-muted small">
-            xxx days ago
-          </div>
-        </div>
+    <section id="writingSection">
+      <div id="text-area" style="display: none">
+        <p class="font-weight-bold font-italic text-monospace text-uppercase text-danger mb-3 ml-3">Please continue your
+          writing below:</p>
       </div>
-
-      <div class="cardContainer mb-3 col-xs-12 col-md-6 col-xl-3">
-        <div class="card text-center">
-          <div class="card-header">
-            Date
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Title 2</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-sm btn-danger">Continue writing</a>
-          </div>
-          <div class="card-footer text-muted small">
-            xxx days ago
-          </div>
-        </div>
-      </div>
-
-      <div class="cardContainer mb-3 col-xs-12 col-md-6 col-xl-3">
-        <div class="card text-center">
-          <div class="card-header">
-            Date
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Title 3</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-sm btn-danger">Continue writing</a>
-          </div>
-          <div class="card-footer text-muted small">
-            xxx days ago
-          </div>
-        </div>
-      </div>
-
-      <div class="cardContainer mb-3 col-xs-12 col-md-6 col-xl-3">
-        <div class="card text-center">
-          <div class="card-header">
-            Date
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Title 4</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-sm btn-danger">Continue writing</a>
-          </div>
-          <div class="card-footer text-muted small">
-            xxx days ago
-          </div>
-        </div>
-      </div> -->
-
-    </div>
+    </section>
   </main>
 
   <!-- footer -->
@@ -134,7 +79,9 @@
 
 
   <!-- JavaScript -->
+  <!-- Moment.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+  <!-- jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
@@ -144,8 +91,6 @@
     integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
     crossorigin="anonymous"></script>
 
-  <script src="./assets/js/keys.js"></script>
-  <script src="./assets/js/script-jz.js"></script>
   <script src="./assets/js/saved.js"></script>
 </body>
 

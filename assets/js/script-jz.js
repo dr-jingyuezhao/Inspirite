@@ -19,7 +19,7 @@
 // Add notifications
 
 
-var currentDate = moment().format("MMMM D, YYYY");
+var currentDate = moment().format("DD/MM/YYYY, H:mm");
 
 $(document).ready(function () {
 
@@ -44,7 +44,7 @@ $(document).ready(function () {
   }
 
   else {
-    $("#counter").text("You can start writing today. Keep writing everyday!");
+    $("#counter").text("Keep writing everyday!");
   }
 })
 
@@ -123,7 +123,10 @@ function addTextArea() {
 //QUOTES BUTTON
 //Buttons on click event
 $("#quote").on("click", function (event) {
-  event.preventDefault()
+  event.preventDefault();
+  var promptCategory = this.id;
+  console.log("prompt category: ", promptCategory);
+
   //Launches Ajax call for quotes
   $.ajax({
     method: 'GET',
@@ -131,6 +134,7 @@ $("#quote").on("click", function (event) {
     headers: { 'X-Api-Key': ninjaKey },
     contentType: 'application/json',
     success: function (result) {
+      console.log("The prompt is: ", result);
       //"Disappears" the start page jumbotron
       $("#start-screen").css("display", "none");
       $("#prompt-container").removeClass("hide");
@@ -153,8 +157,8 @@ $("#quote").on("click", function (event) {
       soundEffect();
       addTextArea();
       discard();
-      save();
-      publish();
+      save(result);
+      publish(result);
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -166,13 +170,17 @@ $("#quote").on("click", function (event) {
 
 //FACTS BUTTON
 $("#fact").on("click", function (event) {
-  event.preventDefault()
+  event.preventDefault();
+  var promptCategory = this.id;
+  console.log("prompt category: ", promptCategory);
+
   $.ajax({
     method: 'GET',
     url: 'https://api.api-ninjas.com/v1/facts?limit=1',
     headers: { 'X-Api-Key': ninjaKey },
     contentType: 'application/json',
     success: function (result) {
+      console.log("The prompt is: ", result);
       $("#start-screen").css("display", "none");
       $("#prompt-container").removeClass("hide");
       var factElement = $("<h4>");
@@ -183,8 +191,8 @@ $("#fact").on("click", function (event) {
       soundEffect();
       addTextArea();
       discard();
-      save();
-      publish();
+      save(result);
+      publish(result);
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -195,12 +203,15 @@ $("#fact").on("click", function (event) {
 
 //RANDOM IMAGE BUTTON
 $("#random-img").on("click", function (event) {
-  event.preventDefault()
+  event.preventDefault();
+  var promptCategory = this.id;
+  console.log("prompt category: ", promptCategory);
   $.ajax({
     method: 'GET',
     url: 'https://api.api-ninjas.com/v1/randomimage?',
     headers: { 'X-Api-Key': ninjaKey },
     success: function (result) {
+      console.log("The prompt is: ", result);
       $("#start-screen").css("display", "none");
       $("#prompt-container").removeClass("hide");
       var imageElement = $("<img>");
@@ -211,8 +222,8 @@ $("#random-img").on("click", function (event) {
       soundEffect();
       addTextArea();
       discard();
-      save();
-      publish();
+      save(result);
+      publish(result);
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -226,16 +237,19 @@ var count = 0;
 var lastClicked = new Date();
 
 $("#gif").on("click", function (event) {
-  event.preventDefault()
+  event.preventDefault();
+  var promptCategory = this.id;
+  console.log("prompt category: ", promptCategory);
   var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=" + giphyKey; + "&rating=pg";
   $.ajax({
     url: queryURL,
     method: "GET"
   })
-    .then(function (response) {
+    .then(function (result) {
+      console.log("The prompt is: ", result);
       $("#start-screen").css("display", "none");
       $("#prompt-container").removeClass("hide");
-      var gifUrl = response.data.images.original.url
+      var gifUrl = result.data.images.original.url;
       var gifElement = $("<img>");
       gifElement.attr("src", gifUrl);
       gifElement.attr("id", "gif-element");
@@ -244,8 +258,8 @@ $("#gif").on("click", function (event) {
       soundEffect();
       addTextArea();
       discard();
-      save();
-      publish();
+      save(result);
+      publish(result);
     });
 });
 
@@ -256,8 +270,8 @@ function discard() {
     event.preventDefault();
     // Add a modal to the DISCARD button
     $('#discard-button').attr("data-toggle", "modal");
-    $('#discard-button').attr("data-target", "#exampleModal");
-    $('#discard-button').append(`<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    $('#discard-button').attr("data-target", "#exampleModal-1");
+    $('#discard-button').append(`<div class="modal fade" id="exampleModal-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -283,13 +297,13 @@ function discard() {
 
 // SAVE BUTTON
 // Create an event listener when clicking the save button
-function save() {
+function save(inspiration) {
   $('#save-button').on('click', function (event) {
     event.preventDefault();
     // Add a modal to the save button
     $('#save-button').attr("data-toggle", "modal");
-    $('#save-button').attr("data-target", "#exampleModal");
-    $('#save-button').append(`<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    $('#save-button').attr("data-target", "#exampleModal-2");
+    $('#save-button').append(`<div class="modal fade" id="exampleModal-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -312,20 +326,37 @@ function save() {
       savedEntries.push({
         date: currentDate,
         content: $("#text-area-element").val(),
+        prompt: inspiration,
       });
       localStorage.setItem("savedEntries", JSON.stringify(savedEntries));
     });
   });
 }
 
+// function save() {
+//   $('#save-button').on('click', function (event) {
+//     event.preventDefault();
+//     console.log("save clicked");
+//     var currentDate = moment().format("DD/MM/YYYY, kk:mm");
+//     var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
+//     console.log("savedEntries: ", savedEntries);
+//     savedEntries.push({
+//       date: currentDate,
+//       content: $("#text-area-element").val(),
+//     });
+//     console.log("new savedEntries", savedEntries)
+//     localStorage.setItem("savedEntries", JSON.stringify(savedEntries));
+//   });
+// }
+
 // PUBLISH BUTTON
-function publish() {
+function publish(inspiration) {
   $("#publish-button").click(function (event) {
     event.preventDefault();
     // Add a modal to the PUBLISH button
     $('#publish-button').attr("data-toggle", "modal");
-    $('#publish-button').attr("data-target", "#exampleModal");
-    $('#publish-button').append(`<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    $('#publish-button').attr("data-target", "#exampleModal-3");
+    $('#publish-button').append(`<div class="modal fade" id="exampleModal-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -356,6 +387,7 @@ function publish() {
       postedEntries.push({
         date: currentDate,
         content: $("#new-entry-container").html(),
+        prompt: inspiration,
       });
       localStorage.setItem("postedEntries", JSON.stringify(postedEntries));
       //Adds 1  streak to counter when post published
