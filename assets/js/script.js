@@ -96,6 +96,8 @@ $(document).ready(function () {
 $("#quote").on("click", function (event) {
   event.preventDefault()
 
+
+
   let textInput = document.getElementById("text-area");
 
   if (textInput.style.display === "none") {
@@ -104,7 +106,7 @@ $("#quote").on("click", function (event) {
     textInput.style.display = "none";
   }
 
-  $('#soundToggleContainer').css('display', 'block');
+  $('#sound-toggle').css('display', 'block');
 
 
   //Launches Ajax call for quotes
@@ -282,13 +284,15 @@ var count = 0;
 var lastClicked = new Date();
 $("#gif").on("click", function (event) {
   event.preventDefault()
-  let textInput = document.getElementById("text-area");
-  if (textInput.style.display === "none") {
-    textInput.style.display = "block";
+
+  let slideSound = document.getElementById('slider');
+  if (slideSound.style.display === "none") {
+    slideSound.style.display = "block";
   } else {
-    textInput.style.display = "none";
+    slideSound.style.display = "none";
   }
   $('#soundToggleContainer').css('display', 'block');
+
   var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=" + giphyKey; + "&rating=pg";
   $.ajax({
     url: queryURL,
@@ -337,8 +341,10 @@ function publish() {
     newEntryHeadline.text(currentDate);
     var newEntry = $("<p>")
     newEntry.html(textAreaValue.replace(/\n/g, "<br>"));
+    $("#new-entry-container").css("display", "block");
     $("#new-entry-container").prepend(newEntryHeadline);
     $("#new-entry-container").append(newEntry);
+
 
     //Storing entry in localstorage. It stores it in an array of objects
     // each pos is marked with current date so that we can retrieve them on archives page.
@@ -373,6 +379,7 @@ function publish() {
       newEntryHeadline.text("Your post from " + currentDate);
       var newEntry = $("<p>")
       newEntry.html($("#text-area-element").val().replace(/\n/g, "<br>"));
+      $("#new-entry-container").css("display", "block");
       $("#new-entry-container").prepend(newEntryHeadline);
       $("#new-entry-container").append(newEntry);
       //Storing new post entry in localstorage. It stores it in an array of objects
@@ -499,20 +506,20 @@ function streakCounter() {
   localStorage.setItem("lastClicked", lastClicked);
 }
 
-//SOUND FUNCTION
+// //SOUND FUNCTION
 
-// Create the switch button
-$('<label class="switch">' +
-  '<input type="checkbox" id="soundToggle">' +
-  '<span class="slider round"></span>' +
-  '</label><label>Sound On/Off:</label>').insertAfter('#prompt-container');
+// // Create the switch button
+// $('<label class="switch" >' +
+//   '<input type="checkbox" id="soundToggle">' +
+//   '<span class="slider round"></span>' +
+//   '</label><label>Sound On/Off:</label>').insertAfter('#prompt-container');
 
-// function to play sound on text area click ---- DOES NOT DISPLAY ON PUBLISHED PAGE AND CAUSES ERROR
-const audio = new Audio('assets/sounds/writing_7s.mp3');
-document.getElementById("text-area").addEventListener("keydown", function () {
-  if ($('#soundToggle').is(':checked')) {
-    audio.play();
-  }
-});
+// // function to play sound on text area click ---- DOES NOT DISPLAY ON PUBLISHED PAGE AND CAUSES ERROR
+// const audio = new Audio('assets/sounds/writing_7s.mp3');
+// document.getElementById("text-area").addEventListener("keydown", function () {
+//   if ($('#soundToggle').is(':checked')) {
+//     audio.play();
+//   }
+// });
 
 
