@@ -19,7 +19,7 @@
 // Add notifications
 
 
-var currentDate = moment().format("MMMM D, YYYY");
+var currentDate = moment().format("DD/MM/YYYY, kk:mm");
 
 $(document).ready(function () {
 
@@ -131,6 +131,7 @@ $("#quote").on("click", function (event) {
     headers: { 'X-Api-Key': ninjaKey },
     contentType: 'application/json',
     success: function (result) {
+      console.log("The prompt is: ", result);
       //"Disappears" the start page jumbotron
       $("#start-screen").css("display", "none");
       $("#prompt-container").removeClass("hide");
@@ -153,7 +154,7 @@ $("#quote").on("click", function (event) {
       soundEffect();
       addTextArea();
       discard();
-      save();
+      save(result);
       publish();
     },
     error: function ajaxError(jqXHR) {
@@ -256,8 +257,8 @@ function discard() {
     event.preventDefault();
     // Add a modal to the DISCARD button
     $('#discard-button').attr("data-toggle", "modal");
-    $('#discard-button').attr("data-target", "#exampleModal");
-    $('#discard-button').append(`<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    $('#discard-button').attr("data-target", "#exampleModal-1");
+    $('#discard-button').append(`<div class="modal fade" id="exampleModal-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -283,21 +284,57 @@ function discard() {
 
 // SAVE BUTTON
 // Create an event listener when clicking the save button
-function save() {
+function save(inspiration) {
   $('#save-button').on('click', function (event) {
     event.preventDefault();
-    console.log("save clicked");
-    var currentDate = moment().format("DD/MM/YYYY, kk:mm");
-    var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
-    console.log("savedEntries: ", savedEntries);
-    savedEntries.push({
-      date: currentDate,
-      content: $("#text-area-element").val(),
+    // Add a modal to the save button
+    $('#save-button').attr("data-toggle", "modal");
+    $('#save-button').attr("data-target", "#exampleModal-2");
+    $('#save-button').append(`<div class="modal fade" id="exampleModal-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Please save your writing!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"><p class="small">Your writing will be saved in the records. You can view it on the Saved Writing page.</p></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" id="saveChgBtn" class="btn btn-warning">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>`);
+    // Add an event listener when clicking on the Save changes button and save entries to localStorage
+    $("#saveChgBtn").click(function () {
+      var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
+      savedEntries.push({
+        date: currentDate,
+        content: $("#text-area-element").val(),
+        prompt: inspiration,
+      });
+      localStorage.setItem("savedEntries", JSON.stringify(savedEntries));
     });
-    console.log("new savedEntries", savedEntries)
-    localStorage.setItem("savedEntries", JSON.stringify(savedEntries));
   });
 }
+
+// function save() {
+//   $('#save-button').on('click', function (event) {
+//     event.preventDefault();
+//     console.log("save clicked");
+//     var currentDate = moment().format("DD/MM/YYYY, kk:mm");
+//     var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
+//     console.log("savedEntries: ", savedEntries);
+//     savedEntries.push({
+//       date: currentDate,
+//       content: $("#text-area-element").val(),
+//     });
+//     console.log("new savedEntries", savedEntries)
+//     localStorage.setItem("savedEntries", JSON.stringify(savedEntries));
+//   });
+// }
 
 // PUBLISH BUTTON
 function publish() {
@@ -305,8 +342,8 @@ function publish() {
     event.preventDefault();
     // Add a modal to the PUBLISH button
     $('#publish-button').attr("data-toggle", "modal");
-    $('#publish-button').attr("data-target", "#exampleModal");
-    $('#publish-button').append(`<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    $('#publish-button').attr("data-target", "#exampleModal-3");
+    $('#publish-button').append(`<div class="modal fade" id="exampleModal-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
