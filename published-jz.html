@@ -49,8 +49,63 @@
         </nav>
     </header>
 
-    <main>
-        <div id="published-screen" class="jumbotron-published">
+    <!-- main body -->
+    <main class="sections ml-3 mr-3">
+        <section id="cardSection">
+            <div class="container-fluid">
+                <h4 id="sectionHeader"
+                    class="text-center font-weight-bold text-monospace text-uppercase text-danger mb-4">Published Blogs
+                </h4>
+                <div id="publishedWork" class="row mx-auto">
+
+                    <div class="blogCard card bg-dark text-white ml-3 mr-3 mb-5 mx-auto col-xs-12 col-lg-6 w-auto">
+                        <img src="assets/images/hd-wallpaper-7091379_1920.jpg" class="card-img"
+                            alt="The background image for each published blog.">
+                        <div class="card-img-overlay" style="padding: 50px;">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <p class="card-text small text-right">Last updated 3 mins ago</p>
+                        </div>
+                    </div>
+
+                    <div class="blogCard card bg-dark text-white ml-3 mr-3 mb-5 mx-auto col-xs-12 col-lg-6 w-auto">
+                        <img src="assets/images/hd-wallpaper-7091379_1920.jpg" class="card-img"
+                            alt="The background image for each published blog.">
+                        <div class="card-img-overlay" style="padding: 50px;">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <p class="card-text small text-right">Last updated 3 mins ago</p>
+                        </div>
+                    </div>
+
+                    <div class="card bg-dark text-white ml-3 mr-3 mb-5 mx-auto col-xs-12 col-lg-6 w-auto"
+                        style="max-width: 620px; padding: 0px;">
+                        <img src="assets/images/hd-wallpaper-7091379_1920.jpg" class="card-img"
+                            alt="The background image for each published blog.">
+                        <div class="card-img-overlay">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <p class="card-text small text-right">Last updated 3 mins ago</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="publishedSection">
+            <div id="text-area" style="display: none">
+                <p class="font-weight-bold font-italic text-monospace text-uppercase text-danger mb-3 ml-3">Please find
+                    your
+                    published blog below:</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- <div id="published-screen" class="jumbotron-published">
             <h3 class="display-6">My published writing</h3>
 
             <div class="container-fluid">
@@ -80,9 +135,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="container-fluid">
+    <!-- <div class="container-fluid">
                 <div class="card-deck">
                     <div class="card bg-light publishedCard" id="card5">
                         <div class="card-body text-center">
@@ -139,16 +194,18 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </div> -->
 
+    <!-- footer -->
     <footer>
-        <div class="container text-center">
+        <div class="container text-center mt-3 mb-3">
             <p>&copy; Team Inspirite 2023. All Rights Reserved.</p>
-            <a href="https://github.com/dr-jingyuezhao/" class="link">Jingyue</a> |
-            <a href="https://github.com/LisaMLorenz" class="link">Lisa</a> |
-            <a href="https://github.com/manonthemon" class="link">Maciek</a> |
-            <a href="https://github.com/sophiedodsworth" class="link">Sophie</a>
+            <div id="contact">
+                <a href="https://github.com/dr-jingyuezhao/" class="link">Jingyue</a> |
+                <a href="https://github.com/LisaMLorenz" class="link">Lisa</a> |
+                <a href="https://github.com/manonthemon" class="link">Maciek</a> |
+                <a href="https://github.com/sophiedodsworth" class="link">Sophie</a>
+            </div>
         </div>
     </footer>
 
