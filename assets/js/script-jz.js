@@ -155,7 +155,7 @@ $("#quote").on("click", function (event) {
       addTextArea();
       discard();
       save(result);
-      publish();
+      publish(result);
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -174,6 +174,7 @@ $("#fact").on("click", function (event) {
     headers: { 'X-Api-Key': ninjaKey },
     contentType: 'application/json',
     success: function (result) {
+      console.log("The prompt is: ", result);
       $("#start-screen").css("display", "none");
       $("#prompt-container").removeClass("hide");
       var factElement = $("<h4>");
@@ -184,8 +185,8 @@ $("#fact").on("click", function (event) {
       soundEffect();
       addTextArea();
       discard();
-      save();
-      publish();
+      save(result);
+      publish(result);
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -202,6 +203,7 @@ $("#random-img").on("click", function (event) {
     url: 'https://api.api-ninjas.com/v1/randomimage?',
     headers: { 'X-Api-Key': ninjaKey },
     success: function (result) {
+      console.log("The prompt is: ", result);
       $("#start-screen").css("display", "none");
       $("#prompt-container").removeClass("hide");
       var imageElement = $("<img>");
@@ -212,8 +214,8 @@ $("#random-img").on("click", function (event) {
       soundEffect();
       addTextArea();
       discard();
-      save();
-      publish();
+      save(result);
+      publish(result);
     },
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
@@ -233,7 +235,8 @@ $("#gif").on("click", function (event) {
     url: queryURL,
     method: "GET"
   })
-    .then(function (response) {
+    .then(function (result) {
+      console.log("The prompt is: ", result);
       $("#start-screen").css("display", "none");
       $("#prompt-container").removeClass("hide");
       var gifUrl = response.data.images.original.url
@@ -245,8 +248,8 @@ $("#gif").on("click", function (event) {
       soundEffect();
       addTextArea();
       discard();
-      save();
-      publish();
+      save(result);
+      publish(result);
     });
 });
 
@@ -337,7 +340,7 @@ function save(inspiration) {
 // }
 
 // PUBLISH BUTTON
-function publish() {
+function publish(inspiration) {
   $("#publish-button").click(function (event) {
     event.preventDefault();
     // Add a modal to the PUBLISH button
@@ -374,6 +377,7 @@ function publish() {
       postedEntries.push({
         date: currentDate,
         content: $("#new-entry-container").html(),
+        prompt: inspiration,
       });
       localStorage.setItem("postedEntries", JSON.stringify(postedEntries));
       //Adds 1  streak to counter when post published
