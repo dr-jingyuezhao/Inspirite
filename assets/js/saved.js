@@ -8,7 +8,7 @@ console.log("savedEntries: ", savedEntries);
 for (var i = 0; i < savedEntries.length; i++) {
   var savedDate = moment(savedEntries[i].date).format("DD/MM/YYYY, H:mm");
   var daysAgo = moment(savedDate).fromNow();
-  $('#savedWriting').append(`<div class="cardContainer mb-3 col-xs-12 col-md-6 col-xl-3">
+  $('#savedWriting').append(`<div class="blogCard card bg-light text-black ml-3 mr-3 mb-5 mx-auto col-xs-12 col-lg-6 w-auto">
   <div class="card text-center">
     <div id="cardTitle" class="card-header">
     ${savedDate}
