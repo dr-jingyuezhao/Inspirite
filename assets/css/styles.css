@@ -415,17 +415,17 @@ footer {
     align-self: center;
     align-items: center;
     gap: 20px;
- 
     padding: 50px;
     border: 20px;
     text-align: justify;
+     max-width: fit-content;
+ 
+   
 }
 
 #new-entry-container h3 {
     font-family: "IBM Plex Mono";
     font-size: 4vh;
-    margin-top: 20px;
-    margin-bottom: 20px;
     justify-self: center;
     text-align: center;
 }
@@ -434,8 +434,10 @@ footer {
     font-family: 'DB Serif Display', serif;
     font-size: 2.5vh;
     margin-left: 20px;
+    margin-top: 30px;
     margin-bottom: 20px;
     justify-content: center;
+    
     
 }
 
@@ -653,6 +655,14 @@ gap: 30px;
 }
 
 
-.container {
-    margin-right: 100px;
+#archived-post {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 60px;
+    padding-top: 40px;
+    border: 20px;
+    text-align: justify;
 }

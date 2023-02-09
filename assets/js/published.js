@@ -75,14 +75,8 @@ $(".readBtn").each(function () {
         var postedBlog = publishedEntries[entryIndex].content;
         console.log("posted blog: ", postedBlog);
         var postContainer = $("#published-post-container")
-        postContainer.css({
-          "display" : "flex",
-          "flexDirection" : "column",
-          "justifyContent" : "center",
-          "alignItems" : "center",
-          "margin" : "30px 300px 0px 300px", 
-          "gap" : "30px"
-        })
+        postContainer.addClass("container")
+        postContainer.attr("id" , "archived-post")
         $("#blogDate").text(blogDate);
         $("#blog-container").html(postedBlog);
         $("#main-body").append(postContainer)
