@@ -82,7 +82,8 @@ $(".readBtn").each(function () {
           "flexDirection" : "column",
           "justifyContent" : "center",
           "alignItems" : "center",
-          "margin" : "30px 600px 0px 600px" 
+          "margin" : "30px 300px 0px 300px", 
+          "gap" : "30px"
         })
         $("#blogDate").text(blogDate);
         $("#blog-container").html(postedBlog);

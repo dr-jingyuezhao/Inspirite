@@ -53,52 +53,6 @@ $(document).ready(function () {
   $("#saved").css("cursor", "pointer");
 
 
-//   // DISPLAYING PREVIOUSLY PUBLISHED POSTS
-
-//   var publishedEntries = JSON.parse(localStorage.getItem("publishedEntries")) || [];
-//   console.log(publishedEntries);
-
-//   for (i = 0; i < publishedEntries.length; i++) {
-//     var card = $("<div>")
-//     card.addClass("card bg-light")
-//     var cardBody = $("<div>")
-//     cardBody.addClass("card-body text-center")
-//     var cardText = $("<p>")
-//     cardText.addClass("card-text")
-//     cardText.html(publishedEntries[i].date)
-//     $("#published-screen").append(card)
-//     card.append(cardBody)
-//     cardBody.append(cardText)
-//     card.click(function () {
-//       console.log("archive card clicked");
-//     });
-//   }
-// })
-
-// //^NOTIFICATIONS
-
-// if ("Notification" in window) {
-//   if (Notification.permission === "granted") {
-//     setInterval(function () {
-//       let notification = new Notification("Time to INSPIRITE", {
-//         body: "Get inspired and write something great today!",
-//         icon: "icon.png" //to be added
-//       });
-//     }, 1000 * 60 * 60 * 24);
-//   } else if (Notification.permission !== "denied") {
-//     Notification.requestPermission().then(function (permission) {
-//       if (permission === "granted") {
-//         setInterval(function () {
-//           let notification = new Notification("Time to INSPIRITE", {
-//             body: "Get inspired and write something great today!",
-//             icon: "icon.png" //to be added
-//           });
-//         }, 1000 * 60 * 60 * 24);
-//       }
-//     });
-//   }
-// }
-
 //QUOTES BUTTON
 //Buttons on click event
 $("#quote").on("click", function (event) {
@@ -378,7 +332,6 @@ function publish() {
   });
 
 
-
   $("#publish-button").click(function (event) {
     event.preventDefault();
     console.log("publish clicked");
@@ -388,7 +341,6 @@ function publish() {
       newEntryHeadline.text("Your post from " + currentDate);
       var newEntry = $("<p>")
       newEntry.html($("#text-area-element").val().replace(/\n/g, "<br>"));
-      $("#new-entry-container").css("display", "block");
       $("#new-entry-container").prepend(newEntryHeadline);
       $("#new-entry-container").append(newEntry);
       //Storing new post entry in localstorage. It stores it in an array of objects
