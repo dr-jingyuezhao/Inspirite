@@ -1,8 +1,8 @@
 // Declare variables
 var currentDate = moment().format("DD/MM/YYYY, H:mm");
 console.log("Current date/time is: " + currentDate);
-var postedEntries = JSON.parse(localStorage.getItem("postedEntries")) || [];
-console.log("postedEntries: ", postedEntries);
+var publishedEntries = JSON.parse(localStorage.getItem("publishedEntries")) || [];
+console.log("publishedEntries: ", publishedEntries);
 var writingStreak = JSON.parse(localStorage.getItem("writingStreak")) || [];
 console.log("writingStreak: ", writingStreak);
 
@@ -21,13 +21,13 @@ $(document).ready(function() {
 
 
 // Create a card for each posted entry
-for (var i = 0; i < postedEntries.length; i++) {
-    var postedDate = moment(postedEntries[i].date).format("DD/MM/YYYY, H:mm");
+for (var i = 0; i < publishedEntries.length; i++) {
+    var postedDate = moment(publishedEntries[i].date).format("DD/MM/YYYY, H:mm");
     var daysAgo = moment(postedDate).fromNow();
     $('#publishedWork').append(`<div class="blogCard card bg-light text-black ml-3 mr-3 mb-5 mx-auto col-xs-12 col-lg-6 w-auto">
     
     <h5 class="card-title">${postedDate}</h5>
-        <p class="card-text">${postedEntries[i].content.substr(0, 256)}</p>
+        <p class="card-text">${publishedEntries[i].content.substr(0, 256)}</p>
         <button type="button" id="posted#${i}" class="readBtn btn mt-auto">Read more</button>
     </div>
     
@@ -44,8 +44,8 @@ $(".readBtn").each(function () {
         // Create respective published blog 
         var entryIndex = parseInt($(this).attr("id").split("#")[1]);
         console.log("entryIndex: ", entryIndex);
-        var blogDate = postedEntries[entryIndex].date;
-        var postedBlog = postedEntries[entryIndex].content;
+        var blogDate = publishedEntries[entryIndex].date;
+        var postedBlog = publishedEntries[entryIndex].content;
         console.log("posted blog: ", postedBlog);
         $("#blogDate").text(blogDate);
         $("#blog-container").html(postedBlog);

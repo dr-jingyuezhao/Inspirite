@@ -1,7 +1,7 @@
 
 // GLOBAL VARIABLES
 
-var currentDate = moment().format("DD/MM/YYYY, kk:mm");
+var currentDate = moment().format("DD/MM/YYYY, H:mm");
 
 //Ninja APIs Key
 var ninjaKey = "7uO6vmcctMNbKS/uvDMn/Q==hOPwoCDiiaGwubha"
@@ -31,6 +31,7 @@ $(document).ready(function () {
   else if (writingStreak > 1) {
     $("#counter").text("Your current writing streak is " + writingStreak + " days");
   }
+});
 
   //LOGO CLICK Action (Go Home)
   $("#app-name").click(function () {
@@ -52,27 +53,27 @@ $(document).ready(function () {
   $("#saved").css("cursor", "pointer");
 
 
-  // DISPLAYING PREVIOUSLY PUBLISHED POSTS
+//   // DISPLAYING PREVIOUSLY PUBLISHED POSTS
 
-  var publishedEntries = JSON.parse(localStorage.getItem("publishedEntries")) || [];
-  console.log(publishedEntries);
+//   var publishedEntries = JSON.parse(localStorage.getItem("publishedEntries")) || [];
+//   console.log(publishedEntries);
 
-  for (i = 0; i < publishedEntries.length; i++) {
-    var card = $("<div>")
-    card.addClass("card bg-light")
-    var cardBody = $("<div>")
-    cardBody.addClass("card-body text-center")
-    var cardText = $("<p>")
-    cardText.addClass("card-text")
-    cardText.html(publishedEntries[i].date)
-    $("#published-screen").append(card)
-    card.append(cardBody)
-    cardBody.append(cardText)
-    card.click(function () {
-      console.log("archive card clicked");
-    });
-  }
-})
+//   for (i = 0; i < publishedEntries.length; i++) {
+//     var card = $("<div>")
+//     card.addClass("card bg-light")
+//     var cardBody = $("<div>")
+//     cardBody.addClass("card-body text-center")
+//     var cardText = $("<p>")
+//     cardText.addClass("card-text")
+//     cardText.html(publishedEntries[i].date)
+//     $("#published-screen").append(card)
+//     card.append(cardBody)
+//     cardBody.append(cardText)
+//     card.click(function () {
+//       console.log("archive card clicked");
+//     });
+//   }
+// })
 
 // //^NOTIFICATIONS
 
@@ -103,8 +104,6 @@ $(document).ready(function () {
 $("#quote").on("click", function (event) {
   event.preventDefault()
 
-
-
   let textInput = document.getElementById("text-area");
 
   if (textInput.style.display === "none") {
@@ -114,7 +113,6 @@ $("#quote").on("click", function (event) {
   }
 
   $('#sound-toggle').css('display', 'block');
-
 
   //Launches Ajax call for quotes
   $.ajax({
