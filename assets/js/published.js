@@ -54,8 +54,6 @@ for (var i = 0; i < publishedEntries.length; i++) {
     var postedDate = moment(publishedEntries[i].date).format("DD/MM/YYYY, H:mm");
     var daysAgo = moment(postedDate).fromNow();
     $('#publishedWork').append(`<div class="blogCard card bg-light text-black ml-3 mr-3 mb-5 mx-auto col-xs-12 col-lg-6 w-auto">
-    
-    <h5 class="card-title">${postedDate}</h5>
         <p class="card-text">${publishedEntries[i].content.substr(0, 256)}</p>
         <button type="button" id="posted#${i}" class="readBtn btn mt-auto">Read more</button>
     </div>

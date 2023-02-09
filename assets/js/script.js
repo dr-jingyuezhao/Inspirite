@@ -359,7 +359,6 @@ function publish() {
 
 // SAVE BUTTON
 function save() {
-
   let textArea = document.getElementById("text-area-element");
   let saveButton = document.getElementById("save-button");
   saveButton.disabled = true;
@@ -370,11 +369,10 @@ function save() {
       saveButton.disabled = true;
     }
   });
-
   $("#save-button").click(function () {
     console.log("save clicked");
     var currentDate = moment().format("DD/MM/YYYY, kk:mm");
-    $("#text-area").css("display", "none");
+
     var textAreaValue = $("#text-area-element").val();
     var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
     savedEntries.push({
@@ -382,20 +380,28 @@ function save() {
       content: textAreaValue
     });
     localStorage.setItem("savedEntries", JSON.stringify(savedEntries));
-  });
 
-  $('#save-button').on('click', function (event) {
-    event.preventDefault();
-    console.log("save clicked");
-    // Add an event listener when clicking on the Save changes button and save entries to localStorage
-    $("#saveChgBtn").click(function () {
-      var savedEntries = JSON.parse(localStorage.getItem("savedEntries")) || [];
-      savedEntries.push({
-        date: currentDate,
-        content: $("#text-area-element").val(),
-      });
-      localStorage.setItem("savedEntries", JSON.stringify(savedEntries));
-    });
+
+//MODAL FOR SAVE BUTTON - Causes BUG wuith multiplying saves
+
+// $('#save-button').attr("data-toggle", "modal");
+// $('#save-button').attr("data-target", "#exampleModal");
+// $('#save-button').append(`<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+// <div class="modal-dialog" role="document">
+//   <div class="modal-content">
+//     <div class="modal-header">
+//       <h3 class="modal-title" id="exampleModalLabel">Post Saved!</h3>
+//       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+//         <span aria-hidden="true">&times;</span>
+//       </button>
+//     </div>
+//     <div class="modal-body"><p class="smaller">You can find your saved posts in the View Saves section</p></div>
+//     <div class="modal-footer">
+//       <button type="button" id="cancelBtn" class="btn btn-secondary" data-dismiss="modal">OK</button>
+//     </div>
+//   </div>
+// </div>
+// </div>`);
   });
 }
 
