@@ -22,37 +22,20 @@
 <body>
   <header>
     <!-- Navigation bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-      <a href="index.html" id="app-name" class="navbar-brand mb-0 h1"><img id="logo"
-          src="assets/images/jz_Inspirite.png">Inspirite</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a id="home-page" class="nav-link" href="index.html"><i class="fa-solid fa-house"></i></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link font-weight-bold mr-1" href="saved.html">Saved Writing<span
-                class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link font-weight-bold mr-3" href="published.html">Published Work</a>
-          </li>
-        </ul>
-        <form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </div>
+    <nav id="nav-bar" class="navbar navbar-light bg-light">
+      <span id="app-name" class="navbar-brand mb-0 h1">Inspirite</span>
+      <div id="counter"></div>
+      <div id="saved">View Saves</div>
+      <div id="published">View Archives</div>
     </nav>
   </header>
 
   <!-- main body -->
   <main class="sections ml-3 mr-3">
     <section id="cardSection">
+      <h4 id="sectionHeader"
+            class="text-center text-danger mb-4">Saved Work
+        </h4>
       <div id="savedWriting" class="row"></div>
     </section>
 
