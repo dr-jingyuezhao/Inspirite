@@ -6,7 +6,7 @@ console.log("publishedEntries: ", publishedEntries);
 var writingStreak = JSON.parse(localStorage.getItem("writingStreak")) || [];
 console.log("writingStreak: ", writingStreak);
 
-
+  //STREAK COUNTER ON PAGE LOAD
 $(document).ready(function () {
   let writingStreak = localStorage.getItem("writingStreak");
   let lastClicked = localStorage.getItem("lastClicked");
@@ -35,7 +35,7 @@ $(document).ready(function () {
   $("#app-name").css("cursor", "pointer");
 
 
-  //VIEW HISTORY NAVBAR ITEM CLICK
+  //VIEW ARCHIVES NAVBAR ITEM CLICK
   $("#published").click(function () {
     window.location.href = "published.html";
   });
@@ -76,8 +76,18 @@ $(".readBtn").each(function () {
         var blogDate = publishedEntries[entryIndex].date;
         var postedBlog = publishedEntries[entryIndex].content;
         console.log("posted blog: ", postedBlog);
+        var postContainer = $("#published-post-container")
+        postContainer.css({
+          "display" : "flex",
+          "flexDirection" : "column",
+          "justifyContent" : "center",
+          "alignItems" : "center",
+          "margin" : "30px 600px 0px 600px" 
+        })
         $("#blogDate").text(blogDate);
         $("#blog-container").html(postedBlog);
+        $("#main-body").append(postContainer)
+        $(postContainer).append(postedBlog)
     });
 });
 
