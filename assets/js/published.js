@@ -7,17 +7,46 @@ var writingStreak = JSON.parse(localStorage.getItem("writingStreak")) || [];
 console.log("writingStreak: ", writingStreak);
 
 
-//COUNTER ON PAGE REFRESH /  LOAD
+$(document).ready(function () {
+  let writingStreak = localStorage.getItem("writingStreak");
+  let lastClicked = localStorage.getItem("lastClicked");
+  if (writingStreak === null) {
+    $("#counter").text("Start your writing streak!");
+  } else {
+    writingStreak = parseInt(writingStreak);
+  }
+  if (lastClicked === null) {
+    lastClicked = new Date();
+  } else {
+    lastClicked = new Date(lastClicked);
+  }
+  if (writingStreak === 1) {
+    $("#counter").text("Your current writing streak is " + writingStreak + " day");
+  }
+  else if (writingStreak > 1) {
+    $("#counter").text("Your current writing streak is " + writingStreak + " days");
+  }
+});
 
-$(document).ready(function() {
-    
-      if (writingStreak === 1) {
-        $("#counter").text("Your current writing streak is " + writingStreak + " day");
-      }
-      else if (writingStreak > 1) {
-        $("#counter").text("Your current writing streak is " + writingStreak + " days");
-      }
- });
+  //LOGO CLICK Action (Go Home)
+  $("#app-name").click(function () {
+    window.location.href = "index.html";
+  });
+  $("#app-name").css("cursor", "pointer");
+
+
+  //VIEW HISTORY NAVBAR ITEM CLICK
+  $("#published").click(function () {
+    window.location.href = "published.html";
+  });
+  $("#published").css("cursor", "pointer");
+
+  //VIEW SAVED NAVBAR ITEM CLICK
+  $("#saved").click(function () {
+    window.location.href = "saved.html";
+  });
+  $("#saved").css("cursor", "pointer");
+
 
 
 // Create a card for each posted entry
