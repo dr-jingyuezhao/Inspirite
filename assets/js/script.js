@@ -494,7 +494,7 @@ function streakCounter() {
 $('<label class="switch" >' +
   '<input type="checkbox" id="soundToggle">' +
   '<span class="slider round"></span>' +
-  '</label><label>Sound On/Off:</label>').insertAfter('#prompt-container');
+  '</label><label>Sound On/Off:</label>').insertBefore("#footer");
 
 // function to play sound on text area click ---- DOES NOT DISPLAY ON PUBLISHED PAGE AND CAUSES ERROR
 const audio = new Audio('assets/sounds/writing_7s.mp3');

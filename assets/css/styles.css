@@ -638,3 +638,15 @@ gap: 30px;
 #published:hover {
     text-decoration: underline;
 }
+
+.blogCard {
+  text-align: center;
+}
+
+
+#publishedWork {
+    display: flex;
+    justify-content: flex-start;
+    justify-items: flex-start;
+    
+}
