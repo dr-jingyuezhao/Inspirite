@@ -415,7 +415,8 @@ footer {
     align-self: center;
     align-items: center;
     gap: 20px;
-    margin: 50px 300px 50px 300px;
+ 
+    padding: 50px;
     border: 20px;
     text-align: justify;
 }
@@ -649,4 +650,9 @@ gap: 30px;
     justify-content: flex-start;
     justify-items: flex-start;
     
+}
+
+
+.container {
+    margin-right: 100px;
 }

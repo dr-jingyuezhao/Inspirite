@@ -314,6 +314,7 @@ function publish() {
     var newEntry = $("<p>")
     newEntry.html(textAreaValue.replace(/\n/g, "<br>"));
     $("#new-entry-container").css("display", "block");
+    $("#new-entry-container").addClass("container")
     $("#new-entry-container").prepend(newEntryHeadline);
     $("#new-entry-container").append(newEntry);
 
@@ -332,29 +333,6 @@ function publish() {
   });
 
 
-  $("#publish-button").click(function (event) {
-    event.preventDefault();
-    console.log("publish clicked");
-    // Add an event listener when clicking on the Save changes button and save entries to localStorage
-    $("#publishBtn").click(function () {
-      var newEntryHeadline = $("<h5>")
-      newEntryHeadline.text("Your post from " + currentDate);
-      var newEntry = $("<p>")
-      newEntry.html($("#text-area-element").val().replace(/\n/g, "<br>"));
-      $("#new-entry-container").prepend(newEntryHeadline);
-      $("#new-entry-container").append(newEntry);
-      //Storing new post entry in localstorage. It stores it in an array of objects
-      // each pos is marked with current date so that we can retrieve them on published page.
-      var postedEntries = JSON.parse(localStorage.getItem("postedEntries")) || [];
-      postedEntries.push({
-        date: currentDate,
-        content: $("#new-entry-container").html(),
-      });
-      localStorage.setItem("postedEntries", JSON.stringify(postedEntries));
-      //Adds 1  streak to counter when post published
-      streakCounter();
-    });
-  });
 }
 
 // SAVE BUTTON
@@ -397,7 +375,7 @@ function save() {
 //     </div>
 //     <div class="modal-body"><p class="smaller">You can find your saved posts in the View Saves section</p></div>
 //     <div class="modal-footer">
-//       <button type="button" id="cancelBtn" class="btn btn-secondary" data-dismiss="modal">OK</button>
+   
 //     </div>
 //   </div>
 // </div>
